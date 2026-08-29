@@ -200,14 +200,14 @@ export default function Comparison() {
 
                 @media (max-width: 640px) {
                     .compare-grid {
-                        grid-template-columns: 1fr 75px 75px; /* Safely shrinks columns */
-                        padding: 16px 10px !important;
-                        gap: 8px;
+                        grid-template-columns: 1fr 70px 70px;
+                        padding: 14px 10px !important;
+                        gap: 6px;
                     }
                     .compare-feature-text {
                         font-size: 13px !important;
                         line-height: 1.4;
-                        word-break: break-word; /* Prevents long words from breaking layout */
+                        word-break: break-word;
                     }
                     .compare-header-text {
                         font-size: 11px !important;
@@ -217,6 +217,16 @@ export default function Comparison() {
                         padding: 6px 0 !important;
                         word-break: break-word;
                     }
+                }
+
+                @media (max-width: 380px) {
+                    .comparison-section { padding: 48px 10px !important; }
+                    .compare-grid {
+                        grid-template-columns: 1fr 60px 60px;
+                        padding: 12px 6px !important;
+                        gap: 4px;
+                    }
+                    .compare-feature-text { font-size: 12px !important; }
                 }
             `}</style>
         </section>

@@ -10,22 +10,25 @@ export default function TrustedBy() {
     const allLogos = [...logos, ...logos]
 
     return (
-        <section style={{
+        <section className="trustedby-section" style={{
             background: '#ffffff',
             borderTop: '1px solid #e2e8f0',
             borderBottom: '1px solid #e2e8f0',
-            padding: '48px 0',
+            padding: '40px 0',
             overflow: 'hidden',
+            width: '100%',
+            boxSizing: 'border-box',
         }}>
-            <div style={{
+            <div className="trustedby-title" style={{
                 textAlign: 'center',
-                marginBottom: 36,
-                fontSize: 13,
+                marginBottom: 28,
+                fontSize: 12.5,
                 fontWeight: 700,
-                letterSpacing: '0.12em',
+                letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 color: '#64748b',
                 fontFamily: "'DM Sans', sans-serif",
+                padding: '0 16px',
             }}>
                 Trusted by 200+ diagnostic labs across India
             </div>
@@ -38,13 +41,13 @@ export default function TrustedBy() {
                 width: '100%'
             }}>
 
-                <div style={{
-                    position: 'absolute', left: 0, top: 0, bottom: 0, width: 140,
+                <div className="mask-left" style={{
+                    position: 'absolute', left: 0, top: 0, bottom: 0, width: 120,
                     background: 'linear-gradient(to right, #ffffff, transparent)',
                     zIndex: 2, pointerEvents: 'none',
                 }} />
-                <div style={{
-                    position: 'absolute', right: 0, top: 0, bottom: 0, width: 140,
+                <div className="mask-right" style={{
+                    position: 'absolute', right: 0, top: 0, bottom: 0, width: 120,
                     background: 'linear-gradient(to left, #ffffff, transparent)',
                     zIndex: 2, pointerEvents: 'none',
                 }} />
@@ -54,26 +57,27 @@ export default function TrustedBy() {
                     style={{
                         display: 'flex',
                         width: 'max-content',
-                        animation: 'scrollLeft 40s linear infinite'
+                        animation: 'scrollLeft 36s linear infinite'
                     }}
                 >
                     {allLogos.map((name, i) => (
                         <div
                             key={i}
+                            className="trusted-logo-item"
                             style={{
-                                padding: '0 40px',
-                                fontSize: 18,
+                                padding: '0 32px',
+                                fontSize: 17,
                                 fontWeight: 700,
                                 fontFamily: "'DM Sans', sans-serif",
                                 color: '#94a3b8',
                                 whiteSpace: 'nowrap',
-                                transition: 'color 0.3s ease',
+                                transition: 'color 0.2s ease',
                                 cursor: 'default',
                                 display: 'flex',
                                 alignItems: 'center'
                             }}
                             onMouseEnter={e => {
-                                e.currentTarget.style.color = 'var(--blue-primary)'
+                                e.currentTarget.style.color = '#2563eb'
                             }}
                             onMouseLeave={e => {
                                 e.currentTarget.style.color = '#94a3b8'
@@ -91,9 +95,15 @@ export default function TrustedBy() {
                     100% { transform: translateX(-50%); }
                 }
                 
-                /* Premium Touch: Mouse laane par scroll ruk jayega */
                 .scroll-container:hover .logo-track {
                     animation-play-state: paused !important;
+                }
+
+                @media (max-width: 640px) {
+                    .trustedby-section { padding: 28px 0 !important; }
+                    .trustedby-title { font-size: 11px !important; margin-bottom: 20px !important; }
+                    .trusted-logo-item { padding: 0 18px !important; font-size: 14px !important; }
+                    .mask-left, .mask-right { width: 40px !important; }
                 }
             `}</style>
         </section>

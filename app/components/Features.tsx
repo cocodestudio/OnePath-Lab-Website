@@ -164,17 +164,18 @@ export default function Features() {
                 .feature-card:hover {
                     border-color: #cbd5e1 !important;
                     box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
-                    transform: translateY(-4px);
+                    transform: translateY(-3px);
                 }
                 .feature-card:hover .icon-box {
-                    transform: scale(1.1) rotate(5deg);
-                    background: var(--blue-primary, #3b82f6) !important;
+                    transform: scale(1.08) rotate(4deg);
+                    background: #2563eb !important;
                     color: #ffffff !important;
                 }
                 .mobile-break { display: none; }
                 
                 @media (max-width: 768px) {
-                    .features-section { padding: 60px 15px !important; }
+                    .features-section { padding: 52px 16px !important; }
+                    .features-section .feature-card { padding: 22px 18px !important; border-radius: 16px !important; }
                     .mobile-break { display: block; }
                 }
             `}</style>
