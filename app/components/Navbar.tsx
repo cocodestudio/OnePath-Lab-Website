@@ -82,14 +82,14 @@ export default function Navbar() {
                     padding: '0 10px 0 24px',
                     borderRadius: 100,
                     background: scrolled
-                        ? 'rgba(8, 14, 36, 0.92)'
-                        : 'rgba(8, 14, 36, 0.75)',
+                        ? 'rgba(255, 255, 255, 0.96)'
+                        : 'rgba(255, 255, 255, 0.80)',
                     backdropFilter: 'blur(32px)',
                     WebkitBackdropFilter: 'blur(32px)',
-                    border: '1px solid rgba(99, 156, 255, 0.25)',
+                    border: '1px solid rgba(226, 232, 240, 0.9)',
                     boxShadow: scrolled
-                        ? '0 8px 40px -8px rgba(0,0,0,0.5), 0 0 0 1px rgba(99,156,255,0.12), inset 0 1px 0 rgba(255,255,255,0.06)'
-                        : '0 4px 24px -6px rgba(0,0,0,0.35), 0 0 0 1px rgba(99,156,255,0.08), inset 0 1px 0 rgba(255,255,255,0.05)',
+                        ? '0 8px 32px -8px rgba(15,23,42,0.12), 0 0 0 1px rgba(226,232,240,0.6), inset 0 1px 0 rgba(255,255,255,1)'
+                        : '0 4px 20px -6px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,1)',
                     transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
                 }}>
 
@@ -97,23 +97,22 @@ export default function Navbar() {
                     <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
                         <Image src="/logo.png" alt="Logo" width={32} height={32} style={{ objectFit: 'contain' }} priority />
 
-                        <span style={{ display: 'flex', alignItems: 'baseline', gap: 1, userSelect: 'none' }}>
+                        <span style={{ display: 'flex', alignItems: 'baseline', gap: 0, userSelect: 'none' }}>
                             <span style={{
                                 fontFamily: '"Syne", sans-serif',
                                 fontSize: 22,
                                 fontWeight: 800,
-                                background: 'linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%)',
+                                background: 'linear-gradient(135deg, #2563eb 0%, #6366f1 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 backgroundClip: 'text',
                                 letterSpacing: '-0.04em',
                                 lineHeight: 1,
-                                filter: 'drop-shadow(0 0 8px rgba(96,165,250,0.5))',
                             }}>OnePath</span>
                             <span style={{
                                 fontFamily: '"Syne", sans-serif',
                                 fontSize: 22, fontWeight: 800,
-                                color: 'rgba(255,255,255,0.92)',
+                                color: '#0f172a',
                                 letterSpacing: '-0.04em',
                                 marginLeft: 2,
                             }}>Lab</span>
@@ -129,7 +128,7 @@ export default function Navbar() {
                                     className="nav-link-text"
                                     style={{
                                         display: 'flex', alignItems: 'center', gap: 4,
-                                        color: 'rgba(203,213,225,0.85)', textDecoration: 'none',
+                                        color: '#374151', textDecoration: 'none',
                                         fontSize: 14.5, fontWeight: 600,
                                         fontFamily: "'DM Sans', sans-serif",
                                         padding: '7px 14px',
@@ -182,7 +181,7 @@ export default function Navbar() {
                             display: 'none', alignItems: 'center', justifyContent: 'center',
                             width: 40, height: 40,
                             background: 'transparent', border: 'none',
-                            color: '#0f172a', cursor: 'pointer',
+                            color: '#374151', cursor: 'pointer',
                             borderRadius: 10,
                             transition: 'background 0.2s',
                         }}
@@ -259,16 +258,16 @@ export default function Navbar() {
                 a:hover .brand-char { color: #2563eb !important; transform: translateY(-2px); }
          
                 .nav-link-text:hover {
-                  background: rgba(255,255,255,0.08) !important;
-                  color: #ffffff !important;
+                  background: #f0f4ff !important;
+                  color: #2563eb !important;
                 }
                 .nav-item:hover .nav-link-text {
-                  color: #93c5fd !important;
+                  color: #2563eb !important;
                 }
                 .nav-item:hover .dd-icon {
                   transform: rotate(180deg);
                   opacity: 1 !important;
-                  color: #93c5fd;
+                  color: #2563eb;
                 }
          
                 .nav-dropdown {
@@ -335,7 +334,7 @@ export default function Navbar() {
                 }
                 .hamburger-icon span {
                   display: block; height: 2px;
-                  background: #0f172a; border-radius: 2px;
+                  background: #374151; border-radius: 2px;
                   transform-origin: center;
                   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
                 }
@@ -368,19 +367,19 @@ export default function Navbar() {
 
                 /* Static Clean Desktop CSS Classes */
                 .cta-login-btn {
-                    padding: 9px 22px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8);
-                    border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; text-decoration: none;
-                    font-family: 'DM Sans', sans-serif; transition: all 0.2s ease;
+                    padding: 9px 22px; font-size: 14px; font-weight: 600; color: #374151;
+                    border: 1.5px solid #e2e8f0; border-radius: 100px; text-decoration: none;
+                    font-family: 'DM Sans', sans-serif; transition: all 0.2s ease; background: transparent;
                 }
-                .cta-login-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); color: #fff; }
+                .cta-login-btn:hover { background: #f8fafc; border-color: #94a3b8; color: #0f172a; }
 
                 .cta-trial-btn {
                     display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px;
-                    font-size: 14px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #3b82f6, #6366f1);
+                    font-size: 14px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #2563eb, #6366f1);
                     border-radius: 100px; text-decoration: none; font-family: 'DM Sans', sans-serif;
-                    box-shadow: 0 4px 16px rgba(99,102,241,0.45); transition: all 0.2s ease; white-space: nowrap;
+                    box-shadow: 0 4px 16px rgba(37,99,235,0.35); transition: all 0.2s ease; white-space: nowrap;
                 }
-                .cta-trial-btn:hover { background: linear-gradient(135deg, #2563eb, #4f46e5); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(99,102,241,0.55); }
+                .cta-trial-btn:hover { background: linear-gradient(135deg, #1d4ed8, #4f46e5); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(37,99,235,0.45); }
 
                 /* Static Mobile Custom Accordion Classes */
                 .mobile-menu-btn {
