@@ -154,22 +154,12 @@ export default function Hero() {
                             boxShadow: '0 8px 24px -4px rgba(37,99,235,0.4)', transition: 'all 0.3s ease',
                             justifyContent: 'center',
                         }}>
-                            Start Free Trial <ArrowRight size={17} />
+                            Start 7-Day Free Trial <ArrowRight size={17} />
                         </Link>
-                        <a href="https://lis.onepathlab.com" target="_blank" rel="noreferrer" className="hero-cta-secondary" style={{
-                            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px',
-                            fontSize: 14.5, fontWeight: 600, background: '#ffffff', color: '#1e293b',
-                            border: '1.5px solid #e2e8f0', borderRadius: 100, textDecoration: 'none',
-                            fontFamily: "'DM Sans', sans-serif",
-                            boxShadow: '0 2px 10px rgba(15,23,42,0.05)', transition: 'all 0.3s ease',
-                            justifyContent: 'center',
-                        }}>
-                            <Play size={13} color="#2563eb" fill="#2563eb" /> Live Demo
-                        </a>
                     </div>
 
                     <p style={{ fontSize: 11.5, color: '#94a3b8', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-                        No credit card · Instant setup · Cancel anytime
+                        No credit card · Instant 7-day full access · Cancel anytime
                     </p>
                 </div>
 

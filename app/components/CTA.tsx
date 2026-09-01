@@ -127,7 +127,7 @@ export default function CTA() {
                         flex: '1 1 auto', // Make button responsive
                         maxWidth: '300px',
                     }}>
-                        Start Free Trial
+                        Start 7-Day Free Trial
                         <ArrowRight size={18} />
                     </Link>
 

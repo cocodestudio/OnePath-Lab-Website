@@ -261,7 +261,7 @@ export default function Navbar() {
                             Chat on WhatsApp (+91 9045757272)
                         </a>
                         <a
-                            href="tel:+919897198999"
+                            href="tel:+919045757272"
                             className="drawer-contact-row"
                             onClick={() => setMenuOpen(false)}
                             style={{
@@ -271,7 +271,7 @@ export default function Navbar() {
                             }}
                         >
                             <Phone size={14} color="#2563eb" />
-                            Call Sales: +91 9897198999
+                            Call Sales: +91 9045757272
                         </a>
                     </div>
                 </div>
@@ -287,7 +287,7 @@ export default function Navbar() {
                         Log in to Portal
                     </Link>
                     <Link href="/trial" onClick={() => setMenuOpen(false)} className="drawer-trial-btn">
-                        Start 5-Day Free Trial →
+                        Start 7-Day Free Trial →
                     </Link>
                 </div>
             </div>

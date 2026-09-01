@@ -164,7 +164,7 @@ export default function LISSoftware() {
                     <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 56 }}>
                         {/* PRIMARY BUTTON — opens LIS software */}
                         <a
-                            href="/dashboard/approved"
+                            href="https://lis.onepathlab.com"
                             target="_blank"
                             rel="noreferrer"
                             style={{
@@ -188,7 +188,7 @@ export default function LISSoftware() {
                             onMouseEnter={e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; e.currentTarget.style.transform = 'translateY(-1px)' }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.color = '#0f172a'; e.currentTarget.style.transform = 'translateY(0)' }}
                         >
-                            Start Free Trial
+                            Start 7-Day Free Trial
                         </a>
                     </div>
 
@@ -501,7 +501,7 @@ export default function LISSoftware() {
                 <div style={{ maxWidth: 740, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 100, padding: '6px 18px', fontSize: 13, fontWeight: 600, color: '#ffffff', fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
-                        No credit card · 1-months free trial · Cancel anytime
+                        No credit card · 7-day free trial · Cancel anytime
                     </div>
 
                     <h2 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Syne',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
@@ -513,7 +513,7 @@ export default function LISSoftware() {
                     </p>
 
                     <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <a href="/dashboard/approved" target="_blank" rel="noreferrer"
+                        <a href="https://lis.onepathlab.com" target="_blank" rel="noreferrer"
                             style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 800, fontSize: 16, padding: '16px 36px', borderRadius: 50, fontFamily: "'DM Sans',sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.2)', transition: 'all 0.2s ease' }}
                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.3)' }}
                             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)' }}
@@ -527,7 +527,7 @@ export default function LISSoftware() {
                             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)' }}
                             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
                         >
-                            Start Free Trial
+                            Start 7-Day Free Trial
                         </a>
                     </div>
                 </div>

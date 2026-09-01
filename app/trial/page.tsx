@@ -35,6 +35,7 @@ export default function SignUp() {
     const [selectedPlan, setSelectedPlan] = useState<'6month' | '1year'>('1year')
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
+    const [isAutoApproved, setIsAutoApproved] = useState(false)
     const [error, setError] = useState('')
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -87,6 +88,17 @@ export default function SignUp() {
                 }
                 throw new Error(data.message || 'Registration failed. Please try again.')
             }
+
+            if (data.approved && data.access_token) {
+                setIsAutoApproved(true)
+                try {
+                    localStorage.setItem('auth_token', data.access_token)
+                    localStorage.setItem('user', JSON.stringify(data.user || {}))
+                } catch (e) {}
+            } else {
+                setIsAutoApproved(false)
+            }
+
             setIsSuccess(true)
         } catch (err: any) {
             console.error("API Error Details:", err);
@@ -108,7 +120,6 @@ export default function SignUp() {
                 </Link>
                 <div style={{ fontSize: 15, fontWeight: 600, color: '#475569', fontFamily: "'DM Sans', sans-serif" }}>
                     <span className="hide-on-mobile">Already have an account? </span>
-                    {/* FIX: Redirecting to External Domain directly */}
                     <a href="https://lis.onepathlab.com" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 700 }}>Log in</a>
                 </div>
             </div>
@@ -122,10 +133,10 @@ export default function SignUp() {
                             <div className="animate-fade-in">
                                 <div style={{ marginBottom: 36 }}>
                                     <h1 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-                                        Start your <span style={{ color: '#2563eb' }}>Free Trial</span> Today
+                                        Start your <span style={{ color: '#2563eb' }}>7-Day Free Trial</span>
                                     </h1>
                                     <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
-                                        Set up your lab in minutes. No credit card required.
+                                        Instant access to full LIS features. No credit card required.
                                     </p>
                                 </div>
 
@@ -279,7 +290,7 @@ export default function SignUp() {
                                             boxShadow: '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
                                         }}
                                     >
-                                        {isLoading ? <span className="spinner" /> : <><ArrowRight size={18} /> Start Free Trial</>}
+                                        {isLoading ? <span className="spinner" /> : <><ArrowRight size={18} /> Start 7-Day Free Trial</>}
                                     </button>
 
                                     <p style={{ textAlign: 'center', fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", marginTop: 4 }}>
@@ -291,42 +302,57 @@ export default function SignUp() {
                             </div>
                         ) : (
                             /* Success State */
-                            <div className="animate-fade-in" style={{ textAlign: 'center', padding: '52px 36px', background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.07)' }}>
-                                <div style={{ width: 80, height: 80, background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', boxShadow: '0 0 0 10px rgba(34,197,94,0.1)' }}>
-                                    <CheckCircle2 size={40} color="#16a34a" />
+                            <div className="animate-fade-in" style={{ textAlign: 'center', padding: '44px 32px', background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', boxShadow: '0 10px 40px -10px rgba(0,0,0,0.07)' }}>
+                                <div style={{ width: 76, height: 76, background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: '0 0 0 8px rgba(34,197,94,0.1)' }}>
+                                    <CheckCircle2 size={38} color="#16a34a" />
                                 </div>
-                                <h2 style={{ fontSize: 'clamp(22px, 3vw, 30px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12 }}>
-                                    Registration Successful!
+                                <h2 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 10 }}>
+                                    {isAutoApproved ? '🎉 7-Day Free Trial is Live!' : 'Registration Successful!'}
                                 </h2>
-                                <p style={{ fontSize: 15.5, color: '#475569', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.75, maxWidth: 420, margin: '0 auto 20px' }}>
-                                    Thank you, <strong style={{ color: '#0f172a' }}>{formData.name.split(' ')[0]}</strong>! Your registration for{' '}
-                                    <strong style={{ color: '#0f172a' }}>{formData.labName}</strong> has been received successfully.
+                                <p style={{ fontSize: 15, color: '#475569', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, maxWidth: 430, margin: '0 auto 20px' }}>
+                                    Welcome, <strong style={{ color: '#0f172a' }}>{formData.name.split(' ')[0]}</strong>! Your lab account for{' '}
+                                    <strong style={{ color: '#0f172a' }}>{formData.labName}</strong> has been created.
                                 </p>
-                                <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 14, padding: '16px 20px', marginBottom: 20, textAlign: 'left' }}>
-                                    <div style={{ fontSize: 13, fontWeight: 700, color: '#92400e', fontFamily: "'DM Sans', sans-serif", marginBottom: 6 }}>⏳ Pending Admin Approval</div>
-                                    <p style={{ fontSize: 13.5, color: '#78350f', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, margin: 0 }}>
-                                        Your account is under review. Once approved, you'll receive a confirmation at{' '}
-                                        <strong>{formData.email}</strong>. This usually takes less than a few hours.
-                                    </p>
+
+                                {isAutoApproved ? (
+                                    <div style={{ background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: 14, padding: '16px 20px', marginBottom: 24, textAlign: 'left' }}>
+                                        <div style={{ fontSize: 13.5, fontWeight: 700, color: '#166534', fontFamily: "'DM Sans', sans-serif", marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                            ✓ Instant Access Granted
+                                        </div>
+                                        <p style={{ fontSize: 13, color: '#14532d', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6, margin: 0 }}>
+                                            Your 7-Day Free Trial with complete LIS features (Patient Registration, Test Catalog, Result Entry, Bill Invoicing, and Print Reports) is active now!
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 14, padding: '16px 20px', marginBottom: 20, textAlign: 'left' }}>
+                                        <div style={{ fontSize: 13, fontWeight: 700, color: '#92400e', fontFamily: "'DM Sans', sans-serif", marginBottom: 6 }}>⏳ Pending Admin Approval</div>
+                                        <p style={{ fontSize: 13.5, color: '#78350f', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, margin: 0 }}>
+                                            Your account is under review. Once approved, you'll receive a confirmation at{' '}
+                                            <strong>{formData.email}</strong>.
+                                        </p>
+                                    </div>
+                                )}
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+                                    <a
+                                        href="https://lis.onepathlab.com"
+                                        style={{
+                                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                                            padding: '14px 28px', background: '#2563eb', color: '#fff',
+                                            borderRadius: '12px', textDecoration: 'none',
+                                            fontWeight: 700, fontSize: 15,
+                                            fontFamily: "'DM Sans', sans-serif",
+                                            boxShadow: '0 8px 20px -6px rgba(37, 99, 235, 0.4)',
+                                        }}
+                                    >
+                                        <ArrowRight size={16} /> Open OnePath LIS Portal
+                                    </a>
                                 </div>
-                                <p style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", marginBottom: 28, lineHeight: 1.65 }}>
-                                    Didn't hear from us? Contact us at{' '}
-                                    <a href="mailto:support@onepathlab.com" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}>support@onepathlab.com</a>
-                                    {' '}or call{' '}
+
+                                <p style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", margin: 0, lineHeight: 1.65 }}>
+                                    Need help? Call{' '}
                                     <a href="tel:+919045757272" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}>+91 90457 57272</a>
                                 </p>
-                                <Link href="/"
-                                    style={{
-                                        display: 'inline-flex', alignItems: 'center', gap: 8,
-                                        padding: '14px 32px', background: '#2563eb', color: '#fff',
-                                        borderRadius: '12px', textDecoration: 'none',
-                                        fontWeight: 700, fontSize: 15,
-                                        fontFamily: "'DM Sans', sans-serif",
-                                        boxShadow: '0 8px 20px -6px rgba(37, 99, 235, 0.4)',
-                                    }}
-                                >
-                                    <Home size={16} /> Back to Home
-                                </Link>
                             </div>
                         )}
                     </div>
@@ -339,13 +365,13 @@ export default function SignUp() {
 
                     <div style={{ position: 'relative', zIndex: 1, maxWidth: 460 }}>
                         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)', padding: '6px 16px', borderRadius: 100, color: '#4ade80', fontSize: 13, fontWeight: 800, fontFamily: "'DM Sans', sans-serif", marginBottom: 24, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            <Sparkles size={14} /> 1st Month Free
+                            <Sparkles size={14} /> 7-Day Free Trial
                         </div>
                         <h2 style={{ fontSize: 'clamp(32px, 3.5vw, 48px)', fontWeight: 800, fontFamily: "'Syne', sans-serif", lineHeight: 1.15, marginBottom: 24, letterSpacing: '-0.02em' }}>
                             Experience the future of <span style={{ color: '#60a5fa' }}>Diagnostics</span>.
                         </h2>
                         <p style={{ fontSize: 16, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6, marginBottom: 48 }}>
-                            Get full access for 1 month free. No hidden charges. We'll even help set up your machines.
+                            Get full access for 7 days free. No hidden charges. We'll even help set up your machines.
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
                             {[

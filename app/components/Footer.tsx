@@ -135,7 +135,7 @@ export default function Footer() {
                         <h4 className="footer-heading">Get in Touch</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 28 }}>
                             {[
-                                { icon: <Phone size={16} />, text: 'Sales: +91 9897198999' },
+                                { icon: <Phone size={16} />, text: 'Sales: +91 9045757272' },
                                 { icon: <Phone size={16} />, text: 'Support: +91 9045757272' },
                                 { icon: <Mail size={16} />, text: 'support@onepathlab.com' },
                             ].map((c, i) => (

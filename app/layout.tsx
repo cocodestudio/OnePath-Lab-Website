@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { TopProgressBar } from './components/TopProgressBar'
+
 export default function RootLayout({
   children,
 }: {
@@ -34,7 +36,10 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://onepathlab.com" />
       </head>
-      <body>{children}</body>
+      <body>
+        <TopProgressBar />
+        {children}
+      </body>
     </html>
   )
 }

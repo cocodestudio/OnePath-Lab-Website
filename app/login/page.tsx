@@ -60,7 +60,7 @@ export default function Login() {
                 // Save Token and redirect
                 localStorage.setItem('onepath_token', data.access_token)
                 localStorage.setItem('user_profile', JSON.stringify(data.user))
-                window.location.href = '/dashboard'
+                window.location.href = 'https://lis.onepathlab.com'
             }
 
         } catch (err: any) {
@@ -199,7 +199,7 @@ export default function Login() {
                             <p style={{ textAlign: 'center', marginTop: 32, fontSize: 15, color: '#64748b', fontFamily: "'DM Sans', sans-serif" }}>
                                 Don't have an account?{' '}
                                 <Link href="/trial" style={{ color: 'var(--blue-primary)', fontWeight: 700, textDecoration: 'none' }}>
-                                    Start free trial
+                                    Start 7-day free trial
                                 </Link>
                             </p>
                         </div>
