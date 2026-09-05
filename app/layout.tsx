@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   keywords: ['Pathology Lab Software', 'LIS Software India', 'AI Lab Management', 'NABL Lab Software', 'Pathology Automation'],
   authors: [{ name: 'OnePath Lab' }],
   metadataBase: new URL('https://onepathlab.com'),
+  alternates: {
+    canonical: 'https://onepathlab.com',
+  },
   openGraph: {
     title: 'OnePath Lab | AI-Powered LIS for Pathology Labs',
     description: 'Transform your lab operations with AI-powered automation. Trusted by NABL Labs across India.',
@@ -33,9 +36,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <head>
-        <link rel="canonical" href="https://onepathlab.com" />
-      </head>
       <body>
         <TopProgressBar />
         {children}
