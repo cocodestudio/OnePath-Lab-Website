@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 }
 
 import { TopProgressBar } from './components/TopProgressBar'
+import { SmoothScrolling } from './components/SmoothScrolling'
 
 export default function RootLayout({
   children,
@@ -35,10 +36,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en">
       <body>
         <TopProgressBar />
-        {children}
+        <SmoothScrolling>
+          {children}
+        </SmoothScrolling>
       </body>
     </html>
   )
