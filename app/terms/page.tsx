@@ -77,15 +77,15 @@ export default function TermsAndConditions() {
                     <div style={{ width: 72, height: 72, background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', color: '#2563eb' }}>
                         <Scale size={32} />
                     </div>
-                    <h1 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+                    <h1 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
                         Terms & Conditions
                     </h1>
-                    <p style={{ fontSize: 15.5, color: '#64748b', fontFamily: "'DM Sans',sans-serif", lineHeight: 1.7, marginBottom: 20 }}>
+                    <p style={{ fontSize: 15.5, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif", lineHeight: 1.7, marginBottom: 20 }}>
                         Last updated: June 2026 · Applies to all OnePath Lab accounts and subscriptions.
                     </p>
                     <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
                         {['NABL Compliant', 'DPDP Act Aligned', 'ISO 27001 Infrastructure'].map(tag => (
-                            <div key={tag} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 100, padding: '6px 14px', fontSize: 12.5, fontWeight: 600, color: '#475569', fontFamily: "'DM Sans',sans-serif", boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
+                            <div key={tag} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 100, padding: '6px 14px', fontSize: 12.5, fontWeight: 600, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
                                 <CheckCircle size={13} color="#22c55e" /> {tag}
                             </div>
                         ))}
@@ -96,10 +96,10 @@ export default function TermsAndConditions() {
             {/* ── Quick Nav ── */}
             <section style={{ padding: '40px 20px 0' }}>
                 <div style={{ maxWidth: 860, margin: '0 auto', background: '#f8fafc', borderRadius: 16, padding: '24px 28px', border: '1px solid #e2e8f0' }}>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: '#475569', fontFamily: "'DM Sans',sans-serif", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>Jump to Section</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif", textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 14 }}>Jump to Section</div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                         {sections.map((s, i) => (
-                            <a key={i} href={`#section-${i}`} style={{ fontSize: 13, fontWeight: 600, color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: 100, padding: '5px 14px', textDecoration: 'none', fontFamily: "'DM Sans',sans-serif", transition: 'all 0.15s' }}>
+                            <a key={i} href={`#section-${i}`} style={{ fontSize: 13, fontWeight: 600, color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: 100, padding: '5px 14px', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif", transition: 'all 0.15s' }}>
                                 {s.title.split('. ')[1]}
                             </a>
                         ))}
@@ -114,13 +114,13 @@ export default function TermsAndConditions() {
                         <div key={i} id={`section-${i}`} style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 20, overflow: 'hidden', boxShadow: '0 4px 20px -8px rgba(0,0,0,0.07)', scrollMarginTop: 100 }}>
                             <div style={{ padding: '24px 32px', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: 14 }}>
                                 <div style={{ width: 40, height: 40, borderRadius: 11, background: s.bg, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{s.icon}</div>
-                                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", margin: 0 }}>{s.title}</h2>
+                                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{s.title}</h2>
                             </div>
                             <div style={{ padding: '24px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
                                 {s.content.map((c, j) => (
                                     <div key={j} style={{ paddingLeft: 16, borderLeft: `3px solid ${s.bg}` }}>
-                                        <div style={{ fontSize: 14.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 5 }}>{c.head}</div>
-                                        <p style={{ fontSize: 14.5, color: '#475569', lineHeight: 1.8, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{c.body}</p>
+                                        <div style={{ fontSize: 14.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 5 }}>{c.head}</div>
+                                        <p style={{ fontSize: 14.5, color: '#475569', lineHeight: 1.8, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{c.body}</p>
                                     </div>
                                 ))}
                             </div>
@@ -133,12 +133,12 @@ export default function TermsAndConditions() {
                             <Mail size={22} />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 8 }}>Have a Legal Query?</h3>
-                            <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'DM Sans',sans-serif", marginBottom: 12 }}>
+                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 8 }}>Have a Legal Query?</h3>
+                            <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12 }}>
                                 For questions about these Terms, data processing agreements, or enterprise compliance requirements, contact our legal team. We respond within 1 business day.
                             </p>
                             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                                <a href="mailto:legal@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'DM Sans',sans-serif" }}>support@onepathlab.com</a>
+                                <a href="mailto:legal@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>support@onepathlab.com</a>
                             </div>
                         </div>
                     </div>

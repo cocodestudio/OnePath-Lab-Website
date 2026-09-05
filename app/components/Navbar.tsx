@@ -2,9 +2,8 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, X, ChevronDown, Home, FlaskConical, FileSearch, Microscope, Info, Phone, CreditCard, BookOpen } from 'lucide-react'
+import { X, ChevronDown, Home, FileSearch, Microscope, Info, Phone, CreditCard } from 'lucide-react'
 
-// Strong TypeScript Interfaces for scalability
 interface SubItem {
     label: string;
     href: string;
@@ -27,7 +26,7 @@ const navLinks: NavLink[] = [
         subItems: [
             { label: 'Home Collection Book', href: '/home-collection', icon: <Home size={15} />, desc: 'Book at-home sample pickup' },
             { label: 'Test Pricing List', href: '/test-pricing', icon: <CreditCard size={15} />, desc: 'View all test rates' },
-            { label: 'Lab Report Track', href: '/track-report', icon: <FileSearch size={15} />, desc: 'Track your report status' },
+            { label: 'Track / Download Report', href: '/track-report', icon: <FileSearch size={15} />, desc: 'Track & download your test report' },
             { label: 'LIS Software', href: '/lis-software', icon: <Microscope size={15} />, desc: 'Full lab management suite' },
         ],
     },
@@ -51,92 +50,97 @@ export default function Navbar() {
 
     useEffect(() => {
         setMounted(true)
-        const onScroll = () => setScrolled(window.scrollY > 10)
-        window.addEventListener('scroll', onScroll)
+        const onScroll = () => setScrolled(window.scrollY > 12)
+        window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
     useEffect(() => {
-        document.body.style.overflow = menuOpen ? 'hidden' : ''
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
         return () => { document.body.style.overflow = '' }
     }, [menuOpen])
 
-    if (!mounted) return null;
+    if (!mounted) return null
 
     return (
         <>
             {/* ── Floating pill wrapper ── */}
-            <div className="nav-wrapper" style={{
+            <header className="nav-wrapper" style={{
                 position: 'fixed', top: 0, left: 0, right: 0,
                 zIndex: 1000,
                 display: 'flex', justifyContent: 'center',
                 pointerEvents: 'none',
-                transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             }}>
                 <nav className="nav-bar" style={{
                     pointerEvents: 'all',
-                    width: '100%', maxWidth: 1100,
+                    width: '100%', maxWidth: 1120,
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    borderRadius: 100,
+                    borderRadius: 999,
                     background: scrolled
-                        ? 'rgba(255, 255, 255, 0.96)'
-                        : 'rgba(255, 255, 255, 0.85)',
-                    backdropFilter: 'blur(32px)',
-                    WebkitBackdropFilter: 'blur(32px)',
+                        ? 'rgba(255, 255, 255, 0.95)'
+                        : 'rgba(255, 255, 255, 0.88)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
                     border: '1px solid rgba(226, 232, 240, 0.9)',
                     boxShadow: scrolled
-                        ? '0 8px 32px -8px rgba(15,23,42,0.12), 0 0 0 1px rgba(226,232,240,0.6), inset 0 1px 0 rgba(255,255,255,1)'
-                        : '0 4px 20px -6px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,1)',
-                    transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
+                        ? '0 10px 30px -10px rgba(15,23,42,0.12), 0 1px 3px rgba(0,0,0,0.05)'
+                        : '0 4px 20px -6px rgba(15,23,42,0.06)',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 }}>
 
                     {/* ── Brand / Logo ── */}
-                    <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', flexShrink: 0 }}>
-                        <Image src="/logo.png" alt="Logo" width={30} height={30} style={{ objectFit: 'contain' }} priority />
+                    <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 9, textDecoration: 'none', flexShrink: 0 }}>
+                        <Image src="/logo.png" alt="OnePath Lab Logo" width={32} height={32} style={{ objectFit: 'contain' }} priority />
 
-                        <span style={{ display: 'flex', alignItems: 'baseline', gap: 0, userSelect: 'none' }}>
+                        <span style={{ display: 'flex', alignItems: 'baseline', userSelect: 'none' }}>
                             <span style={{
-                                fontFamily: '"Syne", sans-serif',
-                                fontSize: 21,
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                fontSize: 'clamp(18px, 4vw, 21px)',
                                 fontWeight: 800,
-                                background: 'linear-gradient(135deg, #2563eb 0%, #6366f1 100%)',
+                                background: 'linear-gradient(135deg, #2563eb 0%, #4f46e5 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 backgroundClip: 'text',
-                                letterSpacing: '-0.04em',
+                                letterSpacing: '-0.03em',
                                 lineHeight: 1,
                             }}>OnePath</span>
                             <span style={{
-                                fontFamily: '"Syne", sans-serif',
-                                fontSize: 21, fontWeight: 800,
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                fontSize: 'clamp(18px, 4vw, 21px)',
+                                fontWeight: 800,
                                 color: '#0f172a',
-                                letterSpacing: '-0.04em',
-                                marginLeft: 2,
+                                letterSpacing: '-0.03em',
+                                marginLeft: 3,
                             }}>Lab</span>
                         </span>
                     </Link>
 
                     {/* ── Center nav (Desktop) ── */}
-                    <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                         {navLinks.map((link, i) => (
-                            <div key={i} className="nav-item" style={{ position: 'relative', padding: '20px 0' }}>
+                            <div key={i} className="nav-item" style={{ position: 'relative', padding: '18px 0' }}>
                                 <Link
                                     href={link.href}
                                     className="nav-link-text"
                                     style={{
-                                        display: 'flex', alignItems: 'center', gap: 4,
-                                        color: '#374151', textDecoration: 'none',
-                                        fontSize: 14.5, fontWeight: 600,
-                                        fontFamily: "'DM Sans', sans-serif",
-                                        padding: '7px 14px',
-                                        borderRadius: 10,
+                                        display: 'flex', alignItems: 'center', gap: 5,
+                                        color: '#334155', textDecoration: 'none',
+                                        fontSize: 14, fontWeight: 600,
+                                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                        padding: '8px 14px',
+                                        borderRadius: 8,
                                         transition: 'all 0.18s ease',
                                     }}
                                 >
                                     {link.label}
                                     {link.dropdown && (
                                         <ChevronDown size={13} className="dd-icon" strokeWidth={2.5}
-                                            style={{ transition: 'transform 0.3s ease', opacity: 0.5 }} />
+                                            style={{ transition: 'transform 0.25s ease', opacity: 0.6 }} />
                                     )}
                                 </Link>
 
@@ -160,12 +164,12 @@ export default function Navbar() {
                     </div>
 
                     {/* ── Right CTAs (Desktop) ── */}
-                    <div className="nav-cta" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Link href="http://lis.onepathlab.com/login" className="cta-login-btn">
-                            Log in
-                        </Link>
+                    <div className="nav-cta" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <a href="https://lis.onepathlab.com/login" className="cta-login-btn">
+                            Log In
+                        </a>
                         <Link href="/trial" className="cta-trial-btn">
-                            Try for free
+                            Start Free Trial
                         </Link>
                     </div>
 
@@ -176,10 +180,10 @@ export default function Navbar() {
                         aria-label="Toggle menu"
                         style={{
                             display: 'none', alignItems: 'center', justifyContent: 'center',
-                            width: 42, height: 42,
-                            background: 'rgba(241, 245, 249, 0.8)', border: '1px solid rgba(226, 232, 240, 0.8)',
+                            width: 38, height: 38,
+                            background: '#f8fafc', border: '1px solid #e2e8f0',
                             color: '#0f172a', cursor: 'pointer',
-                            borderRadius: 12,
+                            borderRadius: 10,
                             transition: 'all 0.2s ease',
                             padding: 0,
                         }}
@@ -189,7 +193,7 @@ export default function Navbar() {
                         </span>
                     </button>
                 </nav>
-            </div>
+            </header>
 
             {/* ── Mobile overlay backdrop ── */}
             <div
@@ -211,9 +215,9 @@ export default function Navbar() {
                 }}>
                     <Link href="/" onClick={() => setMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
                         <Image src="/logo.png" alt="Logo" width={28} height={28} style={{ objectFit: 'contain' }} />
-                        <span style={{ fontFamily: '"Syne",sans-serif', fontSize: 19, fontWeight: 800, letterSpacing: '-0.03em' }}>
-                            <span style={{ background: 'linear-gradient(135deg, #2563eb, #6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>OnePath</span>
-                            <span style={{ color: '#0f172a', marginLeft: 2 }}>Lab</span>
+                        <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 18, fontWeight: 800, letterSpacing: '-0.03em' }}>
+                            <span style={{ background: 'linear-gradient(135deg, #2563eb, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>OnePath</span>
+                            <span style={{ color: '#0f172a', marginLeft: 3 }}>Lab</span>
                         </span>
                     </Link>
                     <button
@@ -221,13 +225,13 @@ export default function Navbar() {
                         aria-label="Close menu"
                         style={{
                             background: '#f1f5f9', border: '1px solid #e2e8f0',
-                            borderRadius: 10, width: 36, height: 36,
+                            borderRadius: 8, width: 34, height: 34,
                             cursor: 'pointer', color: '#475569',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             transition: 'background 0.2s',
                         }}
                     >
-                        <X size={18} />
+                        <X size={17} />
                     </button>
                 </div>
 
@@ -251,11 +255,11 @@ export default function Navbar() {
                             style={{
                                 display: 'flex', alignItems: 'center', gap: 10,
                                 padding: '10px 12px', borderRadius: 10, textDecoration: 'none',
-                                color: '#059669', background: '#f0fdf4', fontSize: 13.5, fontWeight: 600,
+                                color: '#059669', background: '#f0fdf4', fontSize: 13, fontWeight: 600,
                                 marginBottom: 6,
                             }}
                         >
-                            <span style={{ width: 24, height: 24, borderRadius: '50%', background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <span style={{ width: 22, height: 22, borderRadius: '50%', background: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 💬
                             </span>
                             Chat on WhatsApp (+91 9045757272)
@@ -267,7 +271,7 @@ export default function Navbar() {
                             style={{
                                 display: 'flex', alignItems: 'center', gap: 10,
                                 padding: '10px 12px', borderRadius: 10, textDecoration: 'none',
-                                color: '#2563eb', background: '#eff6ff', fontSize: 13.5, fontWeight: 600,
+                                color: '#2563eb', background: '#eff6ff', fontSize: 13, fontWeight: 600,
                             }}
                         >
                             <Phone size={14} color="#2563eb" />
@@ -278,33 +282,33 @@ export default function Navbar() {
 
                 {/* Drawer footer CTAs */}
                 <div style={{
-                    padding: '16px 16px 28px',
+                    padding: '16px 16px 24px',
                     borderTop: '1px solid #f1f5f9',
                     background: '#ffffff',
                     display: 'flex', flexDirection: 'column', gap: 10,
                 }}>
-                    <Link href="http://lis.onepathlab.com/login" onClick={() => setMenuOpen(false)} className="drawer-login-btn">
-                        Log in to Portal
-                    </Link>
+                    <a href="https://lis.onepathlab.com/login" onClick={() => setMenuOpen(false)} className="drawer-login-btn">
+                        Log In to Portal
+                    </a>
                     <Link href="/trial" onClick={() => setMenuOpen(false)} className="drawer-trial-btn">
                         Start 7-Day Free Trial →
                     </Link>
                 </div>
             </div>
 
-            {/* ── All CSS Styles wrapping via dangerouslySetInnerHTML ── */}
+            {/* ── CSS Styles ── */}
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .nav-wrapper {
                   padding: 16px 20px 0;
                 }
                 .nav-bar {
-                  height: 64px;
-                  padding: 0 10px 0 24px;
+                  height: 62px;
+                  padding: 0 10px 0 20px;
                 }
 
                 .nav-link-text:hover {
-                  background: #f0f4ff !important;
+                  background: #f1f5f9 !important;
                   color: #2563eb !important;
                 }
                 .nav-item:hover .nav-link-text {
@@ -319,22 +323,22 @@ export default function Navbar() {
                 .nav-dropdown {
                   position: absolute;
                   top: 100%; left: 50%;
-                  transform: translateX(-50%) translateY(8px) scale(0.96);
+                  transform: translateX(-50%) translateY(8px) scale(0.97);
                   opacity: 0; visibility: hidden;
-                  transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+                  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
                   pointer-events: none;
                   z-index: 200;
                   padding-top: 4px;
                 }
                 .dropdown-inner {
                   background: rgba(255,255,255,0.98);
-                  backdrop-filter: blur(24px);
-                  -webkit-backdrop-filter: blur(24px);
-                  border: 1px solid #e8f0fe;
-                  border-radius: 18px;
+                  backdrop-filter: blur(20px);
+                  -webkit-backdrop-filter: blur(20px);
+                  border: 1px solid #e2e8f0;
+                  border-radius: 16px;
                   padding: 8px;
-                  min-width: 240px;
-                  box-shadow: 0 20px 48px -8px rgba(0,0,0,0.12), 0 4px 8px -2px rgba(0,0,0,0.04);
+                  min-width: 250px;
+                  box-shadow: 0 16px 36px -6px rgba(15,23,42,0.12), 0 4px 8px -2px rgba(0,0,0,0.04);
                 }
                 .nav-item:hover .nav-dropdown {
                   opacity: 1; visibility: visible;
@@ -344,13 +348,13 @@ export default function Navbar() {
                 .dropdown-link {
                   display: flex; align-items: center; gap: 12px;
                   padding: 10px 12px;
-                  border-radius: 12px;
+                  border-radius: 10px;
                   text-decoration: none;
                   transition: all 0.18s ease;
                 }
                 .dropdown-link:hover {
                   background: #eff6ff;
-                  transform: translateX(3px);
+                  transform: translateX(2px);
                 }
                 .dropdown-link:hover .dd-label { color: #2563eb; }
                 .dd-icon-wrap {
@@ -363,17 +367,17 @@ export default function Navbar() {
                 .dropdown-link:hover .dd-icon-wrap { background: #dbeafe; }
                 .dd-text { display: flex; flex-direction: column; gap: 1px; }
                 .dd-label {
-                  font-size: 13.5px; font-weight: 600;
-                  color: #1e293b; font-family: 'DM Sans', sans-serif;
+                  font-size: 13.5px; font-weight: 700;
+                  color: #1e293b; font-family: 'Plus Jakarta Sans', sans-serif;
                   transition: color 0.18s;
                 }
                 .dd-desc {
-                  font-size: 11.5px; color: #94a3b8;
-                  font-family: 'DM Sans', sans-serif; font-weight: 400;
+                  font-size: 11.5px; color: #64748b;
+                  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400;
                 }
          
                 .hamburger-icon {
-                  width: 20px; height: 14px;
+                  width: 18px; height: 13px;
                   display: flex; flex-direction: column;
                   justify-content: space-between;
                   position: relative;
@@ -382,87 +386,89 @@ export default function Navbar() {
                   display: block; height: 2px;
                   background: #1e293b; border-radius: 2px;
                   transform-origin: center;
-                  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+                  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
                 }
-                .hamburger-icon.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+                .hamburger-icon.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
                 .hamburger-icon.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-                .hamburger-icon.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+                .hamburger-icon.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
          
                 .mobile-backdrop {
                   position: fixed; inset: 0; z-index: 1010;
-                  background: rgba(15, 23, 42, 0.4);
-                  backdrop-filter: blur(6px);
-                  -webkit-backdrop-filter: blur(6px);
+                  background: rgba(15, 23, 42, 0.45);
+                  backdrop-filter: blur(4px);
+                  -webkit-backdrop-filter: blur(4px);
                   opacity: 0; visibility: hidden;
-                  transition: all 0.3s ease;
+                  transition: all 0.25s ease;
                 }
                 .mobile-backdrop.visible { opacity: 1; visibility: visible; }
          
                 .mobile-drawer {
                   position: fixed; top: 0; right: 0; bottom: 0;
-                  width: min(340px, 88vw); z-index: 1020;
+                  width: min(320px, 86vw); z-index: 1020;
                   background: #ffffff;
-                  box-shadow: -8px 0 40px rgba(15, 23, 42, 0.15);
+                  box-shadow: -8px 0 32px rgba(15, 23, 42, 0.15);
                   display: flex; flex-direction: column;
                   transform: translateX(100%);
-                  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+                  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
                   border-radius: 20px 0 0 20px;
                   overflow: hidden;
                 }
                 .mobile-drawer.open { transform: translateX(0); }
 
-                /* Static Clean Desktop CSS Classes */
                 .cta-login-btn {
-                    padding: 9px 22px; font-size: 14px; font-weight: 600; color: #374151;
-                    border: 1.5px solid #e2e8f0; border-radius: 100px; text-decoration: none;
-                    font-family: 'DM Sans', sans-serif; transition: all 0.2s ease; background: transparent;
+                    padding: 8px 18px; font-size: 13.5px; font-weight: 600; color: #334155;
+                    border: 1px solid #cbd5e1; border-radius: 999px; text-decoration: none;
+                    font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s ease; background: transparent;
                 }
                 .cta-login-btn:hover { background: #f8fafc; border-color: #94a3b8; color: #0f172a; }
 
                 .cta-trial-btn {
-                    display: inline-flex; align-items: center; gap: 6px; padding: 10px 24px;
-                    font-size: 14px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #2563eb, #6366f1);
-                    border-radius: 100px; text-decoration: none; font-family: 'DM Sans', sans-serif;
-                    box-shadow: 0 4px 16px rgba(37,99,235,0.35); transition: all 0.2s ease; white-space: nowrap;
+                    display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px;
+                    font-size: 13.5px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #2563eb, #4f46e5);
+                    border-radius: 999px; text-decoration: none; font-family: 'Plus Jakarta Sans', sans-serif;
+                    box-shadow: 0 4px 14px rgba(37,99,235,0.35); transition: all 0.2s ease; white-space: nowrap;
                 }
-                .cta-trial-btn:hover { background: linear-gradient(135deg, #1d4ed8, #4f46e5); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(37,99,235,0.45); }
+                .cta-trial-btn:hover { background: linear-gradient(135deg, #1d4ed8, #4338ca); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
 
-                /* Static Mobile Custom Accordion Classes */
                 .mobile-menu-btn {
                     width: 100%; display: flex; align-items: center; justify-content: space-between;
-                    padding: 12px 14px; background: transparent; border: none;
-                    border-radius: 12px; cursor: pointer; transition: background 0.15s; color: #0f172a;
-                    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700;
+                    padding: 11px 12px; background: transparent; border: none;
+                    border-radius: 10px; cursor: pointer; transition: background 0.15s; color: #0f172a;
+                    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14.5px; font-weight: 700;
                     text-decoration: none;
                     box-sizing: border-box;
                 }
                 .mobile-menu-btn:hover, .mobile-menu-btn:active { background: #f1f5f9; }
 
                 .mobile-sub-link {
-                    display: flex; align-items: center; gap: 12px; padding: 10px 12px;
-                    border-radius: 10px; text-decoration: none; transition: background 0.15s;
+                    display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+                    border-radius: 8px; text-decoration: none; transition: background 0.15s;
                 }
                 .mobile-sub-link:hover, .mobile-sub-link:active { background: #eff6ff; }
 
                 .drawer-login-btn {
-                    display: block; text-align: center; padding: 13px; font-size: 15px; font-weight: 600;
-                    color: #0f172a; border: 1.5px solid #e2e8f0; border-radius: 14px; text-decoration: none;
-                    font-family: 'DM Sans', sans-serif; transition: all 0.2s; background: #ffffff;
+                    display: block; text-align: center; padding: 11px; font-size: 14px; font-weight: 600;
+                    color: #0f172a; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none;
+                    font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; background: #ffffff;
                 }
                 .drawer-login-btn:hover, .drawer-login-btn:active { background: #f8fafc; }
 
                 .drawer-trial-btn {
-                    display: block; text-align: center; padding: 14px; font-size: 15px; font-weight: 700;
-                    color: #fff; background: linear-gradient(135deg, #2563eb, #6366f1); border-radius: 14px; text-decoration: none;
-                    font-family: 'DM Sans', sans-serif; box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+                    display: block; text-align: center; padding: 12px; font-size: 14px; font-weight: 700;
+                    color: #fff; background: linear-gradient(135deg, #2563eb, #4f46e5); border-radius: 12px; text-decoration: none;
+                    font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 4px 14px rgba(37,99,235,0.35);
                 }
          
                 @media (max-width: 900px) {
                   .nav-wrapper { padding: 10px 12px 0 !important; }
-                  .nav-bar     { height: 56px !important; padding: 0 8px 0 16px !important; }
+                  .nav-bar     { height: 54px !important; padding: 0 8px 0 14px !important; }
                   .nav-links   { display: none !important; }
                   .nav-cta     { display: none !important; }
                   .nav-hamburger { display: flex !important; }
+                }
+                @media (max-width: 360px) {
+                  .nav-wrapper { padding: 8px 8px 0 !important; }
+                  .nav-bar     { padding: 0 6px 0 10px !important; }
                 }
                 @media (min-width: 901px) {
                   .mobile-drawer   { display: none !important; }
@@ -473,13 +479,12 @@ export default function Navbar() {
     )
 }
 
-/* ── Mobile accordion nav item ── */
 function MobileNavItem({ link, onClose }: { link: NavLink; onClose: () => void }) {
     const [open, setOpen] = useState(false)
 
     if (!link.dropdown) {
         return (
-            <div style={{ marginBottom: 3 }}>
+            <div style={{ marginBottom: 2 }}>
                 <Link
                     href={link.href}
                     onClick={onClose}
@@ -492,27 +497,27 @@ function MobileNavItem({ link, onClose }: { link: NavLink; onClose: () => void }
     }
 
     return (
-        <div style={{ marginBottom: 3 }}>
+        <div style={{ marginBottom: 2 }}>
             <button
                 onClick={() => setOpen(v => !v)}
                 className="mobile-menu-btn"
                 type="button"
             >
                 <span>{link.label}</span>
-                <ChevronDown size={16} strokeWidth={2.5} style={{
+                <ChevronDown size={15} strokeWidth={2.5} style={{
                     color: '#94a3b8',
                     transform: open ? 'rotate(180deg)' : 'rotate(0)',
-                    transition: 'transform 0.3s ease',
+                    transition: 'transform 0.25s ease',
                 }} />
             </button>
 
             {/* Sub items accordion */}
             <div style={{
                 overflow: 'hidden',
-                maxHeight: open ? '500px' : '0',
-                transition: 'max-height 0.35s cubic-bezier(0.4,0,0.2,1)',
+                maxHeight: open ? '400px' : '0',
+                transition: 'max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             }}>
-                <div style={{ paddingLeft: 6, paddingBottom: 6 }}>
+                <div style={{ paddingLeft: 4, paddingBottom: 4 }}>
                     {link.subItems?.map((sub: SubItem, i: number) => (
                         <Link
                             key={i}
@@ -521,7 +526,7 @@ function MobileNavItem({ link, onClose }: { link: NavLink; onClose: () => void }
                             className="mobile-sub-link"
                         >
                             <span style={{
-                                width: 32, height: 32, borderRadius: 8,
+                                width: 28, height: 28, borderRadius: 6,
                                 background: '#f1f5f9',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 color: '#2563eb', flexShrink: 0,
@@ -529,11 +534,11 @@ function MobileNavItem({ link, onClose }: { link: NavLink; onClose: () => void }
                                 {sub.icon}
                             </span>
                             <span style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                                <span style={{ fontSize: 13.5, fontWeight: 600, color: '#1e293b', fontFamily: "'DM Sans', sans-serif" }}>
+                                <span style={{ fontSize: 13, fontWeight: 600, color: '#1e293b', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                     {sub.label}
                                 </span>
                                 {sub.desc && (
-                                    <span style={{ fontSize: 11.5, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif" }}>
+                                    <span style={{ fontSize: 11, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                         {sub.desc}
                                     </span>
                                 )}

@@ -27,7 +27,7 @@ export default function TrustedBy() {
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 color: '#64748b',
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 padding: '0 16px',
             }}>
                 Trusted by 200+ diagnostic labs across India
@@ -68,7 +68,7 @@ export default function TrustedBy() {
                                 padding: '0 32px',
                                 fontSize: 17,
                                 fontWeight: 700,
-                                fontFamily: "'DM Sans', sans-serif",
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
                                 color: '#94a3b8',
                                 whiteSpace: 'nowrap',
                                 transition: 'color 0.2s ease',

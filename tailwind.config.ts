@@ -2,30 +2,33 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
     content: [
-        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+        './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
             colors: {
                 'blue-deep': '#0a1628',
                 'blue-navy': '#0d2044',
-                'blue-primary': '#1565c0',
-                'blue-medium': '#1976d2',
-                'blue-light': '#42a5f5',
-                'blue-glow': '#64b5f6',
-                'blue-pale': '#e3f2fd',
+                'blue-primary': '#2563eb',
+                'blue-medium': '#1d4ed8',
+                'blue-light': '#60a5fa',
+                'blue-glow': '#38bdf8',
+                'blue-pale': '#eff6ff',
             },
             fontFamily: {
-                syne: ['Syne', 'sans-serif'],
-                dm: ['DM Sans', 'sans-serif'],
+                sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                syne: ['"Plus Jakarta Sans"', 'sans-serif'],
+                dm: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
             },
             animation: {
-                'scroll-left': 'scrollLeft 30s linear infinite',
+                'scroll-left': 'scrollLeft 32s linear infinite',
                 'float': 'float 5s ease-in-out infinite',
                 'fade-up': 'fadeUp 0.6s ease forwards',
                 'pulse-dot': 'pulse 2s infinite',
+                'shimmer': 'shimmerWave 4s infinite linear',
             },
             keyframes: {
                 scrollLeft: {
@@ -34,11 +37,15 @@ const config: Config = {
                 },
                 float: {
                     '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-12px)' },
+                    '50%': { transform: 'translateY(-10px)' },
                 },
                 fadeUp: {
-                    from: { opacity: '0', transform: 'translateY(24px)' },
+                    from: { opacity: '0', transform: 'translateY(20px)' },
                     to: { opacity: '1', transform: 'translateY(0)' },
+                },
+                shimmerWave: {
+                    '0%': { backgroundPosition: '-200% 0' },
+                    '100%': { backgroundPosition: '200% 0' },
                 },
             },
         },

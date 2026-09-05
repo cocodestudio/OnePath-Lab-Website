@@ -1,32 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
-  /* NEW Light Theme Variables (OnePath) */
-  --blue-primary: #3b82f6; 
-  --blue-light: #8b5cf6; 
+  /* Modern High-End Tech Palette */
+  --blue-primary: #2563eb; 
+  --blue-hover: #1d4ed8;
+  --blue-light: #60a5fa; 
+  --blue-pale: #eff6ff;
+  --purple-accent: #7c3aed;
+  --indigo-accent: #6366f1;
   --white: #ffffff;
   --off-white: #f8faff;
-  --gray-light: #e5e7eb;
+  --gray-light: #f1f5f9;
+  --gray-border: #e2e8f0;
   --text-main: #0f172a; 
   --text-muted: #475569; 
+  --text-subtle: #94a3b8;
   
-  /* OLD Variables (Restored so other components DO NOT break) */
+  /* Retained SaaS Theme Variables */
   --blue-deep: #0a1628;
   --blue-navy: #0d2044;
-  --blue-medium: #1976d2;
-  --blue-glow: #64b5f6;
+  --blue-medium: #1d4ed8;
+  --blue-glow: #38bdf8;
   --gray-mid: #94a3b8;
   --black: #060d1a;
   --grad-hero: linear-gradient(135deg, #0a1628 0%, #0d2a5a 50%, #0a1628 100%);
-  --grad-card: linear-gradient(145deg, rgba(21,101,192,0.08) 0%, rgba(13,32,68,0.3) 100%);
-  --grad-cta: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-  --grad-text: linear-gradient(135deg, #42a5f5 0%, #ffffff 60%);
-  --shadow-card: 0 4px 24px rgba(21,101,192,0.12), 0 1px 4px rgba(0,0,0,0.08);
-  --shadow-button: 0 8px 32px rgba(21,101,192,0.4);
+  --grad-card: linear-gradient(145deg, rgba(37,99,235,0.06) 0%, rgba(99,102,241,0.04) 100%);
+  --grad-cta: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --grad-text: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #0f172a 100%);
+  --shadow-card: 0 4px 24px rgba(15,23,42,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-button: 0 8px 30px -4px rgba(37,99,235,0.4);
 }
 
 * {
@@ -37,56 +42,160 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--white);
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  width: 100%;
+  position: relative;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Syne', sans-serif;
-  line-height: 1.15;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--off-white); }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+p, span, a, button, input, textarea, select {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
 
-/* Utility classes */
-.section-pad { padding: 96px 0; }
-.container { max-width: 1300px; margin: 0 auto; padding: 0 24px; width: 100%; }
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px; 
+}
+::-webkit-scrollbar-track { 
+  background: #f8fafc; 
+}
+::-webkit-scrollbar-thumb { 
+  background: #cbd5e1; 
+  border-radius: 999px;
+  border: 2px solid #f8fafc;
+}
+::-webkit-scrollbar-thumb:hover { 
+  background: #94a3b8; 
+}
 
+/* Hide scrollbars when needed while keeping scrollability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Core Layout Utilities */
+.section-pad { 
+  padding: 96px 0; 
+}
+@media (max-width: 768px) {
+  .section-pad { padding: 56px 0; }
+}
+
+.container { 
+  max-width: 1240px; 
+  margin: 0 auto; 
+  padding: 0 24px; 
+  width: 100%; 
+  box-sizing: border-box;
+}
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+}
+@media (max-width: 360px) {
+  .container { padding: 0 12px; }
+}
+
+/* Primary Button Styling */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--blue-primary);
-  color: white;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
-  border-radius: 100px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: #2563eb;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1d4ed8 0%, #4338ca 100%);
+  box-shadow: 0 8px 24px rgba(37, 99, 246, 0.45);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Gradient Shimmer Effect on Load & Badges */
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-badge {
+  position: relative;
+  background: linear-gradient(90deg, #eff6ff 0%, #dbeafe 25%, #ede9fe 50%, #dbeafe 75%, #eff6ff 100%);
+  background-size: 200% 100%;
+  animation: shimmerWave 4s infinite linear;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.08);
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #2563eb 0%, #7c3aed 25%, #38bdf8 50%, #7c3aed 75%, #2563eb 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerWave 6s linear infinite;
+}
+
+.shimmer-border {
+  position: relative;
+  background: linear-gradient(60deg, rgba(37,99,235,0.4), rgba(124,58,237,0.4), rgba(56,189,248,0.4), rgba(37,99,235,0.4));
+  background-size: 300% 300%;
+  animation: shimmerWave 8s ease infinite;
+}
+
+/* Lightweight Scroll Reveal Animations */
+@keyframes fadeUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(24px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.8s ease forwards;
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Stagger utility classes */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }

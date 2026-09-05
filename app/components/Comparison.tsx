@@ -2,18 +2,18 @@
 import { Check, X } from 'lucide-react'
 
 const rows = [
-    ['Access Anywhere', true, false],
-    ['Auto Data Backup & Security', true, false],
-    ['Machine Integration (Uni + Bi)', true, false],
-    ['WhatsApp / SMS / Email Reports', true, false],
-    ['Real-Time Analytics Dashboard', true, false],
-    ['AI Interpretation & Flagging', true, false],
-    ['Custom Branding', true, false],
+    ['Anywhere Cloud Access', true, false],
+    ['Automatic Encrypted Backups', true, false],
+    ['Machine Interfacing (Uni + Bi)', true, false],
+    ['Instant WhatsApp / SMS Reports', true, false],
+    ['Real-Time Financial MIS', true, false],
+    ['AI Delta Checks & Abnormal Flags', true, false],
+    ['Custom Letterhead & Digital Sign', true, false],
     ['Role-Based Multi-User Logins', true, false],
     ['Barcode & QR Code Integration', true, false],
-    ['Free Feature Updates', true, false],
-    ['Works on Any Device', true, false],
-    ['B2B Client Management', true, false],
+    ['Automatic Feature Updates', true, false],
+    ['Mobile & Tablet Compatibility', true, false],
+    ['B2B Referral Management', true, false],
 ]
 
 export default function Comparison() {
@@ -21,66 +21,67 @@ export default function Comparison() {
         <section
             className="section-pad comparison-section"
             style={{
-                background: '#ffffff',
+                background: '#f8fafc',
                 padding: '96px 20px',
                 boxSizing: 'border-box',
-                overflow: 'hidden', // Added to prevent any accidental horizontal scroll
+                overflow: 'hidden',
             }}
         >
             <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', boxSizing: 'border-box' }}>
 
                 {/* Header Section */}
-                <div style={{ textAlign: 'center', marginBottom: 64, padding: '0 10px' }}>
+                <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
                         <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
                             background: '#eff6ff',
                             border: '1px solid #bfdbfe',
-                            color: 'var(--blue-primary)',
+                            color: '#2563eb',
                             padding: '6px 16px',
-                            borderRadius: '100px',
-                            fontSize: '13px',
-                            fontWeight: '700',
+                            borderRadius: 999,
+                            fontSize: 12.5,
+                            fontWeight: 700,
                             letterSpacing: '0.05em',
                             textTransform: 'uppercase',
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Why Choose OnePath
+                            Platform Evaluation
                         </span>
                     </div>
                     <h2 style={{
-                        fontSize: 'clamp(28px, 6vw, 42px)',
+                        fontSize: 'clamp(28px, 5.5vw, 42px)',
                         fontWeight: 800,
-                        marginBottom: 16,
+                        marginBottom: 14,
                         color: '#0f172a',
-                        fontFamily: "'Syne', sans-serif",
-                        letterSpacing: '-0.02em',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        letterSpacing: '-0.03em',
                         wordBreak: 'break-word',
+                        lineHeight: 1.2,
                     }}>
-                        OnePath vs{' '}
-                        <span style={{ color: '#94a3b8' }}>Offline Software</span>
+                        OnePath Cloud vs{' '}
+                        <span style={{ color: '#94a3b8' }}>Outdated Desktop LIS</span>
                     </h2>
                     <p style={{
                         color: '#64748b',
-                        maxWidth: 500,
+                        maxWidth: 520,
                         margin: '0 auto',
-                        fontSize: 'clamp(14px, 4vw, 16px)',
-                        lineHeight: 1.6,
-                        fontFamily: "'DM Sans', sans-serif"
+                        fontSize: 'clamp(14.5px, 2.5vw, 16.5px)',
+                        lineHeight: 1.65,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif"
                     }}>
-                        See why 200+ labs switched to cloud-based OnePath from outdated local software.
+                        See why 200+ diagnostics centers migrated from crash-prone local software to OnePath.
                     </p>
                 </div>
 
                 {/* Comparison Table / Card */}
-                <div className="animate-fade-up" style={{
+                <div style={{
                     margin: '0 auto',
-                    borderRadius: '24px',
+                    borderRadius: 20,
                     overflow: 'hidden',
                     background: '#ffffff',
                     border: '1px solid #e2e8f0',
-                    boxShadow: '0 20px 40px -15px rgba(0,0,0,0.05)',
+                    boxShadow: '0 16px 36px -10px rgba(15,23,42,0.06)',
                     boxSizing: 'border-box',
                     width: '100%',
                 }}>
@@ -89,32 +90,32 @@ export default function Comparison() {
                     <div className="compare-grid" style={{
                         background: '#f8fafc',
                         borderBottom: '1px solid #e2e8f0',
-                        padding: '20px 24px',
+                        padding: '18px 24px',
                         boxSizing: 'border-box',
                     }}>
-                        <div className="compare-header-text" style={{ fontSize: 14, fontWeight: 700, color: '#64748b', fontFamily: "'DM Sans', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                            Features
+                        <div className="compare-header-text" style={{ fontSize: 13, fontWeight: 800, color: '#64748b', fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                            Core Feature
                         </div>
                         <div className="compare-header-title" style={{
                             textAlign: 'center',
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: 800,
-                            color: 'var(--blue-primary)',
-                            fontFamily: "'Syne', sans-serif",
-                            background: 'rgba(59, 130, 246, 0.08)',
-                            padding: '8px 0',
-                            borderRadius: '8px',
+                            color: '#2563eb',
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            background: 'rgba(37, 99, 235, 0.08)',
+                            padding: '8px 12px',
+                            borderRadius: 8,
                         }}>
                             OnePath
                         </div>
                         <div className="compare-header-title" style={{
                             textAlign: 'center',
-                            fontSize: 15,
-                            fontWeight: 600,
+                            fontSize: 14,
+                            fontWeight: 700,
                             color: '#94a3b8',
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Offline / Local
+                            Offline Software
                         </div>
                     </div>
 
@@ -124,7 +125,7 @@ export default function Comparison() {
                             key={String(label)}
                             className="compare-grid compare-row"
                             style={{
-                                padding: '16px 24px',
+                                padding: '15px 24px',
                                 borderBottom: i < rows.length - 1 ? '1px solid #f1f5f9' : 'none',
                                 transition: 'background 0.2s ease',
                                 boxSizing: 'border-box',
@@ -132,25 +133,25 @@ export default function Comparison() {
                         >
                             {/* Feature Name */}
                             <div className="compare-feature-text" style={{
-                                fontSize: 15,
-                                fontWeight: 500,
-                                color: '#334155',
-                                fontFamily: "'DM Sans', sans-serif",
-                                paddingRight: '8px', // Safety padding
+                                fontSize: 14.5,
+                                fontWeight: 600,
+                                color: '#1e293b',
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                paddingRight: '8px',
                             }}>
                                 {label}
                             </div>
 
                             {/* OnePath Checkmarks */}
-                            <div style={{ textAlign: 'center', background: 'rgba(59, 130, 246, 0.03)', margin: '-16px 0', padding: '16px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ textAlign: 'center', background: 'rgba(37, 99, 235, 0.02)', margin: '-15px 0', padding: '15px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 {onePath
                                     ? <span style={{
                                         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                        width: 28, height: 28, borderRadius: '50%',
+                                        width: 26, height: 26, borderRadius: '50%',
                                         background: '#dcfce7', border: '1px solid #bbf7d0',
-                                        boxShadow: '0 2px 4px rgba(34, 197, 94, 0.1)'
+                                        boxShadow: '0 2px 4px rgba(34, 197, 94, 0.15)'
                                     }}>
-                                        <Check size={16} color="#16a34a" strokeWidth={3} />
+                                        <Check size={15} color="#16a34a" strokeWidth={3} />
                                     </span>
                                     : <X size={18} color="#cbd5e1" />
                                 }
@@ -161,17 +162,17 @@ export default function Comparison() {
                                 {offline
                                     ? <span style={{
                                         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                        width: 28, height: 28, borderRadius: '50%',
+                                        width: 26, height: 26, borderRadius: '50%',
                                         background: '#dcfce7', border: '1px solid #bbf7d0',
                                     }}>
-                                        <Check size={16} color="#16a34a" strokeWidth={3} />
+                                        <Check size={15} color="#16a34a" strokeWidth={3} />
                                     </span>
                                     : <span style={{
                                         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                        width: 28, height: 28, borderRadius: '50%',
+                                        width: 24, height: 24, borderRadius: '50%',
                                         background: '#fee2e2', border: '1px solid #fecaca',
                                     }}>
-                                        <X size={14} color="#ef4444" strokeWidth={2.5} />
+                                        <X size={13} color="#ef4444" strokeWidth={2.5} />
                                     </span>
                                 }
                             </div>
@@ -180,12 +181,10 @@ export default function Comparison() {
                 </div>
             </div>
 
-            {/* Responsive CSS Setup */}
             <style>{`
-                /* Desktop Layout */
                 .compare-grid {
                     display: grid;
-                    grid-template-columns: 1fr 180px 180px;
+                    grid-template-columns: 1fr 160px 160px;
                     align-items: center;
                 }
                 
@@ -193,37 +192,35 @@ export default function Comparison() {
                     background: #f8fafc;
                 }
 
-                /* Tablet & Mobile Layout Fixes */
                 @media (max-width: 768px) {
-                    .comparison-section { padding: 60px 15px !important; }
+                    .comparison-section { padding: 56px 16px !important; }
                 }
 
                 @media (max-width: 640px) {
                     .compare-grid {
-                        grid-template-columns: 1fr 70px 70px;
-                        padding: 14px 10px !important;
+                        grid-template-columns: 1fr 64px 64px;
+                        padding: 13px 12px !important;
                         gap: 6px;
                     }
                     .compare-feature-text {
-                        font-size: 13px !important;
+                        fontSize: 13px !important;
                         line-height: 1.4;
                         word-break: break-word;
                     }
                     .compare-header-text {
-                        font-size: 11px !important;
+                        fontSize: 11px !important;
                     }
                     .compare-header-title {
-                        font-size: 12px !important;
+                        fontSize: 12px !important;
                         padding: 6px 0 !important;
-                        word-break: break-word;
                     }
                 }
 
-                @media (max-width: 380px) {
+                @media (max-width: 360px) {
                     .comparison-section { padding: 48px 10px !important; }
                     .compare-grid {
-                        grid-template-columns: 1fr 60px 60px;
-                        padding: 12px 6px !important;
+                        grid-template-columns: 1fr 52px 52px;
+                        padding: 11px 6px !important;
                         gap: 4px;
                     }
                     .compare-feature-text { font-size: 12px !important; }

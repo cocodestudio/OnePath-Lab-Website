@@ -2,17 +2,25 @@
   "name": "onepath-lab",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
+    "dev:turbo": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/jsbarcode": "^3.11.4",
+    "html2canvas": "^1.4.1",
+    "jsbarcode": "^3.12.3",
+    "jspdf": "^4.2.1",
     "lucide-react": "^1.17.0",
     "next": "^16.2.7",
+    "qrcode.react": "^4.2.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-to-print": "^3.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

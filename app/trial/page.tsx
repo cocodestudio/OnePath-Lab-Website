@@ -6,7 +6,7 @@ import { Mail, Lock, User, Phone, Building, Users, CheckCircle2, ArrowRight, Shi
 
 const labelStyle: React.CSSProperties = {
     display: 'block', fontSize: '14px', fontWeight: 700,
-    color: '#334155', marginBottom: '8px', fontFamily: "'DM Sans', sans-serif"
+    color: '#334155', marginBottom: '8px', fontFamily: "'Plus Jakarta Sans', sans-serif"
 }
 const inputGroupStyle: React.CSSProperties = {
     position: 'relative', display: 'flex', alignItems: 'center'
@@ -16,7 +16,7 @@ const iconStyle: React.CSSProperties = {
 }
 const inputStyle: React.CSSProperties = {
     width: '100%', padding: '14px 16px 14px 44px', borderRadius: '12px',
-    border: '1px solid #cbd5e1', fontSize: '15px', fontFamily: "'DM Sans', sans-serif",
+    border: '1px solid #cbd5e1', fontSize: '15px', fontFamily: "'Plus Jakarta Sans', sans-serif",
     outline: 'none', background: '#ffffff',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', color: '#0f172a'
 }
@@ -116,9 +116,9 @@ export default function SignUp() {
             <div style={{ padding: '24px 32px', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
                     <Image src="/logo.png" alt="OnePath" width={36} height={36} style={{ objectFit: 'contain' }} />
-                    <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Syne', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>OnePath</span>
+                    <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>OnePath</span>
                 </Link>
-                <div style={{ fontSize: 15, fontWeight: 600, color: '#475569', fontFamily: "'DM Sans', sans-serif" }}>
+                <div style={{ fontSize: 15, fontWeight: 600, color: '#475569', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                     <span className="hide-on-mobile">Already have an account? </span>
                     <a href="https://lis.onepathlab.com" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 700 }}>Log in</a>
                 </div>
@@ -132,16 +132,16 @@ export default function SignUp() {
                         {!isSuccess ? (
                             <div className="animate-fade-in">
                                 <div style={{ marginBottom: 36 }}>
-                                    <h1 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+                                    <h1 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
                                         Start your <span style={{ color: '#2563eb' }}>7-Day Free Trial</span>
                                     </h1>
-                                    <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
+                                    <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 500 }}>
                                         Instant access to full LIS features. No credit card required.
                                     </p>
                                 </div>
 
                                 {error && (
-                                    <div style={{ padding: '12px 16px', background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca', borderRadius: '12px', marginBottom: '24px', fontSize: '14px', fontFamily: "'DM Sans', sans-serif", whiteSpace: 'pre-line' }}>
+                                    <div style={{ padding: '12px 16px', background: '#fef2f2', color: '#dc2626', border: '1px solid #fecaca', borderRadius: '12px', marginBottom: '24px', fontSize: '14px', fontFamily: "'Plus Jakarta Sans', sans-serif", whiteSpace: 'pre-line' }}>
                                         {error}
                                     </div>
                                 )}
@@ -227,7 +227,7 @@ export default function SignUp() {
                                                             className="dropdown-item"
                                                             style={{
                                                                 padding: '13px 16px', cursor: 'pointer', fontSize: 14,
-                                                                fontFamily: "'DM Sans', sans-serif", color: '#334155',
+                                                                fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#334155',
                                                                 transition: 'background 0.15s', borderBottom: '1px solid #f1f5f9',
                                                                 display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10,
                                                                 fontWeight: formData.patientCount === opt.value ? 700 : 500,
@@ -272,7 +272,7 @@ export default function SignUp() {
 
                                         <div style={{ marginTop: 12, padding: '10px 14px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
                                             <CheckCircle2 size={14} color="#2563eb" style={{ flexShrink: 0 }} />
-                                            <span style={{ fontSize: 12.5, color: '#64748b', fontFamily: "'DM Sans', sans-serif" }}>
+                                            <span style={{ fontSize: 12.5, color: '#64748b', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                                 Both plans include <strong style={{ color: '#0f172a' }}>all features</strong> — AI Reports, Machine Interfacing, WhatsApp Delivery, Multi-branch & more.
                                             </span>
                                         </div>
@@ -284,7 +284,7 @@ export default function SignUp() {
                                         className="submit-btn"
                                         style={{
                                             padding: '18px', borderRadius: '14px', background: '#2563eb', color: '#ffffff',
-                                            fontSize: 16, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", border: 'none',
+                                            fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
                                             cursor: isLoading ? 'not-allowed' : 'pointer', transition: 'all 0.2s ease',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 8,
                                             boxShadow: '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
@@ -293,7 +293,7 @@ export default function SignUp() {
                                         {isLoading ? <span className="spinner" /> : <><ArrowRight size={18} /> Start 7-Day Free Trial</>}
                                     </button>
 
-                                    <p style={{ textAlign: 'center', fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", marginTop: 4 }}>
+                                    <p style={{ textAlign: 'center', fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", marginTop: 4 }}>
                                         By signing up, you agree to our{' '}
                                         <Link href="/terms" style={{ color: '#64748b', textDecoration: 'underline' }}>Terms of Service</Link>{' '}and{' '}
                                         <Link href="/privacy-policy" style={{ color: '#64748b', textDecoration: 'underline' }}>Privacy Policy</Link>.
@@ -306,27 +306,27 @@ export default function SignUp() {
                                 <div style={{ width: 76, height: 76, background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', boxShadow: '0 0 0 8px rgba(34,197,94,0.1)' }}>
                                     <CheckCircle2 size={38} color="#16a34a" />
                                 </div>
-                                <h2 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 10 }}>
+                                <h2 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 10 }}>
                                     {isAutoApproved ? '🎉 7-Day Free Trial is Live!' : 'Registration Successful!'}
                                 </h2>
-                                <p style={{ fontSize: 15, color: '#475569', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, maxWidth: 430, margin: '0 auto 20px' }}>
+                                <p style={{ fontSize: 15, color: '#475569', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.7, maxWidth: 430, margin: '0 auto 20px' }}>
                                     Welcome, <strong style={{ color: '#0f172a' }}>{formData.name.split(' ')[0]}</strong>! Your lab account for{' '}
                                     <strong style={{ color: '#0f172a' }}>{formData.labName}</strong> has been created.
                                 </p>
 
                                 {isAutoApproved ? (
                                     <div style={{ background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: 14, padding: '16px 20px', marginBottom: 24, textAlign: 'left' }}>
-                                        <div style={{ fontSize: 13.5, fontWeight: 700, color: '#166534', fontFamily: "'DM Sans', sans-serif", marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                        <div style={{ fontSize: 13.5, fontWeight: 700, color: '#166534', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
                                             ✓ Instant Access Granted
                                         </div>
-                                        <p style={{ fontSize: 13, color: '#14532d', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6, margin: 0 }}>
+                                        <p style={{ fontSize: 13, color: '#14532d', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.6, margin: 0 }}>
                                             Your 7-Day Free Trial with complete LIS features (Patient Registration, Test Catalog, Result Entry, Bill Invoicing, and Print Reports) is active now!
                                         </p>
                                     </div>
                                 ) : (
                                     <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 14, padding: '16px 20px', marginBottom: 20, textAlign: 'left' }}>
-                                        <div style={{ fontSize: 13, fontWeight: 700, color: '#92400e', fontFamily: "'DM Sans', sans-serif", marginBottom: 6 }}>⏳ Pending Admin Approval</div>
-                                        <p style={{ fontSize: 13.5, color: '#78350f', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.7, margin: 0 }}>
+                                        <div style={{ fontSize: 13, fontWeight: 700, color: '#92400e', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 6 }}>⏳ Pending Admin Approval</div>
+                                        <p style={{ fontSize: 13.5, color: '#78350f', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.7, margin: 0 }}>
                                             Your account is under review. Once approved, you'll receive a confirmation at{' '}
                                             <strong>{formData.email}</strong>.
                                         </p>
@@ -341,7 +341,7 @@ export default function SignUp() {
                                             padding: '14px 28px', background: '#2563eb', color: '#fff',
                                             borderRadius: '12px', textDecoration: 'none',
                                             fontWeight: 700, fontSize: 15,
-                                            fontFamily: "'DM Sans', sans-serif",
+                                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                                             boxShadow: '0 8px 20px -6px rgba(37, 99, 235, 0.4)',
                                         }}
                                     >
@@ -349,7 +349,7 @@ export default function SignUp() {
                                     </a>
                                 </div>
 
-                                <p style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", margin: 0, lineHeight: 1.65 }}>
+                                <p style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", margin: 0, lineHeight: 1.65 }}>
                                     Need help? Call{' '}
                                     <a href="tel:+919045757272" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}>+91 90457 57272</a>
                                 </p>
@@ -364,13 +364,13 @@ export default function SignUp() {
                     <div style={{ position: 'absolute', bottom: -100, left: -100, width: 300, height: 300, background: 'rgba(139,92,246,0.2)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
 
                     <div style={{ position: 'relative', zIndex: 1, maxWidth: 460 }}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)', padding: '6px 16px', borderRadius: 100, color: '#4ade80', fontSize: 13, fontWeight: 800, fontFamily: "'DM Sans', sans-serif", marginBottom: 24, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)', padding: '6px 16px', borderRadius: 100, color: '#4ade80', fontSize: 13, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 24, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                             <Sparkles size={14} /> 7-Day Free Trial
                         </div>
-                        <h2 style={{ fontSize: 'clamp(32px, 3.5vw, 48px)', fontWeight: 800, fontFamily: "'Syne', sans-serif", lineHeight: 1.15, marginBottom: 24, letterSpacing: '-0.02em' }}>
+                        <h2 style={{ fontSize: 'clamp(32px, 3.5vw, 48px)', fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.15, marginBottom: 24, letterSpacing: '-0.02em' }}>
                             Experience the future of <span style={{ color: '#60a5fa' }}>Diagnostics</span>.
                         </h2>
-                        <p style={{ fontSize: 16, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6, marginBottom: 48 }}>
+                        <p style={{ fontSize: 16, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.6, marginBottom: 48 }}>
                             Get full access for 7 days free. No hidden charges. We'll even help set up your machines.
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
@@ -382,8 +382,8 @@ export default function SignUp() {
                                 <div key={i} style={{ display: 'flex', gap: 16 }}>
                                     <div style={{ width: 52, height: 52, background: 'rgba(255,255,255,0.05)', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '1px solid rgba(255,255,255,0.1)' }}>{f.icon}</div>
                                     <div>
-                                        <h4 style={{ fontSize: 17, fontWeight: 700, color: '#ffffff', fontFamily: "'DM Sans', sans-serif", marginBottom: 6 }}>{f.title}</h4>
-                                        <p style={{ fontSize: 14.5, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.5 }}>{f.desc}</p>
+                                        <h4 style={{ fontSize: 17, fontWeight: 700, color: '#ffffff', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 6 }}>{f.title}</h4>
+                                        <p style={{ fontSize: 14.5, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.5 }}>{f.desc}</p>
                                     </div>
                                 </div>
                             ))}
@@ -401,12 +401,12 @@ export default function SignUp() {
                 .plan-card { border: 2px solid #e2e8f0; background: #ffffff; padding: 20px; border-radius: 16px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative; display: flex; flex-direction: column; gap: 6px; text-align: left; }
                 .plan-card:hover { border-color: #cbd5e1; background: #f8fafc; }
                 .plan-card.selected { border-color: #2563eb; background: #eff6ff; box-shadow: 0 10px 25px -5px rgba(37,99,235,0.15); transform: translateY(-2px); }
-                .plan-title { font-size: 16px; font-weight: 700; color: #0f172a; font-family: 'Syne', sans-serif; margin: 0; }
-                .plan-price { font-size: 28px; font-weight: 800; color: #2563eb; font-family: 'Syne', sans-serif; margin-bottom: 4px; }
-                .plan-price span { font-size: 13px; font-weight: 600; color: #64748b; font-family: 'DM Sans', sans-serif; }
-                .plan-desc { font-size: 13px; color: #64748b; font-family: 'DM Sans', sans-serif; line-height: 1.5; margin: 0; }
+                .plan-title { font-size: 16px; font-weight: 700; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
+                .plan-price { font-size: 28px; font-weight: 800; color: #2563eb; font-family: 'Plus Jakarta Sans', sans-serif; margin-bottom: 4px; }
+                .plan-price span { font-size: 13px; font-weight: 600; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; }
+                .plan-desc { font-size: 13px; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.5; margin: 0; }
                 .check-icon { position: absolute; top: 14px; right: 14px; color: #2563eb; animation: scaleIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275); }
-                .recommended-badge { position: absolute; top: -10px; left: 16px; background: #2563eb; color: white; font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 100px; font-family: 'DM Sans', sans-serif; letter-spacing: 0.05em; }
+                .recommended-badge { position: absolute; top: -10px; left: 16px; background: #2563eb; color: white; font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 100px; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; }
                 .submit-btn:hover:not(:disabled) { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 12px 30px -6px rgba(37, 99, 235, 0.6) !important; }
                 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
                 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }

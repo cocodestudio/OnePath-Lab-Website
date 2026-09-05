@@ -76,13 +76,13 @@ export default function PrivacyPolicy() {
                     <div style={{ width: 72, height: 72, background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', color: '#2563eb' }}>
                         <ShieldCheck size={32} />
                     </div>
-                    <h1 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+                    <h1 style={{ fontSize: 'clamp(36px,5vw,58px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
                         Privacy Policy
                     </h1>
-                    <p style={{ fontSize: 16, color: '#64748b', fontFamily: "'DM Sans',sans-serif", lineHeight: 1.7, marginBottom: 20 }}>
+                    <p style={{ fontSize: 16, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif", lineHeight: 1.7, marginBottom: 20 }}>
                         Last updated: June 2026 · Effective immediately for all new and existing accounts.
                     </p>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#dcfce7', border: '1px solid #bbf7d0', borderRadius: 10, padding: '8px 18px', fontSize: 13.5, fontWeight: 600, color: '#15803d', fontFamily: "'DM Sans',sans-serif" }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#dcfce7', border: '1px solid #bbf7d0', borderRadius: 10, padding: '8px 18px', fontSize: 13.5, fontWeight: 600, color: '#15803d', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
                         <CheckCircle size={15} /> NABL Compliant · HIPAA Aligned · ISO 27001 Certified Infrastructure
                     </div>
                 </div>
@@ -91,8 +91,8 @@ export default function PrivacyPolicy() {
             {/* ── Intro card ── */}
             <section style={{ padding: '48px 20px 0' }}>
                 <div style={{ maxWidth: 860, margin: '0 auto', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: 20, padding: '32px 36px' }}>
-                    <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1d4ed8', fontFamily: "'Syne',sans-serif", marginBottom: 10 }}>Our Commitment to You</h2>
-                    <p style={{ fontSize: 15, color: '#1e40af', lineHeight: 1.8, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>
+                    <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1d4ed8', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 10 }}>Our Commitment to You</h2>
+                    <p style={{ fontSize: 15, color: '#1e40af', lineHeight: 1.8, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>
                         At OnePath Lab, we handle two categories of data: <strong>your lab's operational data</strong> (staff, tests, billing) and <strong>your patients' health data</strong>. We treat both with the same level of care — because a breach of medical data doesn't just break trust, it can cause real harm to real people. This document explains exactly what we collect, why, and how we protect it. Plain language. No legalese.
                     </p>
                 </div>
@@ -106,14 +106,14 @@ export default function PrivacyPolicy() {
                             {/* Section header */}
                             <div style={{ padding: '24px 32px', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: 14 }}>
                                 <div style={{ width: 40, height: 40, borderRadius: 11, background: s.bg, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{s.icon}</div>
-                                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", margin: 0 }}>{s.title}</h2>
+                                <h2 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{s.title}</h2>
                             </div>
                             {/* Sub-points */}
                             <div style={{ padding: '24px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
                                 {s.content.map((c, j) => (
                                     <div key={j} style={{ paddingLeft: 16, borderLeft: `3px solid ${s.bg}`, transition: 'border-color 0.2s' }}>
-                                        <div style={{ fontSize: 14.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 5 }}>{c.head}</div>
-                                        <p style={{ fontSize: 14.5, color: '#475569', lineHeight: 1.8, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{c.body}</p>
+                                        <div style={{ fontSize: 14.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 5 }}>{c.head}</div>
+                                        <p style={{ fontSize: 14.5, color: '#475569', lineHeight: 1.8, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{c.body}</p>
                                     </div>
                                 ))}
                             </div>
@@ -126,12 +126,12 @@ export default function PrivacyPolicy() {
                             <Mail size={22} />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 8 }}>Questions About This Policy?</h3>
-                            <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'DM Sans',sans-serif", marginBottom: 12 }}>
+                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 8 }}>Questions About This Policy?</h3>
+                            <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12 }}>
                                 If you have any questions about how we handle your data, want to request a data export, or want to report a potential security concern, contact our Data Protection Officer directly.
                             </p>
                             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                                <a href="mailto:privacy@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'DM Sans',sans-serif" }}>support@onepathlab.com</a>
+                                <a href="mailto:privacy@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>support@onepathlab.com</a>
                             </div>
                         </div>
                     </div>

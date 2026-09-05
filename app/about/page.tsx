@@ -55,7 +55,7 @@ export default function AboutUs() {
             background: '#ffffff', border: '1px solid #e2e8f0',
             borderRadius: 100, padding: '6px 18px',
             fontSize: 13, fontWeight: 600, color: '#2563eb',
-            fontFamily: "'DM Sans',sans-serif",
+            fontFamily: "'Plus Jakarta Sans',sans-serif",
             marginBottom: 28,
             boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
           }}>
@@ -66,7 +66,7 @@ export default function AboutUs() {
           <h1 style={{
             fontSize: 'clamp(40px,6vw,64px)',
             fontWeight: 800, color: '#0f172a',
-            fontFamily: "'Syne',sans-serif",
+            fontFamily: "'Plus Jakarta Sans',sans-serif",
             marginBottom: 24, letterSpacing: '-0.03em', lineHeight: 1.1,
           }}>
             We're Building the Future of
@@ -75,7 +75,7 @@ export default function AboutUs() {
           </h1>
           <p style={{
             fontSize: 'clamp(16px,2vw,19px)', color: '#475569',
-            lineHeight: 1.75, fontFamily: "'DM Sans',sans-serif",
+            lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif",
             maxWidth: 640, margin: '0 auto',
           }}>
             OnePath Lab is a cloud-based Laboratory Information System built by doctors, engineers, and lab experts who believe diagnostic centers deserve reliable, enterprise-grade software — at an accessible price.
@@ -102,9 +102,9 @@ export default function AboutUs() {
                 borderRight: i < stats.length - 1 ? '1px solid #f1f5f9' : 'none',
                 background: i % 2 === 0 ? '#ffffff' : '#fafbff',
               }}>
-                <div style={{ fontSize: 36, fontWeight: 800, color: '#2563eb', fontFamily: "'Syne',sans-serif", letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>{s.value}</div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'DM Sans',sans-serif", marginBottom: 4 }}>{s.label}</div>
-                <div style={{ fontSize: 12, color: '#94a3b8', fontFamily: "'DM Sans',sans-serif" }}>{s.sub}</div>
+                <div style={{ fontSize: 36, fontWeight: 800, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>{s.value}</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 12, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{s.sub}</div>
               </div>
             ))}
           </div>
@@ -122,24 +122,24 @@ export default function AboutUs() {
               textTransform: 'uppercase', color: '#2563eb',
               background: '#eff6ff', border: '1px solid #dbeafe',
               padding: '5px 14px', borderRadius: 100, marginBottom: 20,
-              fontFamily: "'DM Sans',sans-serif",
+              fontFamily: "'Plus Jakarta Sans',sans-serif",
             }}>Our Story</span>
 
-            <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 20, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+            <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 20, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
               Born from a Lab Owner's Frustration
             </h2>
-            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 18, fontFamily: "'DM Sans',sans-serif" }}>
+            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 18, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
               In 2026, our founders visited multiple pathology labs across North India and saw a recurring problem: technicians were manually typing hundreds of patient reports into outdated, crash-prone desktop software, then printing and physically handing them over.
             </p>
-            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 18, fontFamily: "'DM Sans',sans-serif" }}>
+            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 18, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
               Patients waited 3-4 hours for reports that could have been generated and delivered via WhatsApp in 4 minutes. The root cause? Indian lab software hadn't evolved in a decade.
             </p>
-            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 32, fontFamily: "'DM Sans',sans-serif" }}>
+            <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.85, marginBottom: 32, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
               That moment sparked OnePath Lab. We assembled a team of software engineers and NABL-trained pathologists to rebuild lab management from scratch — making it cloud-native, automated, and incredibly easy to use.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {['Built with real lab owners, for real labs', 'Seamless bidirectional machine interfacing', 'Dedicated human support team — not just a chatbot'].map(pt => (
-                <div key={pt} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14.5, color: '#334155', fontFamily: "'DM Sans',sans-serif", fontWeight: 500 }}>
+                <div key={pt} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 14.5, color: '#334155', fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 500 }}>
                   <CheckCircle size={16} color="#22c55e" style={{ flexShrink: 0 }} />
                   {pt}
                 </div>
@@ -165,8 +165,8 @@ export default function AboutUs() {
                   {c.icon}
                 </div>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 6 }}>{c.title}</div>
-                  <div style={{ fontSize: 13.5, color: '#64748b', lineHeight: 1.65, fontFamily: "'DM Sans',sans-serif" }}>{c.desc}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 6 }}>{c.title}</div>
+                  <div style={{ fontSize: 13.5, color: '#64748b', lineHeight: 1.65, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{c.desc}</div>
                 </div>
               </div>
             ))}
@@ -178,8 +178,8 @@ export default function AboutUs() {
       <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'DM Sans',sans-serif" }}>Journey</span>
-            <h2 style={{ fontSize: 'clamp(26px,4vw,40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", letterSpacing: '-0.02em' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Journey</span>
+            <h2 style={{ fontSize: 'clamp(26px,4vw,40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em' }}>
               From Idea to India's Trusted LIS
             </h2>
           </div>
@@ -200,10 +200,10 @@ export default function AboutUs() {
                 }} />
                 <div style={{ background: '#ffffff', borderRadius: 16, padding: '24px 28px', border: '1px solid #e2e8f0', boxShadow: '0 4px 16px -6px rgba(0,0,0,0.07)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-                    <span style={{ fontSize: 12, fontWeight: 800, color: '#2563eb', background: '#eff6ff', padding: '3px 12px', borderRadius: 100, fontFamily: "'DM Sans',sans-serif", letterSpacing: '0.05em' }}>{m.year}</span>
-                    <span style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif" }}>{m.title}</span>
+                    <span style={{ fontSize: 12, fontWeight: 800, color: '#2563eb', background: '#eff6ff', padding: '3px 12px', borderRadius: 100, fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '0.05em' }}>{m.year}</span>
+                    <span style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{m.title}</span>
                   </div>
-                  <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.7, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{m.desc}</p>
+                  <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{m.desc}</p>
                 </div>
               </div>
             ))}
@@ -215,9 +215,9 @@ export default function AboutUs() {
       <section style={{ padding: '96px 20px', background: '#ffffff' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'DM Sans',sans-serif" }}>Core Values</span>
-            <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", letterSpacing: '-0.02em' }}>What We Stand For</h2>
-            <p style={{ color: '#64748b', maxWidth: 480, margin: '12px auto 0', fontSize: 16, lineHeight: 1.7, fontFamily: "'DM Sans',sans-serif" }}>Six principles that guide every product decision, every support call, and every line of code we write.</p>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Core Values</span>
+            <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em' }}>What We Stand For</h2>
+            <p style={{ color: '#64748b', maxWidth: 480, margin: '12px auto 0', fontSize: 16, lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Six principles that guide every product decision, every support call, and every line of code we write.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 20 }}>
@@ -227,8 +227,8 @@ export default function AboutUs() {
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; (e.currentTarget as HTMLElement).style.borderColor = '#e2e8f0'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
               >
                 <div style={{ width: 52, height: 52, background: v.bg, color: v.color, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>{v.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 12 }}>{v.title}</h3>
-                <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.75, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{v.desc}</p>
+                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12 }}>{v.title}</h3>
+                <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{v.desc}</p>
               </div>
             ))}
           </div>
@@ -239,8 +239,8 @@ export default function AboutUs() {
       <section style={{ padding: '96px 20px', background: '#f8fafc' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'DM Sans',sans-serif" }}>Leadership</span>
-            <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne',sans-serif", letterSpacing: '-0.02em' }}>The Team Behind OnePath</h2>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Leadership</span>
+            <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em' }}>The Team Behind OnePath</h2>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 24 }}>
@@ -249,10 +249,10 @@ export default function AboutUs() {
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 36px -8px rgba(0,0,0,0.12)' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 20px -8px rgba(0,0,0,0.07)' }}
               >
-                <div style={{ width: 72, height: 72, borderRadius: '50%', background: t.bg, color: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: 24, fontWeight: 800, fontFamily: "'Syne',sans-serif" }}>{t.initials}</div>
-                <div style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne',sans-serif", marginBottom: 4 }}>{t.name}</div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#2563eb', fontFamily: "'DM Sans',sans-serif", marginBottom: 14 }}>{t.role}</div>
-                <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65, fontFamily: "'DM Sans',sans-serif", margin: 0 }}>{t.desc}</p>
+                <div style={{ width: 72, height: 72, borderRadius: '50%', background: t.bg, color: t.color, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{t.initials}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 4 }}>{t.name}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 14 }}>{t.role}</div>
+                <p style={{ fontSize: 13, color: '#64748b', lineHeight: 1.65, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{t.desc}</p>
               </div>
             ))}
           </div>
@@ -262,17 +262,17 @@ export default function AboutUs() {
       {/* ── CTA Banner ── */}
       <section style={{ padding: '80px 20px', background: 'linear-gradient(135deg,#1e40af 0%,#2563eb 100%)' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Syne',sans-serif", marginBottom: 16, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.02em' }}>
             Ready to Transform Your Lab?
           </h2>
-          <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, fontFamily: "'DM Sans',sans-serif", marginBottom: 36 }}>
+          <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 36 }}>
             Join 200+ labs already running on OnePath. Get started with a free 5-day trial — no credit card required.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 700, fontSize: 15, padding: '14px 32px', borderRadius: 50, fontFamily: "'DM Sans',sans-serif", boxShadow: '0 4px 20px rgba(0,0,0,0.2)', transition: 'all 0.2s' }}>
+            <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 700, fontSize: 15, padding: '14px 32px', borderRadius: 50, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 4px 20px rgba(0,0,0,0.2)', transition: 'all 0.2s' }}>
               Start Free Trial <ArrowRight size={16} />
             </a>
-            <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', color: '#ffffff', textDecoration: 'none', fontWeight: 600, fontSize: 15, padding: '14px 32px', borderRadius: 50, fontFamily: "'DM Sans',sans-serif", border: '1px solid rgba(255,255,255,0.3)', transition: 'all 0.2s' }}>
+            <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', color: '#ffffff', textDecoration: 'none', fontWeight: 600, fontSize: 15, padding: '14px 32px', borderRadius: 50, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1px solid rgba(255,255,255,0.3)', transition: 'all 0.2s' }}>
               Talk to Sales
             </a>
           </div>

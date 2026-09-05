@@ -76,17 +76,17 @@ export default function Blogs() {
             {/* Hero Section */}
             <section style={{ padding: '160px 20px 80px', background: '#ffffff', borderBottom: '1px solid #e2e8f0', position: 'relative' }}>
                 <div className="container" style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-                    <h1 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 20, letterSpacing: '-0.02em' }}>
+                    <h1 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 20, letterSpacing: '-0.02em' }}>
                         Insights & <span style={{ color: 'var(--blue-primary, #2563eb)' }}>Resources</span>
                     </h1>
-                    <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: '#64748b', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif", marginBottom: 48, maxWidth: 600, margin: '0 auto' }}>
+                    <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 48, maxWidth: 600, margin: '0 auto' }}>
                         Expert advice, industry updates, and operational strategies to help you scale your pathology lab.
                     </p>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
                         <div className="search-bar" style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '100px', padding: '12px 24px', width: '100%', maxWidth: 450 }}>
                             <Search size={20} color="#94a3b8" style={{ marginRight: 12 }} />
-                            <input type="text" placeholder="Search articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontSize: 15, color: '#0f172a', fontFamily: "'DM Sans', sans-serif" }} />
+                            <input type="text" placeholder="Search articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontSize: 15, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }} />
                         </div>
 
                         {blogs.length > 0 && (
@@ -98,7 +98,7 @@ export default function Blogs() {
                                             onClick={() => setActiveCategory(cat as string)}
                                             style={{
                                                 padding: '8px 20px', borderRadius: '100px', fontSize: 14, fontWeight: 600,
-                                                fontFamily: "'DM Sans', sans-serif", cursor: 'pointer', whiteSpace: 'nowrap',
+                                                fontFamily: "'Plus Jakarta Sans', sans-serif", cursor: 'pointer', whiteSpace: 'nowrap',
                                                 transition: 'all 0.2s ease',
                                                 background: activeCategory === cat ? 'var(--blue-primary, #2563eb)' : 'transparent',
                                                 color: activeCategory === cat ? '#ffffff' : '#64748b',
@@ -122,7 +122,7 @@ export default function Blogs() {
                     {isLoading ? (
                         <div style={{ textAlign: 'center', padding: '100px 20px', color: '#64748b', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
                             <Loader2 size={40} className="animate-spin" color="var(--blue-primary, #2563eb)" />
-                            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, fontWeight: 500 }}>Loading latest articles...</span>
+                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 16, fontWeight: 500 }}>Loading latest articles...</span>
                         </div>
                     ) : (
                         <>
@@ -133,17 +133,17 @@ export default function Blogs() {
                                         <div className="featured-image" style={{ width: '50%', background: gradients[0] }} />
                                         <div className="featured-content" style={{ padding: '56px 48px', width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                             <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: 24 }}>
-                                                <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", textTransform: 'uppercase' }}>{featuredPost.category}</span>
-                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'DM Sans', sans-serif" }}><Clock size={14} /> {featuredPost.read_time}</span>
+                                                <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{featuredPost.category}</span>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Clock size={14} /> {featuredPost.read_time}</span>
                                             </div>
-                                            <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 20, lineHeight: 1.3 }}>{featuredPost.title}</h2>
+                                            <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 20, lineHeight: 1.3 }}>{featuredPost.title}</h2>
 
                                             {/* Truncated Excerpt */}
-                                            <p className="line-clamp-3" style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif", marginBottom: 32 }}>{featuredPost.excerpt}</p>
+                                            <p className="line-clamp-3" style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 32 }}>{featuredPost.excerpt}</p>
 
                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'DM Sans', sans-serif" }}><Calendar size={14} /> {formatDate(featuredPost.created_at)}</span>
-                                                <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 15, fontFamily: "'DM Sans', sans-serif", transition: 'gap 0.2s' }}>Read Article <ArrowRight size={18} /></span>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Calendar size={14} /> {formatDate(featuredPost.created_at)}</span>
+                                                <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s' }}>Read Article <ArrowRight size={18} /></span>
                                             </div>
                                         </div>
                                     </div>
@@ -159,19 +159,19 @@ export default function Blogs() {
                                             <div key={post.id} onClick={() => setSelectedPost(post)} style={{ cursor: 'pointer' }}>
                                                 <div className="blog-card" style={{ background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%', transition: 'all 0.3s ease' }}>
                                                     <div style={{ height: 200, background: cardGradient, position: 'relative' }}>
-                                                        <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", textTransform: 'uppercase' }}>{post.category}</div>
+                                                        <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{post.category}</div>
                                                     </div>
                                                     <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, color: '#94a3b8', fontSize: 13, fontFamily: "'DM Sans', sans-serif" }}>
+                                                        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, color: '#94a3b8', fontSize: 13, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={14} /> {formatDate(post.created_at)}</span>
                                                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={14} /> {post.read_time}</span>
                                                         </div>
-                                                        <h3 className="line-clamp-2" style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12, lineHeight: 1.4 }}>{post.title}</h3>
+                                                        <h3 className="line-clamp-2" style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, lineHeight: 1.4 }}>{post.title}</h3>
 
                                                         {/* Truncated Excerpt */}
-                                                        <p className="line-clamp-3" style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, fontFamily: "'DM Sans', sans-serif", marginBottom: 24, flex: 1 }}>{post.excerpt}</p>
+                                                        <p className="line-clamp-3" style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 24, flex: 1 }}>{post.excerpt}</p>
 
-                                                        <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 14, fontFamily: "'DM Sans', sans-serif", transition: 'gap 0.2s', marginTop: 'auto' }}>Read Article <ArrowRight size={16} /></span>
+                                                        <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s', marginTop: 'auto' }}>Read Article <ArrowRight size={16} /></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,7 +179,7 @@ export default function Blogs() {
                                     })}
                                 </div>
                             ) : (
-                                !featuredPost && <div style={{ textAlign: 'center', padding: '60px 20px', color: '#64748b', fontFamily: "'DM Sans', sans-serif", fontSize: 16 }}>No articles found.</div>
+                                !featuredPost && <div style={{ textAlign: 'center', padding: '60px 20px', color: '#64748b', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 16 }}>No articles found.</div>
                             )}
                         </>
                     )}
@@ -195,13 +195,13 @@ export default function Blogs() {
                         </button>
 
                         <div style={{ marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid #f1f5f9' }}>
-                            <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", textTransform: 'uppercase', display: 'inline-block', marginBottom: 16 }}>
+                            <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase', display: 'inline-block', marginBottom: 16 }}>
                                 {selectedPost.category}
                             </span>
-                            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", lineHeight: 1.2, marginBottom: 20 }}>
+                            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.2, marginBottom: 20 }}>
                                 {selectedPost.title}
                             </h2>
-                            <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: '#64748b', fontSize: 14.5, fontFamily: "'DM Sans', sans-serif" }}>
+                            <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: '#64748b', fontSize: 14.5, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                 <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={16} /> {formatDate(selectedPost.created_at)}</span>
                                 <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={16} /> {selectedPost.read_time}</span>
                             </div>
@@ -257,7 +257,7 @@ export default function Blogs() {
                 .modal-close:hover { background: #e2e8f0; color: #0f172a; transform: scale(1.05); }
                 
                 .post-body {
-                    font-family: 'DM Sans', sans-serif; font-size: 17px; color: #334155;
+                    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; color: #334155;
                     line-height: 1.8; white-space: pre-wrap;
                 }
 

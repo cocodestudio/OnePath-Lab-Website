@@ -96,7 +96,7 @@ export default function Login() {
                             style={{ objectFit: 'contain' }}
                             priority
                         />
-                        <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Syne', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>
+                        <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>
                             OnePath
                         </span>
                     </Link>
@@ -108,10 +108,10 @@ export default function Login() {
                     {view === 'login' ? (
                         <div className="animate-fade-in">
                             <div style={{ marginBottom: 40, textAlign: 'center' }}>
-                                <h1 style={{ fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
+                                <h1 style={{ fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
                                     Welcome back
                                 </h1>
-                                <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
+                                <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 500 }}>
                                     Sign in to manage your lab operations.
                                 </p>
                             </div>
@@ -119,7 +119,7 @@ export default function Login() {
                             <button style={{
                                 width: '100%', padding: '14px 20px', borderRadius: '14px', background: '#ffffff',
                                 border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                gap: 12, fontSize: 15, fontWeight: 700, color: '#334155', fontFamily: "'DM Sans', sans-serif",
+                                gap: 12, fontSize: 15, fontWeight: 700, color: '#334155', fontFamily: "'Plus Jakarta Sans', sans-serif",
                                 cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
                                 marginBottom: 24
                             }} className="social-btn">
@@ -128,7 +128,7 @@ export default function Login() {
 
                             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
                                 <div style={{ flex: 1, height: 1, background: '#f1f5f9' }} />
-                                <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 700, fontFamily: "'DM Sans', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                <span style={{ fontSize: 13, color: '#94a3b8', fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                                     Or continue with email
                                 </span>
                                 <div style={{ flex: 1, height: 1, background: '#f1f5f9' }} />
@@ -136,7 +136,7 @@ export default function Login() {
 
                             <form onSubmit={handleAction} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                                 <div>
-                                    <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#334155', marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>
+                                    <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#334155', marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                         Email Address
                                     </label>
                                     <div className="input-group" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -149,7 +149,7 @@ export default function Login() {
                                             required
                                             style={{
                                                 width: '100%', padding: '14px 16px 14px 44px', borderRadius: '12px', border: '1px solid #cbd5e1',
-                                                fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', background: '#ffffff',
+                                                fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", outline: 'none', background: '#ffffff',
                                                 transition: 'all 0.2s', color: '#0f172a'
                                             }}
                                         />
@@ -158,10 +158,10 @@ export default function Login() {
 
                                 <div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                                        <label style={{ fontSize: 14, fontWeight: 700, color: '#334155', fontFamily: "'DM Sans', sans-serif" }}>
+                                        <label style={{ fontSize: 14, fontWeight: 700, color: '#334155', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                             Password
                                         </label>
-                                        <button type="button" onClick={() => setView('forgot')} style={{ fontSize: 13, fontWeight: 700, color: 'var(--blue-primary)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", padding: 0 }}>
+                                        <button type="button" onClick={() => setView('forgot')} style={{ fontSize: 13, fontWeight: 700, color: 'var(--blue-primary)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Plus Jakarta Sans', sans-serif", padding: 0 }}>
                                             Forgot password?
                                         </button>
                                     </div>
@@ -175,7 +175,7 @@ export default function Login() {
                                             required
                                             style={{
                                                 width: '100%', padding: '14px 44px', borderRadius: '12px', border: '1px solid #cbd5e1',
-                                                fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', background: '#ffffff',
+                                                fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", outline: 'none', background: '#ffffff',
                                                 transition: 'all 0.2s', color: '#0f172a'
                                             }}
                                         />
@@ -187,7 +187,7 @@ export default function Login() {
 
                                 <button type="submit" disabled={isLoading} style={{
                                     padding: '16px', borderRadius: '12px', background: 'var(--blue-primary)', color: '#ffffff',
-                                    fontSize: 16, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", border: 'none',
+                                    fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
                                     cursor: isLoading ? 'not-allowed' : 'pointer', transition: 'all 0.2s',
                                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 8,
                                     boxShadow: '0 8px 25px -6px rgba(59, 130, 246, 0.5)'
@@ -196,7 +196,7 @@ export default function Login() {
                                 </button>
                             </form>
 
-                            <p style={{ textAlign: 'center', marginTop: 32, fontSize: 15, color: '#64748b', fontFamily: "'DM Sans', sans-serif" }}>
+                            <p style={{ textAlign: 'center', marginTop: 32, fontSize: 15, color: '#64748b', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                 Don't have an account?{' '}
                                 <Link href="/trial" style={{ color: 'var(--blue-primary)', fontWeight: 700, textDecoration: 'none' }}>
                                     Start 7-day free trial
@@ -210,10 +210,10 @@ export default function Login() {
                                 <div style={{ width: 48, height: 48, background: '#eff6ff', color: 'var(--blue-primary)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
                                     <Lock size={24} />
                                 </div>
-                                <h1 style={{ fontSize: 'clamp(28px, 4vw, 32px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
+                                <h1 style={{ fontSize: 'clamp(28px, 4vw, 32px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
                                     Reset Password
                                 </h1>
-                                <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 1.6 }}>
+                                <p style={{ color: '#64748b', fontSize: 16, fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 500, lineHeight: 1.6 }}>
                                     {resetSent
                                         ? "We've sent a password reset link to your email. Please check your inbox."
                                         : "Enter your registered email address and we'll send you a link to reset your password."}
@@ -223,7 +223,7 @@ export default function Login() {
                             {!resetSent ? (
                                 <form onSubmit={handleAction} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                                     <div>
-                                        <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#334155', marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>
+                                        <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#334155', marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                             Email Address
                                         </label>
                                         <div className="input-group" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -236,7 +236,7 @@ export default function Login() {
                                                 required
                                                 style={{
                                                     width: '100%', padding: '14px 16px 14px 44px', borderRadius: '12px', border: '1px solid #cbd5e1',
-                                                    fontSize: 15, fontFamily: "'DM Sans', sans-serif", outline: 'none', background: '#ffffff',
+                                                    fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", outline: 'none', background: '#ffffff',
                                                     transition: 'all 0.2s', color: '#0f172a'
                                                 }}
                                             />
@@ -245,7 +245,7 @@ export default function Login() {
 
                                     <button type="submit" disabled={isLoading} style={{
                                         padding: '16px', borderRadius: '12px', background: 'var(--blue-primary)', color: '#ffffff',
-                                        fontSize: 16, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", border: 'none',
+                                        fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
                                         cursor: isLoading ? 'not-allowed' : 'pointer', transition: 'all 0.2s',
                                         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                                         boxShadow: '0 8px 25px -6px rgba(59, 130, 246, 0.5)'
@@ -256,7 +256,7 @@ export default function Login() {
                             ) : (
                                 <button onClick={() => setView('login')} style={{
                                     width: '100%', padding: '16px', borderRadius: '12px', background: '#f1f5f9', color: '#0f172a',
-                                    fontSize: 16, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", border: 'none',
+                                    fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
                                     cursor: 'pointer', transition: 'all 0.2s'
                                 }} className="secondary-btn">
                                     Return to Sign In
@@ -267,7 +267,7 @@ export default function Login() {
                                 <button type="button" onClick={() => setView('login')} style={{
                                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: '100%',
                                     marginTop: 32, fontSize: 15, fontWeight: 700, color: '#64748b', background: 'none', border: 'none',
-                                    cursor: 'pointer', fontFamily: "'DM Sans', sans-serif"
+                                    cursor: 'pointer', fontFamily: "'Plus Jakarta Sans', sans-serif"
                                 }} className="back-link">
                                     <ArrowLeft size={16} /> Back to log in
                                 </button>
@@ -293,10 +293,10 @@ export default function Login() {
                 <div style={{ position: 'absolute', bottom: -100, left: -100, width: 500, height: 500, background: 'rgba(139, 92, 246, 0.2)', borderRadius: '50%', filter: 'blur(120px)' }} />
 
                 <div style={{ position: 'relative', zIndex: 1, maxWidth: 500 }}>
-                    <h2 style={{ fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 800, fontFamily: "'Syne', sans-serif", lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
+                    <h2 style={{ fontSize: 'clamp(36px, 4vw, 52px)', fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.1, marginBottom: 24, letterSpacing: '-0.02em' }}>
                         Automate.<br />Scale. <span style={{ color: '#60a5fa' }}>Grow.</span>
                     </h2>
-                    <p style={{ fontSize: 18, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif", lineHeight: 1.6 }}>
+                    <p style={{ fontSize: 18, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.6 }}>
                         Join the network of 2000+ top NABL accredited labs across India utilizing our AI-powered LIS software.
                     </p>
                 </div>
@@ -307,16 +307,16 @@ export default function Login() {
                     position: 'relative', zIndex: 1, maxWidth: 500, boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
                 }}>
                     <Quote size={40} color="rgba(255,255,255,0.1)" style={{ position: 'absolute', top: 24, right: 24 }} />
-                    <p style={{ fontSize: 16, color: '#f8fafc', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif", marginBottom: 28, position: 'relative', zIndex: 2 }}>
+                    <p style={{ fontSize: 16, color: '#f8fafc', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 28, position: 'relative', zIndex: 2 }}>
                         "Switching to OnePath was the best operational decision we made. Our TAT reduced by 40%, and the AI smart reports have drastically improved our patient satisfaction scores."
                     </p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16, fontFamily: "'Syne', sans-serif" }}>
+                        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 16, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                             D
                         </div>
                         <div>
-                            <div style={{ fontSize: 16, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", color: '#ffffff' }}>Dr. Dilip Sanghvi</div>
-                            <div style={{ fontSize: 14, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif" }}>Apex Diagnostics</div>
+                            <div style={{ fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff' }}>Dr. Dilip Sanghvi</div>
+                            <div style={{ fontSize: 14, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Apex Diagnostics</div>
                         </div>
                     </div>
                 </div>
@@ -325,15 +325,15 @@ export default function Login() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <ShieldCheck size={28} color="#60a5fa" />
                         <div>
-                            <div style={{ fontSize: 15, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", color: '#fff' }}>HIPAA Compliant</div>
-                            <div style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif" }}>100% Data Security</div>
+                            <div style={{ fontSize: 15, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#fff' }}>HIPAA Compliant</div>
+                            <div style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>100% Data Security</div>
                         </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <Activity size={28} color="#34d399" />
                         <div>
-                            <div style={{ fontSize: 15, fontWeight: 700, fontFamily: "'DM Sans', sans-serif", color: '#fff' }}>99.9% Uptime</div>
-                            <div style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'DM Sans', sans-serif" }}>Cloud Infrastructure</div>
+                            <div style={{ fontSize: 15, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#fff' }}>99.9% Uptime</div>
+                            <div style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Cloud Infrastructure</div>
                         </div>
                     </div>
                 </div>

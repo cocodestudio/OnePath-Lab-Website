@@ -3,87 +3,98 @@ import { CreditCard, MessageCircle, FileText, Database, ShieldCheck, Zap } from 
 
 const integrations = [
     {
-        icon: <CreditCard size={24} />,
+        icon: <CreditCard size={22} />,
         name: 'Payment Gateways',
-        desc: 'Direct integration with Razorpay/PhonePe to auto-reconcile patient payments and B2B client invoices.',
-        color: '#3b82f6',
+        desc: 'Direct integration with Razorpay and PhonePe to auto-reconcile patient collections and B2B invoices.',
+        color: '#2563eb',
+        bg: '#eff6ff',
     },
     {
-        icon: <MessageCircle size={24} />,
+        icon: <MessageCircle size={22} />,
         name: 'WhatsApp Business API',
-        desc: 'Official API integration for automated report dispatch, appointment reminders, and payment receipts.',
-        color: '#22c55e',
+        desc: 'Official API integration for automated report dispatch, appointment reminders, and digital payment receipts.',
+        color: '#059669',
+        bg: '#ecfdf5',
     },
     {
-        icon: <FileText size={24} />,
+        icon: <FileText size={22} />,
         name: 'Doctor Referral Portal',
-        desc: 'Dedicated login for referring doctors to track their referred patients and live commission statements.',
-        color: '#f59e0b',
+        desc: 'Dedicated web login for referring doctors to track their referred patients and live commission statements.',
+        color: '#d97706',
+        bg: '#fffbeb',
     },
     {
-        icon: <Database size={24} />,
-        name: 'LIS Middleware',
-        desc: 'Bridge software for hardware connectivity, supporting HL7/ASTM protocols for 500+ analyzer models.',
-        color: '#6366f1',
+        icon: <Database size={22} />,
+        name: 'LIS Hardware Middleware',
+        desc: 'Bridge software for hardware connectivity, supporting HL7/ASTM protocols for 200+ analyzer models.',
+        color: '#7c3aed',
+        bg: '#f5f3ff',
     },
     {
-        icon: <ShieldCheck size={24} />,
+        icon: <ShieldCheck size={22} />,
         name: 'ABHA & EHR Sync',
-        desc: 'Compliant with Ayushman Bharat Health Account (ABHA) to push reports to patient health lockers.',
-        color: '#14b8a6',
+        desc: 'Compliant with Ayushman Bharat Health Account (ABHA) to securely push reports to national health lockers.',
+        color: '#0891b2',
+        bg: '#ecfeff',
     },
     {
-        icon: <Zap size={24} />,
+        icon: <Zap size={22} />,
         name: 'Universal REST API',
-        desc: 'Secure API access for your mobile app or website to trigger test bookings and fetch report status.',
-        color: '#8b5cf6',
+        desc: 'Secure API access for your lab website or custom mobile app to register tests and fetch report status.',
+        color: '#dc2626',
+        bg: '#fef2f2',
     },
 ]
 
 export default function Integrations() {
     return (
-        <section className="integrations-section" style={{ padding: '96px 20px', background: '#f8fafc', boxSizing: 'border-box', overflow: 'hidden' }}>
-            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', boxSizing: 'border-box' }}>
+        <section className="integrations-section" style={{ padding: '96px 20px', background: '#ffffff', boxSizing: 'border-box', overflow: 'hidden' }}>
+            <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', boxSizing: 'border-box' }}>
 
-                <div style={{ textAlign: 'center', marginBottom: 64, padding: '0 10px' }}>
+                <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
                         <span style={{
                             display: 'inline-flex',
                             alignItems: 'center',
                             background: '#eff6ff',
                             border: '1px solid #bfdbfe',
-                            color: 'var(--blue-primary, #3b82f6)',
+                            color: '#2563eb',
                             padding: '6px 16px',
-                            borderRadius: '100px',
-                            fontSize: '13px',
-                            fontWeight: '700',
+                            borderRadius: 999,
+                            fontSize: 12.5,
+                            fontWeight: 700,
                             letterSpacing: '0.05em',
                             textTransform: 'uppercase',
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Connectivity
+                            Ecosystem & Connectivity
                         </span>
                     </div>
 
                     <h2 style={{
-                        fontSize: 'clamp(28px, 6vw, 42px)',
+                        fontSize: 'clamp(28px, 5.5vw, 42px)',
                         fontWeight: 800,
                         color: '#0f172a',
-                        marginBottom: 16,
-                        letterSpacing: '-0.02em',
-                        fontFamily: "'Syne', sans-serif",
+                        marginBottom: 14,
+                        letterSpacing: '-0.03em',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
                         wordBreak: 'break-word',
+                        lineHeight: 1.2,
                     }}>
-                        Infrastructure that <span style={{ color: 'var(--blue-primary, #3b82f6)' }}>Integrates</span>
+                        Infrastructure that <span style={{
+                            background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                        }}>Seamlessly Integrates</span>
                     </h2>
 
                     <p style={{
                         color: '#64748b',
-                        maxWidth: 550,
+                        maxWidth: 560,
                         margin: '0 auto',
-                        fontSize: 'clamp(14px, 4vw, 17px)',
-                        lineHeight: 1.6,
-                        fontFamily: "'DM Sans', sans-serif"
+                        fontSize: 'clamp(14.5px, 2.5vw, 17px)',
+                        lineHeight: 1.65,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif"
                     }}>
                         OnePath isn't an island. We build bridges between your diagnostic machines, payment gateways, and the national health ecosystem.
                     </p>
@@ -91,9 +102,8 @@ export default function Integrations() {
 
                 <div style={{
                     display: 'grid',
-                    // The magic fix: min(100%, 280px) guarantees 100% width on small devices
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-                    gap: 24,
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+                    gap: 20,
                     width: '100%',
                 }}>
                     {integrations.map(int => (
@@ -101,12 +111,12 @@ export default function Integrations() {
                             key={int.name}
                             className="integration-card"
                             style={{
-                                padding: '32px 24px',
+                                padding: '28px 24px',
                                 background: '#ffffff',
                                 border: '1px solid #e2e8f0',
-                                borderRadius: '20px',
+                                borderRadius: 20,
                                 display: 'flex',
-                                gap: 20,
+                                gap: 18,
                                 alignItems: 'flex-start',
                                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                                 boxSizing: 'border-box',
@@ -114,10 +124,10 @@ export default function Integrations() {
                             }}
                         >
                             <div style={{
-                                width: 52, height: 52,
-                                borderRadius: '14px',
-                                background: `${int.color}15`,
-                                border: `1px solid ${int.color}30`,
+                                width: 48, height: 48,
+                                borderRadius: 12,
+                                background: int.bg,
+                                border: `1px solid ${int.color}25`,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -128,22 +138,24 @@ export default function Integrations() {
                                 {int.icon}
                             </div>
 
-                            <div style={{ flex: 1, minWidth: 0 }}> {/* minWidth: 0 prevents flex overflow */}
+                            <div style={{ flex: 1, minWidth: 0 }}>
                                 <h3 style={{
-                                    fontSize: 'clamp(16px, 4vw, 18px)',
+                                    fontSize: 17,
                                     fontWeight: 700,
-                                    marginBottom: 8,
+                                    marginBottom: 6,
                                     color: '#0f172a',
-                                    fontFamily: "'Syne', sans-serif",
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
                                     wordBreak: 'break-word',
+                                    letterSpacing: '-0.02em',
                                 }}>
                                     {int.name}
                                 </h3>
                                 <p style={{
-                                    fontSize: 'clamp(14px, 3.5vw, 14.5px)',
+                                    fontSize: 13.5,
                                     color: '#64748b',
-                                    lineHeight: 1.6,
-                                    fontFamily: "'DM Sans', sans-serif"
+                                    lineHeight: 1.65,
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                    margin: 0,
                                 }}>
                                     {int.desc}
                                 </p>
@@ -155,24 +167,23 @@ export default function Integrations() {
 
             <style>{`
                 .integration-card:hover {
-                    transform: translateY(-5px);
+                    transform: translateY(-4px);
                     border-color: #cbd5e1 !important;
-                    box-shadow: 0 12px 30px -10px rgba(0,0,0,0.08);
+                    box-shadow: 0 12px 32px -10px rgba(15,23,42,0.08);
                 }
                 .integration-card:hover .int-icon {
-                    transform: scale(1.08);
+                    transform: scale(1.06);
                 }
                 
                 @media (max-width: 768px) {
-                    .integrations-section { padding: 60px 15px !important; }
+                    .integrations-section { padding: 56px 16px !important; }
                 }
                 
-                /* Super small mobile fix */
-                @media (max-width: 400px) {
+                @media (max-width: 380px) {
                     .integration-card {
-                        flex-direction: column; /* Stack icon and text on tiny screens */
-                        align-items: center;
-                        text-align: center;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 12px;
                     }
                 }
             `}</style>

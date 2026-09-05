@@ -45,7 +45,7 @@ export default function HomeCollection() {
                             color: 'var(--blue-primary)', padding: '6px 16px',
                             borderRadius: '100px', fontSize: '13px', fontWeight: '700',
                             letterSpacing: '0.05em', textTransform: 'uppercase',
-                            fontFamily: "'DM Sans', sans-serif",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                             boxShadow: '0 4px 14px rgba(59, 130, 246, 0.1)'
                         }}>
                             <Sparkles size={14} /> Next-Gen Feature
@@ -57,7 +57,7 @@ export default function HomeCollection() {
                         fontSize: 'clamp(36px, 5vw, 54px)',
                         fontWeight: 800,
                         color: '#0f172a',
-                        fontFamily: "'Syne', sans-serif",
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
                         marginBottom: 20,
                         letterSpacing: '-0.03em',
                         lineHeight: 1.15
@@ -76,7 +76,7 @@ export default function HomeCollection() {
                             borderRadius: '12px',
                             fontSize: '18px',
                             fontWeight: '800',
-                            fontFamily: "'Syne', sans-serif",
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
                             letterSpacing: '0.05em',
                             textTransform: 'uppercase',
                             boxShadow: '0 4px 12px rgba(239,68,68,0.05)'
@@ -90,7 +90,7 @@ export default function HomeCollection() {
                         fontSize: 'clamp(15px, 2vw, 17.5px)',
                         color: '#475569',
                         lineHeight: 1.7,
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
                         maxWidth: 640,
                         margin: '0 auto 48px'
                     }}>
@@ -117,13 +117,13 @@ export default function HomeCollection() {
                                     required
                                     style={{
                                         flex: 1, border: 'none', outline: 'none', fontSize: 15,
-                                        fontFamily: "'DM Sans', sans-serif", color: '#0f172a', background: 'transparent'
+                                        fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', background: 'transparent'
                                     }}
                                 />
                                 <button type="submit" style={{
                                     background: 'var(--blue-primary)', color: '#ffffff', border: 'none',
                                     padding: '14px 28px', borderRadius: '100px', fontSize: 14, fontWeight: 700,
-                                    fontFamily: "'DM Sans', sans-serif", cursor: 'pointer', display: 'flex',
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif", cursor: 'pointer', display: 'flex',
                                     alignItems: 'center', gap: 6, transition: 'all 0.2s', flexShrink: 0
                                 }} className="notify-btn">
                                     Notify Me <Bell size={16} />
@@ -133,7 +133,7 @@ export default function HomeCollection() {
                             <div className="animate-fade-up" style={{
                                 background: '#dcfce7', border: '1px solid #bbf7d0', borderRadius: '100px',
                                 padding: '14px 28px', display: 'inline-flex', alignItems: 'center', gap: 10,
-                                color: '#16a34a', fontWeight: 600, fontFamily: "'DM Sans', sans-serif"
+                                color: '#16a34a', fontWeight: 600, fontFamily: "'Plus Jakarta Sans', sans-serif"
                             }}>
                                 <CheckCircle2 size={18} /> You're on the list! We'll notify you the day we launch.
                             </div>
@@ -157,8 +157,8 @@ export default function HomeCollection() {
                                 <div style={{ width: 44, height: 44, background: '#eff6ff', color: 'var(--blue-primary)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
                                     {item.icon}
                                 </div>
-                                <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', fontFamily: "'Syne', sans-serif", marginBottom: 8 }}>{item.title}</h3>
-                                <p style={{ fontSize: 13.5, color: '#64748b', lineHeight: 1.5, fontFamily: "'DM Sans', sans-serif" }}>{item.desc}</p>
+                                <h3 style={{ fontSize: 16, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 8 }}>{item.title}</h3>
+                                <p style={{ fontSize: 13.5, color: '#64748b', lineHeight: 1.5, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{item.desc}</p>
                             </div>
                         ))}
                     </div>
