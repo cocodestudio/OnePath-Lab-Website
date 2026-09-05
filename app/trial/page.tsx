@@ -115,7 +115,7 @@ export default function SignUp() {
             {/* Navbar */}
             <div style={{ padding: '24px 32px', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-                    <Image src="/logo.png" alt="OnePath" width={36} height={36} style={{ objectFit: 'contain' }} />
+                    <Image src="/logo.png" alt="OnePath" width={36} height={36} style={{ width: 'auto', height: 'auto', objectFit: 'contain' }} />
                     <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>OnePath</span>
                 </Link>
                 <div style={{ fontSize: 15, fontWeight: 600, color: '#475569', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>

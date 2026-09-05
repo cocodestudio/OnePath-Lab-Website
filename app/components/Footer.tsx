@@ -69,7 +69,7 @@ export default function Footer() {
                                 alt="OnePath Lab Logo"
                                 width={34}
                                 height={34}
-                                style={{ objectFit: 'contain' }}
+                                style={{ width: 'auto', height: 'auto', objectFit: 'contain' }}
                             />
                             <span style={{
                                 fontSize: 22,

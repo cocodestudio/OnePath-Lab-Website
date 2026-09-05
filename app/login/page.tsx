@@ -93,7 +93,7 @@ export default function Login() {
                             alt="OnePath Logo"
                             width={36}
                             height={36}
-                            style={{ objectFit: 'contain' }}
+                            style={{ width: 'auto', height: 'auto', objectFit: 'contain' }}
                             priority
                         />
                         <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>

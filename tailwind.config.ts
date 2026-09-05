@@ -19,9 +19,10 @@ const config: Config = {
                 'blue-pale': '#eff6ff',
             },
             fontFamily: {
-                sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-                syne: ['"Plus Jakarta Sans"', 'sans-serif'],
-                dm: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+                inter: ['"Inter"', 'sans-serif'],
+                syne: ['"Inter"', 'sans-serif'],
+                dm: ['"Inter"', 'sans-serif'],
             },
             animation: {
                 'scroll-left': 'scrollLeft 32s linear infinite',

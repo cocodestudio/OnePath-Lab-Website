@@ -95,7 +95,7 @@ export default function Navbar() {
 
                     {/* ── Brand / Logo ── */}
                     <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 9, textDecoration: 'none', flexShrink: 0 }}>
-                        <Image src="/logo.png" alt="OnePath Lab Logo" width={32} height={32} style={{ objectFit: 'contain' }} priority />
+                        <Image src="/logo.png" alt="OnePath Lab Logo" width={32} height={32} style={{ width: 'auto', height: 'auto', objectFit: 'contain' }} priority />
 
                         <span style={{ display: 'flex', alignItems: 'baseline', userSelect: 'none' }}>
                             <span style={{
@@ -214,7 +214,7 @@ export default function Navbar() {
                     background: '#ffffff',
                 }}>
                     <Link href="/" onClick={() => setMenuOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
-                        <Image src="/logo.png" alt="Logo" width={28} height={28} style={{ objectFit: 'contain' }} />
+                        <Image src="/logo.png" alt="Logo" width={28} height={28} style={{ width: 'auto', height: 'auto', objectFit: 'contain' }} />
                         <span style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 18, fontWeight: 800, letterSpacing: '-0.03em' }}>
                             <span style={{ background: 'linear-gradient(135deg, #2563eb, #4f46e5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>OnePath</span>
                             <span style={{ color: '#0f172a', marginLeft: 3 }}>Lab</span>
