@@ -599,16 +599,12 @@ export default function HorizontalShowcase() {
             </div>
 
             <style>{`
-                .horizontal-showcase-section {
-                    overflow: hidden !important;
-                    max-width: 100vw !important;
-                }
                 .sticky-tour-viewport {
                     overflow: hidden !important;
                     max-width: 100vw !important;
                 }
                 @media (max-width: 768px) {
-                    .horizontal-showcase-section { height: 260vh !important; }
+                    .horizontal-showcase-section { height: 280vh !important; }
                     .sticky-tour-viewport { padding: 24px 0 16px !important; }
                     .showcase-nav-btns { display: none !important; }
                 }

@@ -173,51 +173,25 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* ── Mobile Right Actions (Track Report + Hamburger) ── */}
-                    <div className="mobile-actions-wrap" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <Link
-                            href="/track-report"
-                            className="mobile-track-nav-btn"
-                            style={{
-                                display: 'none',
-                                alignItems: 'center',
-                                gap: 5,
-                                padding: '6px 12px',
-                                borderRadius: 999,
-                                fontSize: 12,
-                                fontWeight: 700,
-                                color: '#2563eb',
-                                background: '#eff6ff',
-                                border: '1px solid #bfdbfe',
-                                textDecoration: 'none',
-                                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                whiteSpace: 'nowrap',
-                                transition: 'all 0.2s',
-                            }}
-                        >
-                            <FileSearch size={13} color="#2563eb" />
-                            <span>Track Report</span>
-                        </Link>
-
-                        <button
-                            onClick={() => setMenuOpen(v => !v)}
-                            className="nav-hamburger"
-                            aria-label="Toggle menu"
-                            style={{
-                                display: 'none', alignItems: 'center', justifyContent: 'center',
-                                width: 38, height: 38,
-                                background: '#f8fafc', border: '1px solid #e2e8f0',
-                                color: '#0f172a', cursor: 'pointer',
-                                borderRadius: 10,
-                                transition: 'all 0.2s ease',
-                                padding: 0,
-                            }}
-                        >
-                            <span className={`hamburger-icon ${menuOpen ? 'open' : ''}`}>
-                                <span /><span /><span />
-                            </span>
-                        </button>
-                    </div>
+                    {/* ── Mobile Hamburger ── */}
+                    <button
+                        onClick={() => setMenuOpen(v => !v)}
+                        className="nav-hamburger"
+                        aria-label="Toggle menu"
+                        style={{
+                            display: 'none', alignItems: 'center', justifyContent: 'center',
+                            width: 38, height: 38,
+                            background: '#f8fafc', border: '1px solid #e2e8f0',
+                            color: '#0f172a', cursor: 'pointer',
+                            borderRadius: 10,
+                            transition: 'all 0.2s ease',
+                            padding: 0,
+                        }}
+                    >
+                        <span className={`hamburger-icon ${menuOpen ? 'open' : ''}`}>
+                            <span /><span /><span />
+                        </span>
+                    </button>
                 </nav>
             </header>
 
@@ -528,26 +502,17 @@ export default function Navbar() {
          
                 @media (max-width: 900px) {
                   .nav-wrapper { padding: 10px 12px 0 !important; }
-                  .nav-bar     { height: 54px !important; padding: 0 8px 0 14px !important; }
+                  .nav-bar     { height: 54px !important; padding: 0 12px 0 16px !important; }
                   .nav-links   { display: none !important; }
                   .nav-cta     { display: none !important; }
                   .nav-hamburger { display: flex !important; }
-                  .mobile-track-nav-btn { display: inline-flex !important; }
                 }
                 @media (max-width: 480px) {
                   .nav-wrapper { padding: 8px 10px 0 !important; }
-                  .mobile-track-nav-btn {
-                    padding: 5px 10px !important;
-                    font-size: 11.5px !important;
-                  }
                 }
                 @media (max-width: 360px) {
                   .nav-wrapper { padding: 8px 6px 0 !important; }
-                  .nav-bar     { padding: 0 6px 0 8px !important; }
-                  .mobile-track-nav-btn {
-                    padding: 4px 8px !important;
-                    font-size: 11px !important;
-                  }
+                  .nav-bar     { padding: 0 10px 0 12px !important; }
                 }
                 @media (min-width: 901px) {
                   .mobile-drawer   { display: none !important; }

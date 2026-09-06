@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 
 export default function Home() {
   return (
-    <main style={{ background: '#ffffff', minHeight: '100vh', overflowX: 'clip' }}>
+    <main style={{ background: '#ffffff', minHeight: '100vh' }}>
       <Navbar />
       <Hero />
       <TrustedBy />
