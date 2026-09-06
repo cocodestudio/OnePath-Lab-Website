@@ -6,10 +6,12 @@ interface GoogleAnalyticsProps {
   gaId?: string
 }
 
-export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
-  const measurementId = gaId || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const DEFAULT_GA_ID = 'G-1E0TQQN395'
 
-  // Don't render analytics scripts if no measurement ID is provided
+export default function GoogleAnalytics({ gaId }: GoogleAnalyticsProps) {
+  const measurementId = gaId || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || DEFAULT_GA_ID
+
+  // Don't render analytics scripts if no valid measurement ID is provided
   if (!measurementId || measurementId.trim() === '' || measurementId === 'G-XXXXXXXXXX') {
     return null
   }
