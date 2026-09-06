@@ -25,11 +25,15 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     type: 'website',
   },
+  other: {
+    'google-adsense-account': 'ca-pub-3071851906714660',
+  },
 }
 
 import { TopProgressBar } from './components/TopProgressBar'
 import { SmoothScrolling } from './components/SmoothScrolling'
 import GoogleAnalytics from './components/GoogleAnalytics'
+import GoogleAdSense from './components/GoogleAdSense'
 
 export default function RootLayout({
   children,
@@ -40,6 +44,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <GoogleAnalytics />
+        <GoogleAdSense />
         <TopProgressBar />
         <SmoothScrolling>
           {children}
