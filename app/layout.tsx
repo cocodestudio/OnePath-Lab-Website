@@ -33,7 +33,6 @@ export const metadata: Metadata = {
 import { TopProgressBar } from './components/TopProgressBar'
 import { SmoothScrolling } from './components/SmoothScrolling'
 import GoogleAnalytics from './components/GoogleAnalytics'
-import GoogleAdSense from './components/GoogleAdSense'
 
 export default function RootLayout({
   children,
@@ -42,9 +41,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-3071851906714660" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3071851906714660"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <GoogleAnalytics />
-        <GoogleAdSense />
         <TopProgressBar />
         <SmoothScrolling>
           {children}
