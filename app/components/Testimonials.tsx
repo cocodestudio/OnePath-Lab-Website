@@ -103,12 +103,17 @@ export default function Testimonials() {
             </div>
 
             <style>{`
+                .testimonials-section {
+                    overflow: hidden !important;
+                    max-width: 100vw !important;
+                }
+
                 .marquee-wrapper {
                     display: flex;
                     flex-direction: column;
                     gap: 24px;
-                    width: 100vw;
-                    max-width: 100%;
+                    width: 100%;
+                    max-width: 100vw;
                     padding: 10px 0;
                     box-sizing: border-box;
                     overflow: hidden;
@@ -143,9 +148,9 @@ export default function Testimonials() {
                 }
 
                 .testimonial-card {
-                    width: clamp(270px, 84vw, 380px);
-                    padding: clamp(20px, 4vw, 28px);
-                    background: '#ffffff';
+                    width: clamp(260px, 80vw, 380px);
+                    padding: clamp(18px, 4vw, 28px);
+                    background: #ffffff;
                     border: 1px solid #e2e8f0;
                     border-radius: 20px;
                     display: flex;

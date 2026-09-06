@@ -50,7 +50,7 @@ export default function Workflow() {
         >
             <div style={{
                 position: 'absolute',
-                width: 'min(600px, 100vw)', height: 'min(600px, 100vw)',
+                width: 'min(600px, 100%)', height: 'min(600px, 100%)',
                 background: 'radial-gradient(circle, rgba(37,99,235,0.05) 0%, transparent 70%)',
                 top: '50%', left: '50%',
                 transform: 'translate(-50%, -50%)',

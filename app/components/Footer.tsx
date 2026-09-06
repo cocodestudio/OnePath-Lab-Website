@@ -269,7 +269,7 @@ export default function Footer() {
                     font-weight: 800;
                     letter-spacing: 0.06em;
                     text-transform: uppercase;
-                    color: '#0f172a';
+                    color: #0f172a;
                     margin-bottom: 22px;
                     font-family: 'Plus Jakarta Sans', sans-serif;
                 }

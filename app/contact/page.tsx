@@ -71,7 +71,7 @@ export default function ContactSupport() {
 
             {/* ── Hero ── */}
             <section style={{
-                padding: '160px 20px 80px',
+                padding: 'clamp(115px, 15vw, 160px) 16px 60px',
                 background: 'linear-gradient(160deg,#ffffff 0%,#eff6ff 60%,#e0eaff 100%)',
                 textAlign: 'center', position: 'relative', overflow: 'hidden',
             }}>
@@ -81,20 +81,20 @@ export default function ContactSupport() {
                         <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
                         Sales & Support Infrastructure
                     </div>
-                    <h1 style={{ fontSize: 'clamp(40px,6vw,62px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 20, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+                    <h1 style={{ fontSize: 'clamp(32px,6vw,62px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 20, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
                         We're Here to<br /><span style={{ color: '#2563eb' }}>Help You Scale</span>
                     </h1>
-                    <p style={{ fontSize: 'clamp(16px,2vw,18px)', color: '#475569', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
+                    <p style={{ fontSize: 'clamp(15px,2vw,18px)', color: '#475569', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
                         Whether you need a personalized product demo, data migration assistance, or immediate technical support — our certified LIS experts are just a call or message away.
                     </p>
                 </div>
             </section>
 
             {/* ── Contact Cards ── */}
-            <section style={{ padding: '0 20px', marginTop: '-32px', position: 'relative', zIndex: 10 }}>
-                <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(230px,1fr))', gap: 16 }}>
+            <section style={{ padding: '0 16px', marginTop: '-32px', position: 'relative', zIndex: 10 }}>
+                <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%, 230px),1fr))', gap: 16 }}>
                     {contactCards.map((c, i) => (
-                        <div key={i} style={{ background: '#ffffff', borderRadius: 20, padding: '28px 24px', border: '1px solid #e2e8f0', boxShadow: '0 8px 32px -8px rgba(0,0,0,0.09)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <div key={i} style={{ background: '#ffffff', borderRadius: 20, padding: '24px 20px', border: '1px solid #e2e8f0', boxShadow: '0 8px 32px -8px rgba(0,0,0,0.09)', display: 'flex', flexDirection: 'column', gap: 10 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 4 }}>
                                 <div style={{ width: 46, height: 46, borderRadius: 13, background: c.bg, color: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.icon}</div>
                                 <div>
@@ -103,7 +103,7 @@ export default function ContactSupport() {
                                 </div>
                             </div>
                             {c.lines.map((l, j) => (
-                                <div key={j} style={{ fontSize: 14.5, fontWeight: 600, color: '#1e293b', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{l}</div>
+                                <div key={j} style={{ fontSize: 14.5, fontWeight: 600, color: '#1e293b', fontFamily: "'Plus Jakarta Sans',sans-serif", wordBreak: 'break-word' }}>{l}</div>
                             ))}
                             <div style={{ fontSize: 12, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans',sans-serif", marginTop: 4 }}>{c.note}</div>
                         </div>
@@ -112,13 +112,13 @@ export default function ContactSupport() {
             </section>
 
             {/* ── WhatsApp + Support Architecture ── */}
-            <section style={{ padding: '80px 20px 96px' }}>
+            <section style={{ padding: '60px 16px 80px' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 48, alignItems: 'start' }} className="contact-grid">
 
                     {/* Left: Quick Chat & Trust Points */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                         <div>
-                            <h2 style={{ fontSize: 30, fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
+                            <h2 style={{ fontSize: 'clamp(24px, 4vw, 30px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12, letterSpacing: '-0.02em' }}>
                                 Need Immediate Help?
                             </h2>
                             <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
@@ -127,13 +127,13 @@ export default function ContactSupport() {
                         </div>
 
                         <a href="https://wa.me/919045757272?text=Hi%2C%20I%20want%20to%20know%20more%20about%20OnePath%20Lab%20software" target="_blank" rel="noreferrer"
-                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, background: '#22c55e', color: '#ffffff', textDecoration: 'none', fontWeight: 700, fontSize: 16, padding: '18px 24px', borderRadius: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 8px 28px rgba(34,197,94,0.35)', transition: 'all 0.2s' }}>
-                            <MessageCircle size={22} />
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, background: '#22c55e', color: '#ffffff', textDecoration: 'none', fontWeight: 700, fontSize: 16, padding: '16px 20px', borderRadius: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 8px 28px rgba(34,197,94,0.35)', transition: 'all 0.2s', textAlign: 'center' }}>
+                            <MessageCircle size={22} style={{ flexShrink: 0 }} />
                             Chat with Sales / Support
                         </a>
 
                         {/* Trust points */}
-                        <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 16, padding: '24px' }}>
+                        <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 16, padding: '20px' }}>
                             <div style={{ fontSize: 13, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16 }}>Our Service Commitment</div>
                             {[
                                 'Free onboarding & zero-loss data migration',
@@ -151,7 +151,7 @@ export default function ContactSupport() {
                     </div>
 
                     {/* Right — Enterprise Support Escalation Matrix */}
-                    <div style={{ background: '#ffffff', borderRadius: 24, padding: '40px', border: '1px solid #e2e8f0', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.08)' }}>
+                    <div className="escalation-card" style={{ background: '#ffffff', borderRadius: 24, padding: '40px', border: '1px solid #e2e8f0', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.08)' }}>
                         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 6, letterSpacing: '-0.02em' }}>Enterprise Support Architecture</h2>
                         <p style={{ fontSize: 14, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 32, lineHeight: 1.6 }}>
                             We don't just sell software; we partner in your operations. Our 3-tier support system ensures your lab never faces downtime.
@@ -244,6 +244,9 @@ export default function ContactSupport() {
             <style>{`
         @media (max-width: 768px) {
           .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+        @media (max-width: 640px) {
+          .escalation-card { padding: 24px 16px !important; border-radius: 18px !important; }
         }
       `}</style>
         </main>

@@ -23,13 +23,15 @@ export default function HomeCollection() {
             {/* Main Premium Wrapper */}
             <section style={{
                 flex: 1,
-                padding: '160px 20px 100px',
+                padding: 'clamp(115px, 15vw, 160px) 16px 80px',
                 background: 'linear-gradient(180deg, #ffffff 0%, #eff6ff 50%, #f8fafc 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                width: '100%',
+                boxSizing: 'border-box'
             }}>
                 {/* Decorative Premium Glow Background Blobs */}
                 <div style={{ position: 'absolute', top: -100, right: -100, width: 500, height: 500, background: 'rgba(59, 130, 246, 0.08)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />

@@ -408,8 +408,8 @@ export default function HorizontalShowcase() {
                         style={{
                             display: 'flex',
                             gap: 24,
-                            paddingLeft: 'max(20px, calc((100vw - 1200px) / 2))',
-                            paddingRight: 'max(20px, calc((100vw - 1200px) / 2))',
+                            paddingLeft: 'max(16px, calc((100% - 1200px) / 2))',
+                            paddingRight: 'max(16px, calc((100% - 1200px) / 2))',
                             width: 'max-content',
                             willChange: 'transform',
                             transition: 'transform 0.08s linear',
@@ -423,7 +423,7 @@ export default function HorizontalShowcase() {
                                     className="showcase-card"
                                     onClick={() => scrollToStage(idx)}
                                     style={{
-                                        width: 'clamp(300px, 82vw, 420px)',
+                                        width: 'clamp(270px, 80vw, 420px)',
                                         flexShrink: 0,
                                         background: '#ffffff',
                                         border: isActive ? `1.5px solid ${stage.accent}` : '1px solid #e2e8f0',
@@ -599,6 +599,14 @@ export default function HorizontalShowcase() {
             </div>
 
             <style>{`
+                .horizontal-showcase-section {
+                    overflow: hidden !important;
+                    max-width: 100vw !important;
+                }
+                .sticky-tour-viewport {
+                    overflow: hidden !important;
+                    max-width: 100vw !important;
+                }
                 @media (max-width: 768px) {
                     .horizontal-showcase-section { height: 260vh !important; }
                     .sticky-tour-viewport { padding: 24px 0 16px !important; }

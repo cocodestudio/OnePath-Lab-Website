@@ -203,15 +203,15 @@ export default function Comparison() {
                         gap: 6px;
                     }
                     .compare-feature-text {
-                        fontSize: 13px !important;
-                        line-height: 1.4;
+                        font-size: 13px !important;
+                        line-height: 1.35;
                         word-break: break-word;
                     }
                     .compare-header-text {
-                        fontSize: 11px !important;
+                        font-size: 11px !important;
                     }
                     .compare-header-title {
-                        fontSize: 12px !important;
+                        font-size: 12px !important;
                         padding: 6px 0 !important;
                     }
                 }
@@ -219,11 +219,17 @@ export default function Comparison() {
                 @media (max-width: 360px) {
                     .comparison-section { padding: 48px 10px !important; }
                     .compare-grid {
-                        grid-template-columns: 1fr 52px 52px;
-                        padding: 11px 6px !important;
+                        grid-template-columns: 1fr 50px 50px;
+                        padding: 10px 6px !important;
                         gap: 4px;
                     }
-                    .compare-feature-text { font-size: 12px !important; }
+                    .compare-feature-text {
+                        font-size: 11.5px !important;
+                        line-height: 1.3;
+                    }
+                    .compare-header-title {
+                        font-size: 11px !important;
+                    }
                 }
             `}</style>
         </section>

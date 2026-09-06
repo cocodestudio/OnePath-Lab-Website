@@ -86,18 +86,20 @@ export default function Hero() {
 
             {/* ─── Ambient Glow Orbs ─── */}
             <div ref={orb1Ref} style={{
-                position: 'absolute', top: '-8%', left: '-6%', width: 'min(650px, 90vw)', height: 'min(650px, 90vw)',
+                position: 'absolute', top: '-8%', left: '-6%', width: 'min(500px, 80vw)', height: 'min(500px, 80vw)',
                 background: 'radial-gradient(circle, rgba(219,234,254,0.95) 0%, transparent 70%)',
                 borderRadius: '50%', filter: 'blur(60px)', pointerEvents: 'none', zIndex: 0,
                 transform: 'none',
                 transition: 'transform 0.4s ease-out',
+                overflow: 'hidden',
             }} />
             <div ref={orb2Ref} style={{
-                position: 'absolute', bottom: '5%', right: '-8%', width: 'min(550px, 90vw)', height: 'min(550px, 90vw)',
+                position: 'absolute', bottom: '5%', right: '-8%', width: 'min(450px, 80vw)', height: 'min(450px, 80vw)',
                 background: 'radial-gradient(circle, rgba(237,233,254,0.8) 0%, transparent 70%)',
                 borderRadius: '50%', filter: 'blur(70px)', pointerEvents: 'none', zIndex: 0,
                 transform: 'none',
                 transition: 'transform 0.4s ease-out',
+                overflow: 'hidden',
             }} />
 
             <div className="container hero-container" style={{ position: 'relative', zIndex: 2, padding: '0 20px', width: '100%', boxSizing: 'border-box' }}>
@@ -406,11 +408,22 @@ export default function Hero() {
                 @media (max-width: 860px) {
                     .hero-section { padding-top: 84px !important; padding-bottom: 24px !important; }
                     .hide-mobile { display: none !important; }
+                    .mockup-wrapper {
+                        perspective: none !important;
+                        overflow: hidden !important;
+                        max-width: 100% !important;
+                    }
                     .mockup-tilt-card {
                         transform: none !important;
                         box-shadow: 0 10px 30px -10px rgba(37,99,235,0.18) !important;
                     }
                     .mockup-container { min-height: auto !important; }
+                    .mockup-browser-bar > div:nth-child(2) > div {
+                        min-width: 0 !important;
+                        max-width: 180px !important;
+                        font-size: 10.5px !important;
+                        padding: 3px 8px !important;
+                    }
                     .mockup-main { padding: 10px !important; }
                     .mockup-grid {
                         display: flex !important; overflow-x: auto; gap: 8px !important;

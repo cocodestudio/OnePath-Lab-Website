@@ -565,7 +565,7 @@ export default function TrackReportPage() {
       </div>
 
       {/* Hero Section */}
-      <section style={{
+      <section className="track-hero-section" style={{
         padding: '160px 20px 60px',
         background: 'linear-gradient(160deg, #ffffff 0%, #eff6ff 60%, #e0eaff 100%)',
         borderBottom: '1px solid #e2e8f0',
@@ -576,13 +576,13 @@ export default function TrackReportPage() {
         <div style={{ position: 'absolute', top: 30, right: -100, width: 450, height: 450, background: 'rgba(37, 99, 235, 0.08)', borderRadius: '50%', filter: 'blur(90px)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: -50, left: -100, width: 400, height: 400, background: 'rgba(124, 58, 237, 0.06)', borderRadius: '50%', filter: 'blur(90px)', pointerEvents: 'none' }} />
 
-        <div style={{ maxWidth: 840, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: 840, margin: '0 auto', position: 'relative', zIndex: 1, width: '100%' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #bfdbfe', borderRadius: 100, padding: '6px 18px', fontSize: 12, fontWeight: 700, color: 'var(--blue-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 20, boxShadow: '0 2px 8px rgba(37,99,235,0.1)' }}>
             <Activity size={14} />
             <span>Real-Time Report Verification</span>
           </div>
 
-          <h1 style={{ fontSize: 'clamp(32px, 6vw, 54px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 16, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+          <h1 style={{ fontSize: 'clamp(28px, 6vw, 54px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 16, letterSpacing: '-0.02em', lineHeight: 1.15, wordBreak: 'break-word' }}>
             Track / Download <span style={{ color: 'var(--blue-primary)' }}>Report</span>
           </h1>
           <p style={{ fontSize: 'clamp(14px, 3.5vw, 17px)', color: '#475569', lineHeight: 1.7, maxWidth: 620, margin: '0 auto 36px', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -590,17 +590,18 @@ export default function TrackReportPage() {
           </p>
 
           {/* Single Text Field Search Card */}
-          <div style={{
+          <div className="track-search-card" style={{
             maxWidth: 650,
             margin: '0 auto',
             background: '#ffffff',
             padding: '8px',
             borderRadius: '20px',
             border: '1px solid #cbd5e1',
-            boxShadow: '0 16px 36px -10px rgba(0,0,0,0.1)'
+            boxShadow: '0 16px 36px -10px rgba(0,0,0,0.1)',
+            boxSizing: 'border-box'
           }}>
-            <form onSubmit={handleTrack} style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-              <div style={{ position: 'relative', flex: 1, minWidth: 240 }}>
+            <form onSubmit={handleTrack} className="track-search-form" style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+              <div className="track-input-wrapper" style={{ position: 'relative', flex: 1, minWidth: 240, width: '100%' }}>
                 <FileText size={18} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8', pointerEvents: 'none' }} />
                 <input
                   type="text"
@@ -619,7 +620,8 @@ export default function TrackReportPage() {
                     color: '#0f172a',
                     outline: 'none',
                     fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    boxSizing: 'border-box'
                   }}
                   onFocus={(e) => {
                     e.currentTarget.style.background = '#ffffff'
@@ -635,6 +637,7 @@ export default function TrackReportPage() {
               <button
                 type="submit"
                 disabled={isLoading}
+                className="track-search-button"
                 style={{
                   padding: '14px 28px',
                   borderRadius: '14px',
@@ -646,6 +649,7 @@ export default function TrackReportPage() {
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: 8,
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   boxShadow: '0 4px 14px rgba(37,99,235,0.3)',
@@ -688,7 +692,7 @@ export default function TrackReportPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             
             {/* 1. Full-Width Executive Header Card */}
-            <div style={{
+            <div className="executive-header-card" style={{
               width: '100%',
               background: '#ffffff',
               borderRadius: '24px',
@@ -699,12 +703,13 @@ export default function TrackReportPage() {
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
-              gap: 20
+              gap: 20,
+              boxSizing: 'border-box'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 18, minWidth: 260, flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, minWidth: 240, flex: 1 }}>
                 <div style={{
-                  width: 58,
-                  height: 58,
+                  width: 54,
+                  height: 54,
                   borderRadius: '16px',
                   background: 'linear-gradient(135deg, #2563eb, #4f46e5)',
                   color: '#ffffff',
@@ -718,12 +723,12 @@ export default function TrackReportPage() {
                 }}>
                   {report.patient?.name ? report.patient.name.charAt(0).toUpperCase() : 'P'}
                 </div>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                    <h2 style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', letterSpacing: '-0.01em' }}>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                    <h2 style={{ fontSize: 'clamp(18px, 4vw, 22px)', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.01em', wordBreak: 'break-word' }}>
                       {report.patient?.name || "Patient"}
                     </h2>
-                    <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 100, background: '#f1f5f9', color: '#475569', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 100, background: '#f1f5f9', color: '#475569', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
                       {report.patient?.gender || "—"}, {report.patient?.age || "—"} Yrs
                     </span>
                     <span style={{
@@ -732,6 +737,7 @@ export default function TrackReportPage() {
                       padding: '3px 10px',
                       borderRadius: 100,
                       textTransform: 'uppercase',
+                      whiteSpace: 'nowrap',
                       background: report.status === 'FINAL' || report.status === 'APPROVED' ? '#ecfdf5' : '#fffbeb',
                       color: report.status === 'FINAL' || report.status === 'APPROVED' ? '#047857' : '#b45309',
                       border: `1px solid ${report.status === 'FINAL' || report.status === 'APPROVED' ? '#a7f3d0' : '#fde68a'}`
@@ -740,7 +746,7 @@ export default function TrackReportPage() {
                     </span>
                   </div>
 
-                  <p style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                  <p style={{ fontSize: 13, color: '#64748b', marginTop: 4, display: 'flex', gap: 8, flexWrap: 'wrap', lineHeight: 1.4 }}>
                     <span>PID: <strong style={{ color: '#0f172a' }}>{report.patient?.customId || report.patient?.custom_id || "PID"}</strong></span>
                     <span>·</span>
                     <span>Report ID: <strong style={{ color: 'var(--blue-primary)' }}>{report.customId || report.custom_id || reportIdInput}</strong></span>
@@ -751,7 +757,7 @@ export default function TrackReportPage() {
               </div>
 
               {/* Action Button: Download Official Report PDF */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <div className="executive-actions" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
                 <button
                   type="button"
                   onClick={handleDownloadPdf}
@@ -764,13 +770,15 @@ export default function TrackReportPage() {
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: 8,
                     background: billingInfo.isPaid
                       ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
                       : '#cbd5e1',
                     color: billingInfo.isPaid ? '#ffffff' : '#475569',
                     boxShadow: billingInfo.isPaid ? '0 4px 14px rgba(5,150,105,0.25)' : 'none',
-                    transition: 'all 0.2s'
+                    transition: 'all 0.2s',
+                    boxSizing: 'border-box'
                   }}
                   title={billingInfo.isPaid ? "Download Official Report PDF with Letterhead" : "Report locked: Clear pending balance to download"}
                 >
@@ -781,17 +789,18 @@ export default function TrackReportPage() {
             </div>
 
             {/* 2. Track Progress Bar with Dot Indicators (Step 1 -> Step 2 -> Step 3) */}
-            <div style={{
+            <div className="stepper-card" style={{
               width: '100%',
               background: '#ffffff',
               borderRadius: '24px',
               border: '1px solid #e2e8f0',
               padding: '32px 36px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
+              boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+              boxSizing: 'border-box'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: 16, marginBottom: 36 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: 16, marginBottom: 28, flexWrap: 'wrap', gap: 10 }}>
                 <div>
-                  <h3 style={{ fontSize: 18, fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <h3 style={{ fontSize: 'clamp(16px, 3.5vw, 18px)', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: 8 }}>
                     <Activity size={20} color="var(--blue-primary)" />
                     <span>Report Tracking Progress</span>
                   </h3>
@@ -808,9 +817,9 @@ export default function TrackReportPage() {
               </div>
 
               {/* Connected Stepper with Dots */}
-              <div style={{ position: 'relative', margin: '20px 10px 10px' }}>
+              <div style={{ position: 'relative', margin: '14px 4px 6px' }}>
                 {/* Background Line */}
-                <div style={{
+                <div className="stepper-line-bg" style={{
                   position: 'absolute',
                   top: 24,
                   left: '16.66%',
@@ -822,7 +831,7 @@ export default function TrackReportPage() {
                 }} />
 
                 {/* Dynamic Active Progress Line */}
-                <div style={{
+                <div className="stepper-line-active" style={{
                   position: 'absolute',
                   top: 24,
                   left: '16.66%',
@@ -835,11 +844,11 @@ export default function TrackReportPage() {
                 }} />
 
                 {/* Steps 1, 2, 3 Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', position: 'relative', zIndex: 3 }}>
+                <div className="stepper-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', position: 'relative', zIndex: 3, gap: 8 }}>
                   
                   {/* Step 1: Sample Registered */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                    <div style={{
+                    <div className="step-circle" style={{
                       width: 48,
                       height: 48,
                       borderRadius: '50%',
@@ -853,21 +862,21 @@ export default function TrackReportPage() {
                     }}>
                       <Check size={22} strokeWidth={3} />
                     </div>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--blue-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 14 }}>
+                    <span className="step-badge" style={{ fontSize: 11, fontWeight: 800, color: 'var(--blue-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 12 }}>
                       Step 1
                     </span>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: '#0f172a', marginTop: 2 }}>Sample Registered</h4>
-                    <p style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
+                    <h4 className="step-title" style={{ fontSize: 15, fontWeight: 800, color: '#0f172a', marginTop: 2 }}>Sample Registered</h4>
+                    <p className="step-desc" style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
                       Patient intake & sample barcode registered
                     </p>
-                    <span style={{ fontSize: 11, fontWeight: 700, marginTop: 8, padding: '3px 8px', borderRadius: 6, background: '#eff6ff', color: '#1d4ed8' }}>
+                    <span className="step-status" style={{ fontSize: 11, fontWeight: 700, marginTop: 8, padding: '3px 8px', borderRadius: 6, background: '#eff6ff', color: '#1d4ed8' }}>
                       Completed
                     </span>
                   </div>
 
                   {/* Step 2: Final */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                    <div style={{
+                    <div className="step-circle" style={{
                       width: 48,
                       height: 48,
                       borderRadius: '50%',
@@ -882,14 +891,14 @@ export default function TrackReportPage() {
                     }}>
                       {currentStep >= 2 ? <Check size={22} strokeWidth={3} /> : <span style={{ fontSize: 15, fontWeight: 800 }}>2</span>}
                     </div>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: currentStep >= 2 ? 'var(--blue-primary)' : '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 14 }}>
+                    <span className="step-badge" style={{ fontSize: 11, fontWeight: 800, color: currentStep >= 2 ? 'var(--blue-primary)' : '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 12 }}>
                       Step 2
                     </span>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: currentStep >= 2 ? '#0f172a' : '#64748b', marginTop: 2 }}>Final</h4>
-                    <p style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
+                    <h4 className="step-title" style={{ fontSize: 15, fontWeight: 800, color: currentStep >= 2 ? '#0f172a' : '#64748b', marginTop: 2 }}>Final</h4>
+                    <p className="step-desc" style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
                       {currentStep >= 2 ? "Results entered & finalized" : "Lab examination in progress"}
                     </p>
-                    <span style={{
+                    <span className="step-status" style={{
                       fontSize: 11,
                       fontWeight: 700,
                       marginTop: 8,
@@ -905,7 +914,7 @@ export default function TrackReportPage() {
 
                   {/* Step 3: Approve */}
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                    <div style={{
+                    <div className="step-circle" style={{
                       width: 48,
                       height: 48,
                       borderRadius: '50%',
@@ -920,14 +929,14 @@ export default function TrackReportPage() {
                     }}>
                       {currentStep >= 3 ? <Check size={22} strokeWidth={3} /> : <span style={{ fontSize: 15, fontWeight: 800 }}>3</span>}
                     </div>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: currentStep >= 3 ? '#15803d' : '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 14 }}>
+                    <span className="step-badge" style={{ fontSize: 11, fontWeight: 800, color: currentStep >= 3 ? '#15803d' : '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 12 }}>
                       Step 3
                     </span>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: currentStep >= 3 ? '#0f172a' : '#64748b', marginTop: 2 }}>Approve</h4>
-                    <p style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
+                    <h4 className="step-title" style={{ fontSize: 15, fontWeight: 800, color: currentStep >= 3 ? '#0f172a' : '#64748b', marginTop: 2 }}>Approve</h4>
+                    <p className="step-desc" style={{ fontSize: 12, color: '#64748b', marginTop: 4, maxWidth: 200, lineHeight: 1.4 }}>
                       {currentStep >= 3 ? "Signed off & ready to download" : "Pending sign-off"}
                     </p>
-                    <span style={{
+                    <span className="step-status" style={{
                       fontSize: 11,
                       fontWeight: 700,
                       marginTop: 8,
@@ -946,7 +955,7 @@ export default function TrackReportPage() {
             </div>
 
             {/* 3. Payments Card with Authorizing Lab Name */}
-            <div style={{
+            <div className="payments-card" style={{
               width: '100%',
               background: '#ffffff',
               borderRadius: '24px',
@@ -955,11 +964,12 @@ export default function TrackReportPage() {
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
               display: 'flex',
               flexDirection: 'column',
-              gap: 20
+              gap: 20,
+              boxSizing: 'border-box'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: 16, flexWrap: 'wrap', gap: 10 }}>
                 <div>
-                  <h3 style={{ fontSize: 18, fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <h3 style={{ fontSize: 'clamp(16px, 3.5vw, 18px)', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: 8 }}>
                     <CreditCard size={20} color="var(--blue-primary)" />
                     <span>Payments</span>
                   </h3>
@@ -982,7 +992,7 @@ export default function TrackReportPage() {
               </div>
 
               {/* Payments & Lab Info Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 16 }}>
                 <div style={{ padding: '16px 20px', borderRadius: 16, background: '#f8fafc', border: '1px solid #e2e8f0' }}>
                   <p style={{ fontSize: 11, color: '#64748b', fontWeight: 700, textTransform: 'uppercase' }}>Total Diagnostic Bill</p>
                   <p style={{ fontSize: 24, fontWeight: 900, color: '#0f172a', marginTop: 4 }}>₹{billingInfo.total.toFixed(2)}</p>
@@ -1003,10 +1013,10 @@ export default function TrackReportPage() {
                     <Building2 size={13} />
                     <span>Approved & Processed By Lab</span>
                   </p>
-                  <p style={{ fontSize: 15, fontWeight: 800, color: '#1e3a8a', marginTop: 4 }}>
+                  <p style={{ fontSize: 15, fontWeight: 800, color: '#1e3a8a', marginTop: 4, wordBreak: 'break-word' }}>
                     {report.lab?.name || "OnePath Diagnostic Pathology Laboratory"}
                   </p>
-                  <p style={{ fontSize: 11, color: '#475569', marginTop: 2 }}>
+                  <p style={{ fontSize: 11, color: '#475569', marginTop: 2, wordBreak: 'break-word' }}>
                     {report.lab?.address || "Central Laboratory Processing Center"}
                   </p>
                 </div>
@@ -1020,7 +1030,7 @@ export default function TrackReportPage() {
 
               {/* Online Settlement Info Box & Single Action Button */}
               {!billingInfo.isPaid ? (
-                <div style={{
+                <div className="settlement-box" style={{
                   padding: '20px 24px',
                   borderRadius: '16px',
                   background: 'linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)',
@@ -1029,17 +1039,18 @@ export default function TrackReportPage() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
-                  gap: 16
+                  gap: 16,
+                  boxSizing: 'border-box'
                 }}>
-                  <div>
+                  <div style={{ flex: 1, minWidth: 240 }}>
                     <h4 style={{ fontSize: 15, fontWeight: 800, color: '#1e3a8a', display: 'flex', alignItems: 'center', gap: 8 }}>
                       <Sparkles size={17} color="#2563eb" />
                       <span>Instant Online Report Clearance via PayU</span>
                     </h4>
-                    <p style={{ fontSize: 13, color: '#475569', marginTop: 4 }}>
+                    <p style={{ fontSize: 13, color: '#475569', marginTop: 4, lineHeight: 1.5 }}>
                       Bill Due: <strong>₹{billingInfo.due.toFixed(2)}</strong> + 2% Gateway Convenience Fee (<strong>₹{convenienceFee.toFixed(2)}</strong>) = Total: <strong style={{ color: '#1d4ed8' }}>₹{totalPayable.toFixed(2)}</strong>
                     </p>
-                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
                       {['UPI (GPay / PhonePe / Paytm)', 'Debit & Credit Cards', 'NetBanking', 'Instant Clearance'].map((tag) => (
                         <span key={tag} style={{ fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#ffffff', color: '#1e40af', border: '1px solid #dbeafe' }}>
                           ✓ {tag}
@@ -1053,6 +1064,7 @@ export default function TrackReportPage() {
                     type="button"
                     onClick={handlePayNow}
                     disabled={isInitiatingPayment}
+                    className="settlement-btn"
                     style={{
                       padding: '14px 28px',
                       borderRadius: '14px',
@@ -1062,12 +1074,14 @@ export default function TrackReportPage() {
                       cursor: isInitiatingPayment ? 'not-allowed' : 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       gap: 10,
                       background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
                       color: '#ffffff',
                       boxShadow: '0 4px 16px rgba(37,99,235,0.35)',
                       transition: 'all 0.2s',
-                      opacity: isInitiatingPayment ? 0.75 : 1
+                      opacity: isInitiatingPayment ? 0.75 : 1,
+                      boxSizing: 'border-box'
                     }}
                     title="Pay pending balance securely via PayU"
                   >
@@ -1085,7 +1099,7 @@ export default function TrackReportPage() {
                   </button>
                 </div>
               ) : (
-                <div style={{
+                <div className="settlement-box" style={{
                   padding: '20px 24px',
                   borderRadius: '16px',
                   background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)',
@@ -1094,7 +1108,8 @@ export default function TrackReportPage() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
-                  gap: 16
+                  gap: 16,
+                  boxSizing: 'border-box'
                 }}>
                   <div>
                     <h4 style={{ fontSize: 15, fontWeight: 800, color: '#14532d', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1109,6 +1124,7 @@ export default function TrackReportPage() {
                   <button
                     type="button"
                     onClick={handleDownloadPdf}
+                    className="settlement-btn"
                     style={{
                       padding: '14px 28px',
                       borderRadius: '14px',
@@ -1118,11 +1134,13 @@ export default function TrackReportPage() {
                       cursor: 'pointer',
                       display: 'inline-flex',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       gap: 10,
                       background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
                       color: '#ffffff',
                       boxShadow: '0 4px 16px rgba(5,150,105,0.3)',
-                      transition: 'all 0.2s'
+                      transition: 'all 0.2s',
+                      boxSizing: 'border-box'
                     }}
                     title="Download Official Report PDF with Letterhead"
                   >
@@ -1149,8 +1167,122 @@ export default function TrackReportPage() {
         )}
       </div>
 
-      {/* GLOBAL A4 PRINT STYLES */}
+      {/* RESPONSIVE UI & GLOBAL A4 PRINT STYLES */}
       <style>{`
+        .track-search-card {
+          box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+          .track-hero-section {
+            padding: 120px 16px 44px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .track-hero-section {
+            padding: 105px 12px 36px !important;
+          }
+          .track-search-card {
+            padding: 12px !important;
+            border-radius: 16px !important;
+          }
+          .track-search-form {
+            flex-direction: column !important;
+            gap: 10px !important;
+            width: 100% !important;
+          }
+          .track-input-wrapper {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          .track-search-button {
+            width: 100% !important;
+            padding: 13px 16px !important;
+            font-size: 14.5px !important;
+            border-radius: 12px !important;
+          }
+
+          .executive-header-card {
+            padding: 18px 14px !important;
+            border-radius: 18px !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 14px !important;
+          }
+          .executive-actions {
+            width: 100% !important;
+          }
+          .executive-actions button {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+
+          .stepper-card {
+            padding: 18px 12px !important;
+            border-radius: 18px !important;
+          }
+          .stepper-line-bg, .stepper-line-active {
+            top: 19px !important;
+          }
+          .step-circle {
+            width: 38px !important;
+            height: 38px !important;
+            box-shadow: none !important;
+          }
+          .step-circle svg {
+            width: 17px !important;
+            height: 17px !important;
+          }
+          .step-badge {
+            font-size: 10px !important;
+            margin-top: 8px !important;
+          }
+          .step-title {
+            font-size: 12px !important;
+            margin-top: 2px !important;
+            word-break: break-word !important;
+            line-height: 1.25 !important;
+          }
+          .step-desc {
+            display: none !important;
+          }
+          .step-status {
+            font-size: 10px !important;
+            padding: 2px 6px !important;
+            margin-top: 6px !important;
+          }
+
+          .payments-card {
+            padding: 18px 14px !important;
+            border-radius: 18px !important;
+          }
+          .settlement-box {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 14px !important;
+            padding: 16px 14px !important;
+          }
+          .settlement-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 13px 18px !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .step-title {
+            font-size: 11px !important;
+          }
+          .step-circle {
+            width: 34px !important;
+            height: 34px !important;
+          }
+          .stepper-line-bg, .stepper-line-active {
+            top: 17px !important;
+          }
+        }
+
         @media screen {
           .print-report-container {
             position: fixed !important;

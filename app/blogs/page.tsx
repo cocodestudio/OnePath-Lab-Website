@@ -25,7 +25,11 @@ export default function Blogs() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/api/blogs/public', {
+                const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+                    ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
+                    : "http://127.0.0.1:8000"
+
+                const response = await fetch(`${apiOrigin}/api/blogs/public`, {
                     method: 'GET',
                     headers: { 'Accept': 'application/json' }
                 })
@@ -231,7 +235,7 @@ export default function Blogs() {
                 .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
                 /* Category Scroll */
-                .category-scroll-container { width: 100vw; max-width: 100%; overflow-x: hidden; }
+                .category-scroll-container { width: 100%; max-width: 100%; overflow-x: hidden; }
                 .category-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 4px 20px 12px; justify-content: flex-start; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
                 .category-scroll::-webkit-scrollbar { display: none; }
                 

@@ -126,7 +126,7 @@ export default function SignUp() {
 
             <div className="signup-wrapper" style={{ display: 'flex', flex: 1, paddingTop: 88 }}>
                 {/* —— Left: Form —— */}
-                <div className="signup-form-section" style={{ flex: 1.2, padding: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div className="signup-form-section" style={{ flex: 1.2, padding: 'clamp(24px, 5vw, 40px) 16px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <div style={{ width: '100%', maxWidth: 540 }}>
 
                         {!isSuccess ? (
@@ -148,7 +148,7 @@ export default function SignUp() {
 
                                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 16 }}>
                                         <div>
                                             <label style={labelStyle}>Full Name</label>
                                             <div className="input-group custom-input" style={inputGroupStyle}>
@@ -165,7 +165,7 @@ export default function SignUp() {
                                         </div>
                                     </div>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 16 }}>
                                         <div>
                                             <label style={labelStyle}>Email Address</label>
                                             <div className="input-group custom-input" style={inputGroupStyle}>
@@ -253,7 +253,7 @@ export default function SignUp() {
                                             </span>
                                         </div>
 
-                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: 14 }}>
                                             <button type="button" onClick={() => setSelectedPlan('6month')} className={`plan-card ${selectedPlan === '6month' ? 'selected' : ''}`}>
                                                 {selectedPlan === '6month' && <div className="check-icon"><CheckCircle2 size={20} /></div>}
                                                 <h4 className="plan-title">6 Months</h4>

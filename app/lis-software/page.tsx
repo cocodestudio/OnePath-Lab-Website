@@ -395,22 +395,26 @@ export default function LISSoftware() {
                     </div>
 
                     <div style={{ background: '#ffffff', borderRadius: 20, border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 8px 40px -12px rgba(0,0,0,0.1)' }}>
-                        {/* Header */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '16px 24px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
-                            <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Feature</div>
-                            <div style={{ textAlign: 'center', fontSize: 14, fontWeight: 800, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>✦ OnePath</div>
-                            <div style={{ textAlign: 'center', fontSize: 13, fontWeight: 600, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Offline LIS</div>
-                            <div style={{ textAlign: 'center', fontSize: 13, fontWeight: 600, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Other SaaS</div>
-                        </div>
+                        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%' }}>
+                            <div style={{ minWidth: 620 }}>
+                                {/* Header */}
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '16px 24px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                                    <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Feature</div>
+                                    <div style={{ textAlign: 'center', fontSize: 14, fontWeight: 800, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>✦ OnePath</div>
+                                    <div style={{ textAlign: 'center', fontSize: 13, fontWeight: 600, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Offline LIS</div>
+                                    <div style={{ textAlign: 'center', fontSize: 13, fontWeight: 600, color: '#64748b', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Other SaaS</div>
+                                </div>
 
-                        {comparisonData.map((row, i) => (
-                            <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '13px 24px', borderBottom: i < comparisonData.length - 1 ? '1px solid #f8fafc' : 'none', background: i % 2 === 0 ? '#ffffff' : '#fafbff', alignItems: 'center' }}>
-                                <div style={{ fontSize: 13.5, color: '#334155', fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 500 }}>{row.feature}</div>
-                                <div style={{ textAlign: 'center' }}><CompCell val={row.onepath} /></div>
-                                <div style={{ textAlign: 'center' }}><CompCell val={row.offline} /></div>
-                                <div style={{ textAlign: 'center' }}><CompCell val={row.saas} /></div>
+                                {comparisonData.map((row, i) => (
+                                    <div key={i} style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '13px 24px', borderBottom: i < comparisonData.length - 1 ? '1px solid #f8fafc' : 'none', background: i % 2 === 0 ? '#ffffff' : '#fafbff', alignItems: 'center' }}>
+                                        <div style={{ fontSize: 13.5, color: '#334155', fontFamily: "'Plus Jakarta Sans',sans-serif", fontWeight: 500 }}>{row.feature}</div>
+                                        <div style={{ textAlign: 'center' }}><CompCell val={row.onepath} /></div>
+                                        <div style={{ textAlign: 'center' }}><CompCell val={row.offline} /></div>
+                                        <div style={{ textAlign: 'center' }}><CompCell val={row.saas} /></div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
                     </div>
                 </div>
             </section>

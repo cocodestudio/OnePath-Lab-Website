@@ -39,11 +39,13 @@ export default function AboutUs() {
 
       {/* ── Hero ── */}
       <section style={{
-        padding: '160px 20px 100px',
+        padding: 'clamp(115px, 15vw, 160px) 16px 80px',
         background: 'linear-gradient(160deg, #ffffff 0%, #eff6ff 60%, #e0eaff 100%)',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {/* Decorative blobs */}
         <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle,rgba(219,234,254,0.6) 0%,transparent 70%)', top: -100, right: -100, pointerEvents: 'none' }} />
@@ -87,7 +89,7 @@ export default function AboutUs() {
       <section style={{ padding: '0 20px', marginTop: '-40px', position: 'relative', zIndex: 10 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%, 200px),1fr))',
             gap: 0,
             background: '#ffffff',
             borderRadius: 20,
