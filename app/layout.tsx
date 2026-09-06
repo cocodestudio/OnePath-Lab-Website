@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 
 import { TopProgressBar } from './components/TopProgressBar'
 import { SmoothScrolling } from './components/SmoothScrolling'
+import GoogleAnalytics from './components/GoogleAnalytics'
 
 export default function RootLayout({
   children,
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GoogleAnalytics />
         <TopProgressBar />
         <SmoothScrolling>
           {children}
