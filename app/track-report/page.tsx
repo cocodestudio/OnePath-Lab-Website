@@ -8,8 +8,7 @@ import { getCleanLetterheadUrl } from '../lib/api-client'
 import { useReactToPrint } from 'react-to-print'
 import {
   Search, FileText, CheckCircle2, Clock, AlertCircle, Download,
-  ShieldCheck, Lock, Activity, CreditCard, X, AlertTriangle,
-  Check, RefreshCw, Building2, ArrowRight, Sparkles, ZoomIn, ZoomOut, Eye
+  Activity, X, AlertTriangle, Check, RefreshCw
 } from 'lucide-react'
 
 interface ToastState {
@@ -26,28 +25,6 @@ export default function TrackReportPage() {
   const [report, setReport] = useState<any | null>(null)
   const [fetchError, setFetchError] = useState<string | null>(null)
   const [toasts, setToasts] = useState<ToastState[]>([])
-  const [isInitiatingPayment, setIsInitiatingPayment] = useState(false)
-  const [reportScale, setReportScale] = useState(1)
-
-  // Auto-compute responsive scale to fit screen
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const computeFitScale = () => {
-      const screenW = window.innerWidth;
-      if (screenW < 840) {
-        const padding = screenW < 480 ? 24 : 48;
-        const availableW = Math.max(280, screenW - padding);
-        const computed = Math.min(1, Math.max(0.35, availableW / 794));
-        setReportScale(Number(computed.toFixed(2)));
-      } else {
-        setReportScale(1);
-      }
-    };
-
-    computeFitScale();
-    window.addEventListener('resize', computeFitScale);
-    return () => window.removeEventListener('resize', computeFitScale);
-  }, [report]);
 
   // Floating Side Toast alert
   const showToast = (title: string, message: string, variant: 'error' | 'warning' | 'info' | 'success' = 'warning') => {
@@ -69,7 +46,8 @@ export default function TrackReportPage() {
         : "http://localhost:8000"
 
       const res = await fetch(`${apiOrigin}/api/lis/public/reports/${encodeURIComponent(cleanId)}`, {
-        headers: { "Accept": "application/json" }
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
       })
 
       if (!res.ok) {
@@ -90,32 +68,16 @@ export default function TrackReportPage() {
     }
   }
 
-  // Auto-detect URL parameters (payment=success or payment=failed)
+  // Auto-detect URL parameter (?id=OPL100001)
   useEffect(() => {
     if (typeof window === 'undefined') return
     const params = new URLSearchParams(window.location.search)
     const reportIdFromUrl = params.get('id')
-    const paymentStatus = params.get('payment')
-    const errorMsg = params.get('msg')
 
     if (reportIdFromUrl) {
       const clean = reportIdFromUrl.trim()
       setReportIdInput(clean)
       fetchReportById(clean)
-    }
-
-    if (paymentStatus === 'success') {
-      showToast(
-        "Payment Successful!",
-        "Your bill has been cleared via PayU. Report PDF download is now unlocked.",
-        "success"
-      )
-    } else if (paymentStatus === 'failed') {
-      showToast(
-        "Payment Incomplete",
-        errorMsg ? decodeURIComponent(errorMsg) : "Payment was cancelled or could not be verified. Please try again.",
-        "error"
-      )
     }
   }, [])
 
@@ -147,90 +109,80 @@ export default function TrackReportPage() {
     return 1 // Step 1: Sample Registered (PENDING / Draft)
   }, [report?.status])
 
-  // Billing & Payment Details
-  const billingInfo = useMemo(() => {
-    if (!report) return null
-    const bill = report.bill || {}
-    const total = Number(bill.total || 0)
-    const paid = Number(bill.paid_amount || bill.paidAmount || 0)
-    const due = Math.max(0, total - paid)
-    const rawStatus = (bill.status || bill.payment_status || bill.paymentStatus || "").toUpperCase()
-    const isPaid = rawStatus === 'PAID' || due <= 0
+  // Is report approved for download
+  const isApproved = useMemo(() => {
+    if (!report) return false
+    const status = (report.status || "").toUpperCase()
+    return status === "APPROVED" || status === "COMPLETED"
+  }, [report?.status])
 
-    return {
-      total,
-      paid,
-      due,
-      status: isPaid ? 'PAID' : (paid > 0 ? 'PARTIAL' : 'UNPAID'),
-      isPaid,
-      billId: bill.custom_id || bill.customId || "INV-RECEIPT"
-    }
-  }, [report])
+  const patient = report?.patient || {}
+  const lab = report?.lab || {}
 
-  // Convenience fee (2% extra) calculation
-  const dueAmount = billingInfo ? billingInfo.due : 0;
-  const convenienceFee = Number((dueAmount * 0.02).toFixed(2));
-  const totalPayable = Number((dueAmount + convenienceFee).toFixed(2));
-
-  const patient = report?.patient || {};
-  const lab = report?.lab || {};
-
-  const [letterheadBase64, setLetterheadBase64] = useState<string | null>(null);
+  const [letterheadBase64, setLetterheadBase64] = useState<string | null>(null)
 
   // Pre-convert letterhead image into base64 Data URL so browser print renders it 100% reliably
   useEffect(() => {
-    const rawBg = lab?.print_bg_image || lab?.printBgImage;
-    const cleanUrl = getCleanLetterheadUrl(rawBg);
+    const rawBg = lab?.print_bg_image || lab?.printBgImage
+    const cleanUrl = getCleanLetterheadUrl(rawBg)
     if (!cleanUrl) {
-      setLetterheadBase64(null);
-      return;
+      setLetterheadBase64(null)
+      return
     }
 
     if (cleanUrl.startsWith("data:")) {
-      setLetterheadBase64(cleanUrl);
-      return;
+      setLetterheadBase64(cleanUrl)
+      return
     }
 
-    let isMounted = true;
+    let isMounted = true
     const convert = async () => {
       try {
-        const img = new Image();
-        img.crossOrigin = "anonymous";
+        const img = new Image()
+        img.crossOrigin = "anonymous"
         img.onload = () => {
           try {
-            const canvas = document.createElement("canvas");
-            canvas.width = img.naturalWidth || 794;
-            canvas.height = img.naturalHeight || 1123;
-            const ctx = canvas.getContext("2d");
+            const canvas = document.createElement("canvas")
+            canvas.width = img.naturalWidth || 794
+            canvas.height = img.naturalHeight || 1123
+            const ctx = canvas.getContext("2d")
             if (ctx) {
-              ctx.drawImage(img, 0, 0);
-              const dataUrl = canvas.toDataURL("image/png");
-              if (isMounted) setLetterheadBase64(dataUrl);
+              ctx.drawImage(img, 0, 0)
+              const dataUrl = canvas.toDataURL("image/png")
+              if (isMounted) setLetterheadBase64(dataUrl)
             }
           } catch {
-            if (isMounted) setLetterheadBase64(cleanUrl);
+            if (isMounted) setLetterheadBase64(cleanUrl)
           }
-        };
+        }
         img.onerror = () => {
-          if (isMounted) setLetterheadBase64(cleanUrl);
-        };
-        img.src = cleanUrl;
+          if (isMounted) setLetterheadBase64(cleanUrl)
+        }
+        img.src = cleanUrl
       } catch {
-        if (isMounted) setLetterheadBase64(cleanUrl);
+        if (isMounted) setLetterheadBase64(cleanUrl)
       }
-    };
+    }
 
-    convert();
-    return () => { isMounted = false; };
-  }, [lab]);
+    convert()
+    return () => { isMounted = false }
+  }, [lab])
 
   const sheetData = useMemo(() => {
-    if (!report) return null;
-    const bg = letterheadBase64 || getCleanLetterheadUrl(lab.print_bg_image || lab.printBgImage);
+    if (!report) return null
+    const bg = letterheadBase64 || getCleanLetterheadUrl(lab.print_bg_image || lab.printBgImage)
+    const resolvedPackageName =
+      report.package_name ||
+      report.packageName ||
+      (report.meta?.package_name || report.meta?.packageName) ||
+      (report.bill?.package_name || report.bill?.packageName) ||
+      null;
     return {
       id: report.id,
       customId: report.custom_id || report.customId,
       status: report.status,
+      packageName: resolvedPackageName,
+      package_name: resolvedPackageName,
       reportDate: report.report_date || report.reportDate,
       createdAt: report.created_at || report.createdAt,
       patient: {
@@ -319,11 +271,11 @@ export default function TrackReportPage() {
       },
       report_settings: lab.report_settings || lab.reportSettings,
       reportSettings: lab.report_settings || lab.reportSettings,
-    };
-  }, [report, patient, lab, letterheadBase64]);
+    }
+  }, [report, patient, lab, letterheadBase64])
 
   const labSettings = useMemo(() => {
-    const bg = letterheadBase64 || getCleanLetterheadUrl(lab.print_bg_image || lab.printBgImage);
+    const bg = letterheadBase64 || getCleanLetterheadUrl(lab.print_bg_image || lab.printBgImage)
     return {
       bgImage: bg,
       headerHeight: lab.print_header_height ?? lab.printHeaderHeight ?? 185,
@@ -331,46 +283,12 @@ export default function TrackReportPage() {
       marginLeft: lab.print_margin_left ?? lab.printMarginLeft ?? 32,
       marginRight: lab.print_margin_right ?? lab.printMarginRight ?? 32,
       printWithLetterhead: lab.print_with_letterhead ?? lab.printWithLetterhead ?? (bg ? true : false),
-    };
-  }, [lab, letterheadBase64]);
-
-  // URL resolver for backend stored images (letterheads, digital signatures)
-  const resolveSigUrl = (url: string | null | undefined) => {
-    if (!url) return null;
-    if (url.startsWith("data:") || url.startsWith("blob:") || url.startsWith("http://") || url.startsWith("https://")) {
-      return url;
     }
-    const apiOrigin = process.env.NEXT_PUBLIC_API_URL
-      ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
-      : "http://localhost:8000";
-    const clean = url.startsWith("/") ? url : `/${url}`;
-    return `${apiOrigin}${clean}`;
-  };
-
-  // Dynamic reference range formatting based on patient age & gender
-  const calculateRefRange = (item: any, patient: any): string => {
-    const t = item.test || {};
-    if (t.rangeType === "TEXT" || t.range_type === "TEXT") {
-      return (t.textRefRange || t.text_ref_range || "—").trim();
-    }
-    const isFemale = (patient?.gender || "").toLowerCase().startsWith("f");
-    const min = isFemale
-      ? (t.refRangeMinFemale ?? t.ref_range_min_female ?? t.refRangeMin ?? t.ref_range_min)
-      : (t.refRangeMin ?? t.ref_range_min);
-    const max = isFemale
-      ? (t.refRangeMaxFemale ?? t.ref_range_max_female ?? t.refRangeMax ?? t.ref_range_max)
-      : (t.refRangeMax ?? t.ref_range_max);
-    if (min !== undefined && max !== undefined && min !== null && max !== null) {
-      return `${min} – ${max}`;
-    }
-    if (min !== undefined && min !== null) return `> ${min}`;
-    if (max !== undefined && max !== null) return `< ${max}`;
-    return "—";
-  };
+  }, [lab, letterheadBase64])
 
   // Native Vector PDF Download & Print Engine (Matches LIS FullscreenPrintReportModal 100%)
-  const patientName = (patient?.name || "Patient").replace(/[^a-zA-Z0-9_-]/g, "_");
-  const reportCode = report?.customId || report?.custom_id || "REPORT";
+  const patientName = (patient?.name || "Patient").replace(/[^a-zA-Z0-9_-]/g, "_")
+  const reportCode = report?.customId || report?.custom_id || "REPORT"
 
   const handleNativePrint = useReactToPrint({
     contentRef: printRef,
@@ -431,91 +349,28 @@ export default function TrackReportPage() {
         }
       }
     `,
-  });
+  })
 
+  // Download PDF Report with Approval Validation
   const handleDownloadPdf = () => {
-    if (!report || !billingInfo) return;
+    if (!report) return
 
-    if (!billingInfo.isPaid) {
+    if (!isApproved) {
       showToast(
-        "Payment Required",
-        `Please settle the pending balance of ₹${billingInfo.due.toFixed(2)} (+ ₹${convenienceFee.toFixed(2)} convenience fee) to download this official report.`,
-        "error"
-      );
-      return;
+        "Report Pending Approval",
+        "This report has not been approved yet. It will be available for download once approved by the pathologist.",
+        "warning"
+      )
+      return
     }
 
     if (!printRef.current || !sheetData) {
-      showToast("Preparing Report", "Report is compiling, please try again in a moment.", "info");
-      return;
+      showToast("Preparing Report", "Report is compiling, please try again in a moment.", "info")
+      return
     }
 
-    showToast("Vector PDF Ready", "Select 'Save as PDF' in the destination dropdown to save crisp vector PDF.", "info");
-    handleNativePrint();
-  };
-
-  // Pay Now via PayU Gateway
-  const handlePayNow = async () => {
-    if (!report || !billingInfo || billingInfo.due <= 0) return
-    setIsInitiatingPayment(true)
-    showToast("Connecting PayU", "Preparing secure checkout session...", "info")
-
-    try {
-      const apiOrigin = process.env.NEXT_PUBLIC_API_URL
-        ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
-        : "http://localhost:8000"
-
-      const res = await fetch(`${apiOrigin}/api/lis/public/payments/initiate`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          report_id: report.customId || report.custom_id || reportIdInput
-        })
-      })
-
-      const data = await res.json()
-      if (!res.ok) {
-        throw new Error(data.error || data.message || "Failed to initiate payment gateway session.")
-      }
-
-      if (data.status === "ALREADY_PAID") {
-        showToast("Already Paid", "This report is already fully paid.", "success")
-        if (report.customId || report.custom_id) {
-          fetchReportById(report.customId || report.custom_id)
-        }
-        return
-      }
-
-      if (data.action_url && data.params) {
-        showToast("Redirecting", "Transferring to PayU Secure Payment Gateway...", "success")
-
-        // Create and auto-submit hidden form to PayU hosted checkout
-        const form = document.createElement("form")
-        form.method = "POST"
-        form.action = data.action_url
-
-        Object.entries(data.params).forEach(([key, val]) => {
-          const input = document.createElement("input")
-          input.type = "hidden"
-          input.name = key
-          input.value = String(val ?? "")
-          form.appendChild(input)
-        })
-
-        document.body.appendChild(form)
-        form.submit()
-      } else {
-        throw new Error("Invalid checkout parameters received from payment gateway.")
-      }
-    } catch (err: any) {
-      console.error("Payment initiation error:", err)
-      showToast("Gateway Notice", err.message || "Unable to launch PayU checkout. Please try again or pay at counter.", "error")
-    } finally {
-      setIsInitiatingPayment(false)
-    }
+    showToast("Downloading Report", "Generating crisp official vector PDF...", "success")
+    handleNativePrint()
   }
 
   return (
@@ -586,7 +441,7 @@ export default function TrackReportPage() {
             Track / Download <span style={{ color: 'var(--blue-primary)' }}>Report</span>
           </h1>
           <p style={{ fontSize: 'clamp(14px, 3.5vw, 17px)', color: '#475569', lineHeight: 1.7, maxWidth: 620, margin: '0 auto 36px', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-            Enter your unique <strong>Report ID</strong> to track sample progress, check payments clearance, and download your authorized laboratory report.
+            Enter your unique <strong>Report ID</strong> to track sample progress and download your authorized laboratory report.
           </p>
 
           {/* Single Text Field Search Card */}
@@ -688,10 +543,10 @@ export default function TrackReportPage() {
           </div>
         )}
 
-        {report && billingInfo && (
+        {report && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
             
-            {/* 1. Full-Width Executive Header Card */}
+            {/* 1. Full-Width Executive Header Card (Patient Details + Direct Download) */}
             <div className="executive-header-card" style={{
               width: '100%',
               background: '#ffffff',
@@ -738,11 +593,11 @@ export default function TrackReportPage() {
                       borderRadius: 100,
                       textTransform: 'uppercase',
                       whiteSpace: 'nowrap',
-                      background: report.status === 'FINAL' || report.status === 'APPROVED' ? '#ecfdf5' : '#fffbeb',
-                      color: report.status === 'FINAL' || report.status === 'APPROVED' ? '#047857' : '#b45309',
-                      border: `1px solid ${report.status === 'FINAL' || report.status === 'APPROVED' ? '#a7f3d0' : '#fde68a'}`
+                      background: isApproved ? '#ecfdf5' : report.status === 'FINAL' ? '#eff6ff' : '#fffbeb',
+                      color: isApproved ? '#047857' : report.status === 'FINAL' ? '#1d4ed8' : '#b45309',
+                      border: `1px solid ${isApproved ? '#a7f3d0' : report.status === 'FINAL' ? '#bfdbfe' : '#fde68a'}`
                     }}>
-                      {report.status === 'FINAL' ? '✓ FINAL' : report.status === 'APPROVED' ? '✓ APPROVED' : (report.status || 'PENDING')}
+                      {isApproved ? '✓ APPROVED' : report.status === 'FINAL' ? '● FINAL' : (report.status || 'PENDING')}
                     </span>
                   </div>
 
@@ -772,18 +627,20 @@ export default function TrackReportPage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 8,
-                    background: billingInfo.isPaid
+                    background: isApproved
                       ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
-                      : '#cbd5e1',
-                    color: billingInfo.isPaid ? '#ffffff' : '#475569',
-                    boxShadow: billingInfo.isPaid ? '0 4px 14px rgba(5,150,105,0.25)' : 'none',
+                      : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                    color: '#ffffff',
+                    boxShadow: isApproved
+                      ? '0 4px 14px rgba(5,150,105,0.25)'
+                      : '0 4px 14px rgba(37,99,235,0.25)',
                     transition: 'all 0.2s',
                     boxSizing: 'border-box'
                   }}
-                  title={billingInfo.isPaid ? "Download Official Report PDF with Letterhead" : "Report locked: Clear pending balance to download"}
+                  title={isApproved ? "Download Official Report PDF with Letterhead" : "Report pending approval by pathologist"}
                 >
-                  {billingInfo.isPaid ? <Download size={16} /> : <Lock size={16} color="#b45309" />}
-                  <span>{billingInfo.isPaid ? "Download Report PDF" : "Download PDF (Locked)"}</span>
+                  <Download size={16} />
+                  <span>Download Report PDF</span>
                 </button>
               </div>
             </div>
@@ -811,7 +668,7 @@ export default function TrackReportPage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: currentStep === 3 ? '#16a34a' : '#2563eb', display: 'inline-block' }} />
                   <span style={{ fontSize: 12, fontWeight: 700, color: currentStep === 3 ? '#15803d' : '#1d4ed8' }}>
-                    {currentStep === 3 ? "Fully Approved & Cleared" : currentStep === 2 ? "Finalized by Lab" : "Sample Registered"}
+                    {currentStep === 3 ? "Fully Approved & Ready" : currentStep === 2 ? "Finalized by Lab" : "Sample Registered"}
                   </span>
                 </div>
               </div>
@@ -954,201 +811,70 @@ export default function TrackReportPage() {
               </div>
             </div>
 
-            {/* 3. Payments Card with Authorizing Lab Name */}
-            <div className="payments-card" style={{
+            {/* 3. Direct Download Action Card */}
+            <div className="download-action-card" style={{
               width: '100%',
               background: '#ffffff',
               borderRadius: '24px',
               border: '1px solid #e2e8f0',
-              padding: '28px 32px',
+              padding: '24px 32px',
               boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
               display: 'flex',
-              flexDirection: 'column',
-              gap: 20,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 16,
               boxSizing: 'border-box'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: 16, flexWrap: 'wrap', gap: 10 }}>
-                <div>
-                  <h3 style={{ fontSize: 'clamp(16px, 3.5vw, 18px)', fontWeight: 800, color: '#0f172a', display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <CreditCard size={20} color="var(--blue-primary)" />
-                    <span>Payments</span>
-                  </h3>
-                  <p style={{ fontSize: 13, color: '#64748b', marginTop: 2 }}>
-                    Billing details and processing laboratory verification.
-                  </p>
-                </div>
-
-                <div>
-                  {billingInfo.isPaid ? (
-                    <span style={{ fontSize: 12, fontWeight: 800, padding: '4px 12px', borderRadius: 100, background: '#f0fdf4', color: '#15803d', border: '1px solid #bbf7d0', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                      <Check size={14} strokeWidth={3} /> PAID & UNLOCKED
-                    </span>
-                  ) : (
-                    <span style={{ fontSize: 12, fontWeight: 800, padding: '4px 12px', borderRadius: 100, background: '#fffbeb', color: '#b45309', border: '1px solid #fde68a', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                      <Lock size={14} /> PAYMENT DUE (₹{billingInfo.due.toFixed(2)})
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Payments & Lab Info Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 16 }}>
-                <div style={{ padding: '16px 20px', borderRadius: 16, background: '#f8fafc', border: '1px solid #e2e8f0' }}>
-                  <p style={{ fontSize: 11, color: '#64748b', fontWeight: 700, textTransform: 'uppercase' }}>Total Diagnostic Bill</p>
-                  <p style={{ fontSize: 24, fontWeight: 900, color: '#0f172a', marginTop: 4 }}>₹{billingInfo.total.toFixed(2)}</p>
-                </div>
-
-                <div style={{ padding: '16px 20px', borderRadius: 16, background: '#f8fafc', border: '1px solid #e2e8f0' }}>
-                  <p style={{ fontSize: 11, color: '#64748b', fontWeight: 700, textTransform: 'uppercase' }}>Amount Paid</p>
-                  <p style={{ fontSize: 24, fontWeight: 900, color: '#15803d', marginTop: 4 }}>₹{billingInfo.paid.toFixed(2)}</p>
-                </div>
-
-                <div style={{ padding: '16px 20px', borderRadius: 16, background: billingInfo.due > 0 ? '#fffbeb' : '#f0fdf4', border: `1px solid ${billingInfo.due > 0 ? '#fde68a' : '#bbf7d0'}` }}>
-                  <p style={{ fontSize: 11, color: billingInfo.due > 0 ? '#92400e' : '#166534', fontWeight: 700, textTransform: 'uppercase' }}>Balance Due</p>
-                  <p style={{ fontSize: 24, fontWeight: 900, color: billingInfo.due > 0 ? '#b45309' : '#15803d', marginTop: 4 }}>₹{billingInfo.due.toFixed(2)}</p>
-                </div>
-
-                <div style={{ padding: '16px 20px', borderRadius: 16, background: '#eff6ff', border: '1px solid #bfdbfe' }}>
-                  <p style={{ fontSize: 11, color: '#1d4ed8', fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 4 }}>
-                    <Building2 size={13} />
-                    <span>Approved & Processed By Lab</span>
-                  </p>
-                  <p style={{ fontSize: 15, fontWeight: 800, color: '#1e3a8a', marginTop: 4, wordBreak: 'break-word' }}>
-                    {report.lab?.name || "OnePath Diagnostic Pathology Laboratory"}
-                  </p>
-                  <p style={{ fontSize: 11, color: '#475569', marginTop: 2, wordBreak: 'break-word' }}>
-                    {report.lab?.address || "Central Laboratory Processing Center"}
-                  </p>
-                </div>
-              </div>
-
-              <div style={{ padding: '14px 18px', borderRadius: 12, background: billingInfo.isPaid ? '#f0fdf4' : '#fffbeb', border: `1px solid ${billingInfo.isPaid ? '#bbf7d0' : '#fde68a'}`, fontSize: 13, color: billingInfo.isPaid ? '#166534' : '#92400e', lineHeight: 1.5 }}>
-                {billingInfo.isPaid
-                  ? `✓ Full payment cleared. Official report approved by ${report.lab?.name || "the laboratory"} is unlocked and ready for download.`
-                  : `⚠️ Please settle the remaining balance of ₹${billingInfo.due.toFixed(2)} with ${report.lab?.name || "your laboratory"} to unlock the report PDF download.`}
-              </div>
-
-              {/* Online Settlement Info Box & Single Action Button */}
-              {!billingInfo.isPaid ? (
-                <div className="settlement-box" style={{
-                  padding: '20px 24px',
-                  borderRadius: '16px',
-                  background: 'linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)',
-                  border: '1px solid #bfdbfe',
+              <div style={{ flex: 1, minWidth: 240 }}>
+                <h4 style={{
+                  fontSize: 16,
+                  fontWeight: 800,
+                  color: isApproved ? '#14532d' : '#0f172a',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: 16,
-                  boxSizing: 'border-box'
+                  gap: 8
                 }}>
-                  <div style={{ flex: 1, minWidth: 240 }}>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: '#1e3a8a', display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Sparkles size={17} color="#2563eb" />
-                      <span>Instant Online Report Clearance via PayU</span>
-                    </h4>
-                    <p style={{ fontSize: 13, color: '#475569', marginTop: 4, lineHeight: 1.5 }}>
-                      Bill Due: <strong>₹{billingInfo.due.toFixed(2)}</strong> + 2% Gateway Convenience Fee (<strong>₹{convenienceFee.toFixed(2)}</strong>) = Total: <strong style={{ color: '#1d4ed8' }}>₹{totalPayable.toFixed(2)}</strong>
-                    </p>
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
-                      {['UPI (GPay / PhonePe / Paytm)', 'Debit & Credit Cards', 'NetBanking', 'Instant Clearance'].map((tag) => (
-                        <span key={tag} style={{ fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6, background: '#ffffff', color: '#1e40af', border: '1px solid #dbeafe' }}>
-                          ✓ {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                  {isApproved ? <CheckCircle2 size={20} color="#16a34a" /> : <Clock size={20} color="#f59e0b" />}
+                  <span>{isApproved ? "Official Diagnostic Report Ready" : "Report Under Laboratory Review"}</span>
+                </h4>
+                <p style={{ fontSize: 13, color: '#64748b', marginTop: 4, lineHeight: 1.5 }}>
+                  {isApproved
+                    ? `Your official report is verified and ready with letterhead stationery. Click to download vector PDF.`
+                    : "Diagnostic results are being evaluated by the pathologist. The report can be downloaded once approved."}
+                </p>
+              </div>
 
-                  {/* Single Payment Button */}
-                  <button
-                    type="button"
-                    onClick={handlePayNow}
-                    disabled={isInitiatingPayment}
-                    className="settlement-btn"
-                    style={{
-                      padding: '14px 28px',
-                      borderRadius: '14px',
-                      fontSize: 15,
-                      fontWeight: 800,
-                      border: 'none',
-                      cursor: isInitiatingPayment ? 'not-allowed' : 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 10,
-                      background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                      color: '#ffffff',
-                      boxShadow: '0 4px 16px rgba(37,99,235,0.35)',
-                      transition: 'all 0.2s',
-                      opacity: isInitiatingPayment ? 0.75 : 1,
-                      boxSizing: 'border-box'
-                    }}
-                    title="Pay pending balance securely via PayU"
-                  >
-                    {isInitiatingPayment ? (
-                      <>
-                        <RefreshCw size={18} className="animate-spin" />
-                        <span>Connecting PayU…</span>
-                      </>
-                    ) : (
-                      <>
-                        <CreditCard size={18} />
-                        <span>Payment Now: ₹{totalPayable.toFixed(2)}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              ) : (
-                <div className="settlement-box" style={{
-                  padding: '20px 24px',
-                  borderRadius: '16px',
-                  background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)',
-                  border: '1px solid #bbf7d0',
-                  display: 'flex',
+              <button
+                type="button"
+                onClick={handleDownloadPdf}
+                className="download-btn-main"
+                style={{
+                  padding: '14px 28px',
+                  borderRadius: '14px',
+                  fontSize: 15,
+                  fontWeight: 800,
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                  gap: 16,
+                  justifyContent: 'center',
+                  gap: 10,
+                  background: isApproved
+                    ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                    : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  color: '#ffffff',
+                  boxShadow: isApproved
+                    ? '0 4px 16px rgba(5,150,105,0.3)'
+                    : '0 4px 16px rgba(37,99,235,0.3)',
+                  transition: 'all 0.2s',
                   boxSizing: 'border-box'
-                }}>
-                  <div>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: '#14532d', display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <ShieldCheck size={18} color="#16a34a" />
-                      <span>Diagnostic Report Approved & Unlocked</span>
-                    </h4>
-                    <p style={{ fontSize: 13, color: '#334155', marginTop: 4 }}>
-                      Your diagnostic report is compiled with official letterhead stationery and ready for download.
-                    </p>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={handleDownloadPdf}
-                    className="settlement-btn"
-                    style={{
-                      padding: '14px 28px',
-                      borderRadius: '14px',
-                      fontSize: 15,
-                      fontWeight: 800,
-                      border: 'none',
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 10,
-                      background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-                      color: '#ffffff',
-                      boxShadow: '0 4px 16px rgba(5,150,105,0.3)',
-                      transition: 'all 0.2s',
-                      boxSizing: 'border-box'
-                    }}
-                    title="Download Official Report PDF with Letterhead"
-                  >
-                    <Download size={18} />
-                    <span>Download Report PDF</span>
-                  </button>
-                </div>
-              )}
+                }}
+                title={isApproved ? "Download Official Report PDF with Letterhead" : "Report pending approval by pathologist"}
+              >
+                <Download size={18} />
+                <span>Download Report PDF</span>
+              </button>
             </div>
 
           </div>
@@ -1253,17 +979,14 @@ export default function TrackReportPage() {
             margin-top: 6px !important;
           }
 
-          .payments-card {
+          .download-action-card {
             padding: 18px 14px !important;
             border-radius: 18px !important;
-          }
-          .settlement-box {
             flex-direction: column !important;
             align-items: stretch !important;
             gap: 14px !important;
-            padding: 16px 14px !important;
           }
-          .settlement-btn {
+          .download-btn-main {
             width: 100% !important;
             justify-content: center !important;
             padding: 13px 18px !important;
