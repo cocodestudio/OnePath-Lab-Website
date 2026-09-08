@@ -87,7 +87,7 @@ const comparisonData = [
     { feature: 'Data Stored in India (AWS Mumbai)', onepath: true, offline: false, saas: false },
     { feature: 'Per-Lab Data Isolation', onepath: true, offline: true, saas: false },
     { feature: 'Automatic Software Updates', onepath: true, offline: false, saas: true },
-    { feature: 'Starting Price', onepath: '₹2,499 / 6 months', offline: '₹25,000 one-time', saas: '₹4,999 / year' },
+    { feature: 'Starting Price', onepath: '₹3,999 / 6 months', offline: '₹25,000 one-time', saas: '₹5,999 / year' },
 ]
 
 const testimonials = [

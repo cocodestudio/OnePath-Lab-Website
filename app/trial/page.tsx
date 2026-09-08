@@ -257,7 +257,7 @@ export default function SignUp() {
                                             <button type="button" onClick={() => setSelectedPlan('6month')} className={`plan-card ${selectedPlan === '6month' ? 'selected' : ''}`}>
                                                 {selectedPlan === '6month' && <div className="check-icon"><CheckCircle2 size={20} /></div>}
                                                 <h4 className="plan-title">6 Months</h4>
-                                                <div className="plan-price">₹2,499<span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}> total</span></div>
+                                                <div className="plan-price">₹3,999<span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}> total</span></div>
                                                 <p className="plan-desc">6 months access, billed once.<br />All features included.</p>
                                             </button>
 
@@ -265,7 +265,7 @@ export default function SignUp() {
                                                 {selectedPlan === '1year' && <div className="check-icon"><CheckCircle2 size={20} /></div>}
                                                 <div className="recommended-badge">BEST VALUE</div>
                                                 <h4 className="plan-title">1 Year</h4>
-                                                <div className="plan-price">₹4,999<span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}> total</span></div>
+                                                <div className="plan-price">₹5,999<span style={{ fontSize: 13, fontWeight: 500, color: '#64748b' }}> total</span></div>
                                                 <p className="plan-desc">Full year access, billed once.<br />All features included.</p>
                                             </button>
                                         </div>

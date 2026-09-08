@@ -67,7 +67,7 @@ export default function LisSoftwareLayout({
     url: 'https://onepathlab.com/lis-software',
     offers: {
       '@type': 'Offer',
-      price: '2499',
+      price: '3999',
       priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
     },
