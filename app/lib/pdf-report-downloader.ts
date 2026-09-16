@@ -298,15 +298,9 @@ export async function generatePristineClientPdf(printContainer: HTMLElement, fil
 
 export async function downloadNativePdf({ printContainer, filename }: GeneratePdfOptions): Promise<void> {
   const safeFilename = filename || "LabReport.pdf";
-  let pdfBlob: Blob;
+  const html = prepareReportHtml(printContainer);
 
-  try {
-    pdfBlob = await generatePristineClientPdf(printContainer, safeFilename);
-  } catch (clientErr) {
-    console.warn("Client engine encountered issue, trying server fallback:", clientErr);
-    const html = prepareReportHtml(printContainer);
-    pdfBlob = await generateNativePdfBlob(html, safeFilename);
-  }
+  const pdfBlob = await generateNativePdfBlob(html, safeFilename);
 
   const blobUrl = URL.createObjectURL(pdfBlob);
   const downloadLink = document.createElement("a");
