@@ -208,12 +208,14 @@ export async function generatePristineClientPdf(printContainer: HTMLElement, fil
   const sandbox = document.createElement("div");
   sandbox.style.position = "fixed";
   sandbox.style.top = "0";
-  sandbox.style.left = "-100000px";
+  sandbox.style.left = "0";
   sandbox.style.width = "794px";
   sandbox.style.height = "1123px";
   sandbox.style.overflow = "hidden";
   sandbox.style.backgroundColor = "#ffffff";
   sandbox.style.zIndex = "-99999";
+  sandbox.style.pointerEvents = "none";
+  sandbox.style.opacity = "1";
   document.body.appendChild(sandbox);
 
   try {
@@ -235,7 +237,32 @@ export async function generatePristineClientPdf(printContainer: HTMLElement, fil
       clone.style.boxSizing = "border-box";
       clone.style.backgroundColor = "#ffffff";
 
-      inlineElementImages(clone);
+      // Inline loaded images from original DOM element
+      const origImgs = el.querySelectorAll<HTMLImageElement>("img");
+      const cloneImgs = clone.querySelectorAll<HTMLImageElement>("img");
+      origImgs.forEach((origImg, idx) => {
+        const cloneImg = cloneImgs[idx];
+        if (!cloneImg) return;
+        try {
+          if (origImg.complete && origImg.naturalWidth > 0) {
+            const c = document.createElement("canvas");
+            c.width = origImg.naturalWidth;
+            c.height = origImg.naturalHeight;
+            const ctx = c.getContext("2d");
+            if (ctx) {
+              ctx.drawImage(origImg, 0, 0);
+              cloneImg.src = c.toDataURL("image/png");
+            }
+          }
+        } catch {
+          cloneImg.src = origImg.src;
+        }
+      });
+
+      // Stabilize table borders so lines remain 100% straight and balanced
+      clone.querySelectorAll<HTMLTableElement>("table").forEach((tbl) => {
+        tbl.style.borderCollapse = "collapse";
+      });
 
       sandbox.innerHTML = "";
       sandbox.appendChild(clone);
@@ -250,6 +277,10 @@ export async function generatePristineClientPdf(printContainer: HTMLElement, fil
         backgroundColor: "#ffffff",
         width: 794,
         height: 1123,
+        x: 0,
+        y: 0,
+        scrollX: 0,
+        scrollY: 0,
         windowWidth: 1200,
       });
 
@@ -270,11 +301,11 @@ export async function downloadNativePdf({ printContainer, filename }: GeneratePd
   let pdfBlob: Blob;
 
   try {
+    pdfBlob = await generatePristineClientPdf(printContainer, safeFilename);
+  } catch (clientErr) {
+    console.warn("Client engine encountered issue, trying server fallback:", clientErr);
     const html = prepareReportHtml(printContainer);
     pdfBlob = await generateNativePdfBlob(html, safeFilename);
-  } catch (serverErr) {
-    console.warn("Server-side PDF engine unavailable, executing pristine client-side engine:", serverErr);
-    pdfBlob = await generatePristineClientPdf(printContainer, safeFilename);
   }
 
   const blobUrl = URL.createObjectURL(pdfBlob);
@@ -285,7 +316,9 @@ export async function downloadNativePdf({ printContainer, filename }: GeneratePd
   downloadLink.click();
 
   setTimeout(() => {
-    document.body.removeChild(downloadLink);
+    if (downloadLink.parentNode) {
+      document.body.removeChild(downloadLink);
+    }
     URL.revokeObjectURL(blobUrl);
   }, 3000);
 }
