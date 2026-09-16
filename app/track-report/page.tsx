@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import { ReportSheet } from '../components/ReportSheet'
 import { getCleanLetterheadUrl } from '../lib/api-client'
 import { useReactToPrint } from 'react-to-print'
+import { downloadNativePdf } from '../lib/pdf-report-downloader'
 import {
   Search, FileText, CheckCircle2, Clock, AlertCircle, Download,
   Activity, X, AlertTriangle, Check, RefreshCw
@@ -351,8 +352,8 @@ export default function TrackReportPage() {
     `,
   })
 
-  // Download PDF Report with Approval Validation
-  const handleDownloadPdf = () => {
+  // Download PDF Report with Approval Validation (Native Vector Chromium Engine)
+  const handleDownloadPdf = async () => {
     if (!report) return
 
     if (!isApproved) {
@@ -370,7 +371,18 @@ export default function TrackReportPage() {
     }
 
     showToast("Downloading Report", "Generating crisp official vector PDF...", "success")
-    handleNativePrint()
+    try {
+      const filename = `LabReport_${reportCode}_${patientName}.pdf`
+      await downloadNativePdf({
+        printContainer: printRef.current,
+        filename,
+      })
+      showToast("Report Downloaded", `${filename} downloaded successfully.`, "success")
+    } catch (err: any) {
+      console.error("Website report PDF download error:", err)
+      // Fallback to browser print if server generation encounters an issue
+      handleNativePrint()
+    }
   }
 
   return (
