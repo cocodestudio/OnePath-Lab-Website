@@ -39,6 +39,206 @@ function inlineElementImages(element: HTMLElement) {
   });
 }
 
+/**
+ * Asynchronously inlines all images in the cloned element to Base64 data URLs.
+ * Uses canvas when possible, and falls back to fetch(src) -> Blob -> Base64
+ * to bypass CORS canvas taint on remote letterheads and signatures.
+ */
+async function inlineElementImagesAsync(element: HTMLElement): Promise<void> {
+  const imgs = Array.from(element.querySelectorAll<HTMLImageElement>("img"));
+  await Promise.all(
+    imgs.map(async (img) => {
+      try {
+        const src = img.getAttribute("src") || img.src;
+        if (!src || src.startsWith("data:")) return;
+
+        if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+          try {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const ctx = canvas.getContext("2d");
+            if (ctx) {
+              ctx.drawImage(img, 0, 0);
+              const dataUrl = canvas.toDataURL("image/png");
+              if (dataUrl && dataUrl.startsWith("data:image/")) {
+                img.src = dataUrl;
+                img.setAttribute("src", dataUrl);
+                return;
+              }
+            }
+          } catch {}
+        }
+
+        const res = await fetch(src, { cache: "force-cache" }).catch(() => null);
+        if (res && res.ok) {
+          const blob = await res.blob();
+          const base64 = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result as string);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+          if (base64 && base64.startsWith("data:")) {
+            img.src = base64;
+            img.setAttribute("src", base64);
+          }
+        }
+      } catch (err) {
+        console.warn("Could not inline image to base64:", img.src, err);
+      }
+    })
+  );
+}
+
+/**
+ * Asynchronously serializes the preview DOM into a completely self-contained HTML document.
+ * Inlines ALL compiled Next.js stylesheets as raw CSS <style> tags and all images as Base64 data URLs.
+ */
+export async function prepareReportHtmlAsync(printContainer: HTMLElement): Promise<string> {
+  let pageElements = printContainer.querySelectorAll<HTMLElement>(".report-print-page");
+  if (!pageElements || pageElements.length === 0) {
+    pageElements = printContainer.querySelectorAll<HTMLElement>(".report-preview-page-card");
+  }
+  if (!pageElements || pageElements.length === 0) {
+    throw new Error("No printable report pages found to generate PDF.");
+  }
+
+  const styles: string[] = [];
+
+  const linkElements = Array.from(document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]'));
+  await Promise.all(
+    linkElements.map(async (link) => {
+      if (!link.href) return;
+      try {
+        const res = await fetch(link.href, { cache: "force-cache" });
+        if (res.ok) {
+          const text = await res.text();
+          if (text && text.trim().length > 0) {
+            styles.push(`<style data-inlined="link" data-href="${link.href}">${text}</style>`);
+            return;
+          }
+        }
+      } catch {}
+      styles.push(link.outerHTML);
+    })
+  );
+
+  document.querySelectorAll<HTMLStyleElement>("style").forEach((style) => {
+    styles.push(style.outerHTML);
+  });
+
+  try {
+    for (let i = 0; i < document.styleSheets.length; i++) {
+      try {
+        const sheet = document.styleSheets[i];
+        const rules = sheet.cssRules || (sheet as any).rules;
+        if (rules) {
+          let sheetCss = "";
+          for (let r = 0; r < rules.length; r++) {
+            try {
+              sheetCss += rules[r].cssText + "\n";
+            } catch {}
+          }
+          if (sheetCss) {
+            styles.push(`<style data-sheet="${i}">${sheetCss}</style>`);
+          }
+        }
+      } catch {}
+    }
+  } catch (e) {
+    console.warn("Could not extract document styleSheets rules:", e);
+  }
+
+  const pageArray = Array.from(pageElements);
+  const pagesHtml = await Promise.all(
+    pageArray.map(async (el) => {
+      const clone = el.cloneNode(true) as HTMLElement;
+
+      clone.style.transform = "none";
+      clone.style.webkitTransform = "none";
+      clone.style.width = "794px";
+      clone.style.height = "1123px";
+      clone.style.minHeight = "1123px";
+      clone.style.maxHeight = "1123px";
+      clone.style.margin = "0 auto";
+      clone.style.position = "relative";
+      clone.style.overflow = "hidden";
+      clone.style.boxSizing = "border-box";
+      clone.style.backgroundColor = "#ffffff";
+
+      await inlineElementImagesAsync(clone);
+
+      return clone.outerHTML;
+    })
+  );
+
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  ${origin ? `<base href="${origin}/" />` : ""}
+  <title>Lab Report</title>
+  ${styles.join("\n")}
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0 !important;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box !important;
+    }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 794px !important;
+      background-color: #ffffff !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      font-family: Arial, "Helvetica Neue", Helvetica, "Segoe UI", Roboto, sans-serif !important;
+    }
+    table {
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+    }
+    .report-print-page {
+      width: 794px !important;
+      height: 1123px !important;
+      min-height: 1123px !important;
+      max-height: 1123px !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      position: relative !important;
+      overflow: hidden !important;
+      background-color: #ffffff !important;
+      transform: none !important;
+      page-break-after: always !important;
+      break-after: page !important;
+      box-sizing: border-box !important;
+    }
+    .report-print-page:last-child {
+      page-break-after: avoid !important;
+      break-after: avoid !important;
+    }
+    .letterhead-bg-img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: fill !important;
+      z-index: 0 !important;
+      display: block !important;
+    }
+  </style>
+</head>
+<body>
+  ${pagesHtml.join("\n")}
+</body>
+</html>`;
+}
+
 export function prepareReportHtml(printContainer: HTMLElement): string {
   let pageElements = printContainer.querySelectorAll<HTMLElement>(".report-print-page");
   if (!pageElements || pageElements.length === 0) {
@@ -67,9 +267,7 @@ export function prepareReportHtml(printContainer: HTMLElement): string {
             sheetCss += rules[r].cssText + "\n";
           }
         }
-      } catch {
-        // Cross-origin stylesheet security restriction, safely skip
-      }
+      } catch {}
     }
     if (sheetCss) {
       styles.push(`<style>${sheetCss}</style>`);
@@ -125,6 +323,10 @@ export function prepareReportHtml(printContainer: HTMLElement): string {
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
       font-family: Arial, "Helvetica Neue", Helvetica, "Segoe UI", Roboto, sans-serif !important;
+    }
+    table {
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
     }
     .report-print-page {
       width: 794px !important;
@@ -298,9 +500,15 @@ export async function generatePristineClientPdf(printContainer: HTMLElement, fil
 
 export async function downloadNativePdf({ printContainer, filename }: GeneratePdfOptions): Promise<void> {
   const safeFilename = filename || "LabReport.pdf";
-  const html = prepareReportHtml(printContainer);
+  let pdfBlob: Blob;
 
-  const pdfBlob = await generateNativePdfBlob(html, safeFilename);
+  try {
+    const html = await prepareReportHtmlAsync(printContainer);
+    pdfBlob = await generateNativePdfBlob(html, safeFilename);
+  } catch (serverErr) {
+    console.warn("Server-side vector PDF engine unavailable or timed out, executing pristine client fallback:", serverErr);
+    pdfBlob = await generatePristineClientPdf(printContainer, safeFilename);
+  }
 
   const blobUrl = URL.createObjectURL(pdfBlob);
   const downloadLink = document.createElement("a");
