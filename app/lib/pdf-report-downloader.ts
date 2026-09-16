@@ -186,11 +186,96 @@ export async function generateNativePdfBlob(html: string, filename: string): Pro
   return await res.blob();
 }
 
+export async function generatePristineClientPdf(printContainer: HTMLElement, filename?: string): Promise<Blob> {
+  const { default: jsPDF } = await import("jspdf");
+  const { default: html2canvas } = await import("html2canvas");
+
+  let pageElements = printContainer.querySelectorAll<HTMLElement>(".report-print-page");
+  if (!pageElements || pageElements.length === 0) {
+    pageElements = printContainer.querySelectorAll<HTMLElement>(".report-preview-page-card");
+  }
+  if (!pageElements || pageElements.length === 0) {
+    throw new Error("No printable report pages found.");
+  }
+
+  const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "a4",
+    compress: true,
+  });
+
+  const sandbox = document.createElement("div");
+  sandbox.style.position = "fixed";
+  sandbox.style.top = "0";
+  sandbox.style.left = "-100000px";
+  sandbox.style.width = "794px";
+  sandbox.style.height = "1123px";
+  sandbox.style.overflow = "hidden";
+  sandbox.style.backgroundColor = "#ffffff";
+  sandbox.style.zIndex = "-99999";
+  document.body.appendChild(sandbox);
+
+  try {
+    for (let i = 0; i < pageElements.length; i++) {
+      if (i > 0) pdf.addPage();
+      const el = pageElements[i];
+
+      const clone = el.cloneNode(true) as HTMLElement;
+      clone.style.transform = "none";
+      clone.style.webkitTransform = "none";
+      clone.style.width = "794px";
+      clone.style.height = "1123px";
+      clone.style.minHeight = "1123px";
+      clone.style.maxHeight = "1123px";
+      clone.style.margin = "0";
+      clone.style.padding = "0";
+      clone.style.position = "relative";
+      clone.style.overflow = "hidden";
+      clone.style.boxSizing = "border-box";
+      clone.style.backgroundColor = "#ffffff";
+
+      inlineElementImages(clone);
+
+      sandbox.innerHTML = "";
+      sandbox.appendChild(clone);
+
+      await new Promise((r) => setTimeout(r, 60));
+
+      const canvas = await html2canvas(clone, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        backgroundColor: "#ffffff",
+        width: 794,
+        height: 1123,
+        windowWidth: 1200,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+      pdf.addImage(imgData, "PNG", 0, 0, 210, 297, undefined, "FAST");
+    }
+  } finally {
+    if (sandbox.parentNode) {
+      sandbox.parentNode.removeChild(sandbox);
+    }
+  }
+
+  return pdf.output("blob");
+}
+
 export async function downloadNativePdf({ printContainer, filename }: GeneratePdfOptions): Promise<void> {
   const safeFilename = filename || "LabReport.pdf";
-  const html = prepareReportHtml(printContainer);
+  let pdfBlob: Blob;
 
-  const pdfBlob = await generateNativePdfBlob(html, safeFilename);
+  try {
+    const html = prepareReportHtml(printContainer);
+    pdfBlob = await generateNativePdfBlob(html, safeFilename);
+  } catch (serverErr) {
+    console.warn("Server-side PDF engine unavailable, executing pristine client-side engine:", serverErr);
+    pdfBlob = await generatePristineClientPdf(printContainer, safeFilename);
+  }
 
   const blobUrl = URL.createObjectURL(pdfBlob);
   const downloadLink = document.createElement("a");
