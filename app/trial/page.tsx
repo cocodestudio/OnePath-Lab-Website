@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Lock, User, Phone, Building, Users, CheckCircle2, ArrowRight, ShieldCheck, Zap, Sparkles, ChevronDown, Home } from 'lucide-react'
+import { Mail, Lock, User, Phone, Building, Users, CheckCircle2, ArrowRight, ShieldCheck, Zap, Sparkles, ChevronDown, Home, Gift } from 'lucide-react'
 
 const labelStyle: React.CSSProperties = {
     display: 'block', fontSize: '14px', fontWeight: 700,
@@ -30,7 +30,7 @@ const patientOptions = [
 
 export default function SignUp() {
     const [formData, setFormData] = useState({
-        name: '', phone: '', email: '', password: '', labName: '', patientCount: '1-50'
+        name: '', phone: '', email: '', password: '', labName: '', patientCount: '1-50', referralCode: ''
     })
     const [selectedPlan, setSelectedPlan] = useState<'6month' | '1year'>('1year')
     const [isLoading, setIsLoading] = useState(false)
@@ -47,6 +47,16 @@ export default function SignUp() {
         }
         document.addEventListener('mousedown', handleClickOutside)
         return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [])
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search)
+            const refParam = params.get('ref') || params.get('referral')
+            if (refParam) {
+                setFormData(prev => ({ ...prev, referralCode: refParam.trim().toUpperCase() }))
+            }
+        }
     }, [])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +87,11 @@ export default function SignUp() {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({ ...formData, plan_type: selectedPlan })
+                body: JSON.stringify({
+                    ...formData,
+                    referral_code: formData.referralCode ? formData.referralCode.trim().toUpperCase() : undefined,
+                    plan_type: selectedPlan
+                })
             })
 
             const data = await response.json()
@@ -242,6 +256,38 @@ export default function SignUp() {
                                                 </div>
                                             )}
                                         </div>
+                                    </div>
+
+                                    {/* Referral Code (Optional) */}
+                                    <div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                                            <label style={{ ...labelStyle, marginBottom: 0 }}>
+                                                Referral Code <span style={{ fontWeight: 500, color: '#94a3b8', fontSize: 13 }}>(Optional)</span>
+                                            </label>
+                                            {formData.referralCode && (
+                                                <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a', background: '#dcfce7', padding: '2px 8px', borderRadius: 100, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                                                    <CheckCircle2 size={11} /> Applied
+                                                </span>
+                                            )}
+                                        </div>
+                                        <div className="input-group custom-input" style={inputGroupStyle}>
+                                            <Gift size={18} color="#94a3b8" style={iconStyle} />
+                                            <input
+                                                type="text"
+                                                name="referralCode"
+                                                maxLength={10}
+                                                placeholder="e.g. OP8K2A"
+                                                value={formData.referralCode}
+                                                onChange={(e) => {
+                                                    setFormData({ ...formData, referralCode: e.target.value.toUpperCase() })
+                                                    setError('')
+                                                }}
+                                                style={{ ...inputStyle, textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}
+                                            />
+                                        </div>
+                                        <p style={{ fontSize: 12, color: '#64748b', marginTop: 6, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                                            Got referred by another lab? Enter their 6-character code or leave blank.
+                                        </p>
                                     </div>
 
                                     {/* Plan Selection */}
