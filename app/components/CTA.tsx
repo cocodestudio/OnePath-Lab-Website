@@ -32,45 +32,40 @@ export default function CTA() {
                 position: 'relative',
                 zIndex: 1,
                 textAlign: 'center',
-                background: 'rgba(255, 255, 255, 0.85)',
+                background: 'rgba(255, 255, 255, 0.92)',
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
                 border: '1px solid rgba(226, 232, 240, 0.9)',
-                borderRadius: 28,
-                padding: '60px 24px',
+                borderRadius: 24,
+                padding: '64px 32px',
                 boxShadow: '0 20px 40px -10px rgba(37,99,235,0.08), inset 0 1px 0 rgba(255,255,255,1)',
-                maxWidth: '960px',
+                maxWidth: '1200px',
                 width: '100%',
                 boxSizing: 'border-box',
             }}>
 
-                {/* Pulse Badge */}
+                {/* Sharp Tag */}
                 <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
-                    <span style={{
+                    <div style={{
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 8,
                         background: '#ffffff',
-                        border: '1px solid #e2e8f0',
-                        borderRadius: 999,
-                        padding: '6px 16px',
+                        border: '1px solid #cbd5e1',
+                        borderLeft: '3px solid #16a34a',
+                        borderRadius: 6,
+                        padding: '7px 16px',
                         fontSize: 12,
                         fontWeight: 700,
-                        letterSpacing: '0.06em',
+                        letterSpacing: '0.04em',
                         textTransform: 'uppercase',
-                        color: '#475569',
+                        color: '#0f172a',
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
                     }}>
-                        <span style={{
-                            width: 7, height: 7,
-                            background: '#22c55e',
-                            borderRadius: '50%',
-                            boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.7)',
-                            animation: 'pulse 2s infinite'
-                        }} />
-                        <span className="badge-text">Instant Setup · Zero Setup Fees</span>
-                    </span>
+                        <span style={{ width: 7, height: 7, background: '#16a34a', borderRadius: '50%' }} />
+                        <span>Instant Lab Onboarding · Zero Setup Fees</span>
+                    </div>
                 </div>
 
                 {/* Headline */}
@@ -99,7 +94,7 @@ export default function CTA() {
                 <p style={{
                     fontSize: 'clamp(15px, 2.5vw, 17.5px)',
                     color: '#475569',
-                    maxWidth: 560,
+                    maxWidth: 640,
                     margin: '0 auto 36px',
                     lineHeight: 1.65,
                     fontWeight: 500,
@@ -111,9 +106,9 @@ export default function CTA() {
                 {/* Interactive Buttons */}
                 <div className="btn-wrapper" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 44 }}>
                     <Link href="/trial" className="btn-primary cta-btn" style={{
-                        padding: '15px 36px',
-                        fontSize: 15.5,
-                        borderRadius: 999,
+                        padding: '16px 36px',
+                        fontSize: 16,
+                        borderRadius: 12,
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -132,12 +127,12 @@ export default function CTA() {
                         rel="noreferrer"
                         className="btn-whatsapp"
                         style={{
-                            padding: '15px 28px',
-                            fontSize: 15.5,
-                            borderRadius: 999,
+                            padding: '16px 28px',
+                            fontSize: 16,
+                            borderRadius: 12,
                             background: '#ffffff',
                             color: '#0f172a',
-                            border: '1px solid #e2e8f0',
+                            border: '1px solid #cbd5e1',
                             display: 'inline-flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -153,6 +148,7 @@ export default function CTA() {
                     </a>
                 </div>
 
+
                 {/* Contact Info (Sleek layout) */}
                 <div style={{
                     display: 'flex',
@@ -164,7 +160,7 @@ export default function CTA() {
                 }}>
                     {[
                         { label: 'Sales Helpline', value: '+91 9045757272' },
-                        { label: 'Technical Support', value: '+91 9058459848' },
+                        { label: 'Technical Support', value: '+91 9045757272' },
                         { label: 'Email Enquiries', value: 'support@onepathlab.com' },
                     ].map(item => (
                         <div key={item.label} style={{ textAlign: 'center', padding: '0 8px' }}>

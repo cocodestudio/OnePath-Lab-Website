@@ -4,17 +4,26 @@ import Image from 'next/image'
 import { Phone, Mail, MapPin, ShieldCheck, Award, Lock } from 'lucide-react'
 
 const footerLinks = {
+    Features: [
+        { label: 'Machine Interfacing (200+)', href: '/machine-interfacing' },
+        { label: 'ABDM / ABHA M1 & DHIS', href: '/abdm-abha' },
+        { label: 'Dual AI Clinical Copilot', href: '/ai-clinical-copilot' },
+        { label: 'WhatsApp Reports & QR', href: '/whatsapp-reports' },
+        { label: 'B2B Franchise & Wallet', href: '/b2b-franchise' },
+        { label: 'Complete LIS Overview', href: '/lis-software' },
+    ],
+    Solutions: [
+        { label: 'Why OnePath LIS', href: '/why-onepath' },
+        { label: 'Pricing & Enterprise Plans', href: '/pricing' },
+        { label: 'Start 7-Day Free Trial', href: '/trial' },
+        { label: 'Pathology Knowledge Hub', href: '/blogs' },
+        { label: 'Book Product Demo', href: '/contact' },
+    ],
     Company: [
+        { label: 'About OnePath', href: '/about' },
+        { label: 'Contact Support', href: '/contact' },
         { label: 'Privacy Policy', href: '/privacy-policy' },
         { label: 'Terms & Conditions', href: '/terms' },
-        { label: 'About Us', href: '/about' },
-        { label: 'Contact Support', href: '/contact' },
-    ],
-    Product: [
-        { label: 'LIS Software Suite', href: '/lis-software' },
-        { label: 'Home Collection Book', href: '/home-collection' },
-        { label: 'Test Pricing List', href: '/test-pricing' },
-        { label: 'Track / Download Report', href: '/track-report' },
     ]
 }
 
@@ -37,8 +46,8 @@ const XSVG = () => (
 )
 
 const socialLinks = [
-    { icon: <LinkedinSVG />, href: 'https://www.linkedin.com/company/onepath-lab' },
-    { icon: <InstagramSVG />, href: 'https://www.instagram.com/onepath.official/' },
+    { icon: <LinkedinSVG />, href: 'https://www.linkedin.com/company/cocodestudio' },
+    { icon: <InstagramSVG />, href: 'https://www.instagram.com/cocodestudio/' },
     { icon: <XSVG />, href: 'https://x.com/OnePathLab' },
 ]
 
@@ -46,12 +55,12 @@ export default function Footer() {
     return (
         <footer style={{
             background: '#ffffff',
-            borderTop: '1px solid #e2e8f0', 
+            borderTop: '1px solid #e2e8f0',
             width: '100%',
             overflow: 'hidden',
             boxSizing: 'border-box',
         }}>
-            <div className="container" style={{ padding: '72px 24px 44px', maxWidth: '1240px', margin: '0 auto' }}>
+            <div className="container" style={{ padding: '72px clamp(16px, 3.5vw, 40px) 44px', maxWidth: 1440, margin: '0 auto', boxSizing: 'border-box' }}>
                 <div className="footer-grid">
 
                     {/* Brand & Certifications Column */}
@@ -113,25 +122,25 @@ export default function Footer() {
                     {/* Offices Column */}
                     <div className="footer-offices">
                         <h4 className="footer-heading">Offices</h4>
-                        
+
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                             <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                                 <MapPin size={17} color="#2563eb" style={{ marginTop: 2, flexShrink: 0 }} />
                                 <div>
                                     <div style={{ fontSize: 13.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 2 }}>Corporate Head Quarters</div>
                                     <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                        Street No 04, Tibba Road,<br/>
+                                        Street No 04, Tibba Road,<br />
                                         Mayapuri Chowk, Ludhiana Punjab 141007
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                                 <MapPin size={17} color="#2563eb" style={{ marginTop: 2, flexShrink: 0 }} />
                                 <div>
                                     <div style={{ fontSize: 13.5, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 2 }}>Branch Office</div>
                                     <div style={{ fontSize: 13, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                        Main Market, Ambehta Peer,<br/>
+                                        Main Market, Ambehta Peer,<br />
                                         Saharanpur, Uttar Pradesh 247340
                                     </div>
                                 </div>
@@ -145,7 +154,7 @@ export default function Footer() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 24 }}>
                             {[
                                 { icon: <Phone size={15} />, text: 'Sales: +91 9045757272' },
-                                { icon: <Phone size={15} />, text: 'Support: +91 9058459848' },
+                                { icon: <Phone size={15} />, text: 'Support: +91 9045757272' },
                                 { icon: <Mail size={15} />, text: 'support@onepathlab.com' },
                             ].map((c, i) => (
                                 <div key={i} style={{
@@ -210,17 +219,18 @@ export default function Footer() {
             <div style={{
                 borderTop: '1px solid #f1f5f9',
                 padding: '20px 24px',
-                background: '#fafafa' 
+                background: '#fafafa'
             }}>
                 <div className="container" style={{
-                    maxWidth: '1240px',
+                    maxWidth: 1440,
                     margin: '0 auto',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     flexWrap: 'wrap',
                     gap: 12,
-                    padding: 0,
+                    padding: '0 clamp(16px, 3.5vw, 40px)',
+                    boxSizing: 'border-box',
                 }}>
                     <p style={{
                         fontSize: 13,
@@ -277,11 +287,11 @@ export default function Footer() {
                 .cert-badge {
                     display: inline-flex;
                     align-items: center;
-                    gap: 7px;
-                    padding: 5px 12px;
+                    gap: 8px;
+                    padding: 6px 12px;
                     background: #f8fafc;
                     border: 1px solid #e2e8f0;
-                    border-radius: 999px;
+                    border-radius: 6px;
                     font-size: 11.5px;
                     font-weight: 600;
                     color: #475569;

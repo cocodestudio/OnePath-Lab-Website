@@ -2,18 +2,18 @@
 import { Check, X } from 'lucide-react'
 
 const rows = [
-    ['Anywhere Cloud Access', true, false],
-    ['Automatic Encrypted Backups', true, false],
-    ['Machine Interfacing (Uni + Bi)', true, false],
-    ['Instant WhatsApp / SMS Reports', true, false],
-    ['Real-Time Financial MIS', true, false],
-    ['AI Delta Checks & Abnormal Flags', true, false],
-    ['Custom Letterhead & Digital Sign', true, false],
-    ['Role-Based Multi-User Logins', true, false],
-    ['Barcode & QR Code Integration', true, false],
-    ['Automatic Feature Updates', true, false],
-    ['Mobile & Tablet Compatibility', true, false],
-    ['B2B Referral Management', true, false],
+    ['Govt. ABDM / ABHA M1 & DHIS Cash Incentives', true, false],
+    ['Bi-directional Machine Interfacing (200+ Analyzers)', true, false],
+    ['Dual AI Clinical Copilot & Auto-Interpretation', true, false],
+    ['Instant WhatsApp Delivery with Dynamic QR Code', true, false],
+    ['Prepaid B2B Franchise Wallet (Deduct & Print)', true, false],
+    ['Real-Time Financial MIS & Daily Counter Closing', true, false],
+    ['Dynamic Multi-Tier Rate Lists & Doctor Commissions', true, false],
+    ['Automatic Encrypted Cloud Backups (Zero Data Loss)', true, false],
+    ['NABL / ISO 15189 Audit Trails & Digital Signatures', true, false],
+    ['Barcode Labeling for Sample Accessioning', true, false],
+    ['Mobile, Tablet & Anywhere Cloud Browser Access', true, false],
+    ['Automatic Regular Feature Updates (Zero Downtime)', true, false],
 ]
 
 export default function Comparison() {
@@ -27,28 +27,32 @@ export default function Comparison() {
                 overflow: 'hidden',
             }}
         >
-            <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', boxSizing: 'border-box' }}>
+            <div className="container" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 40px)', boxSizing: 'border-box' }}>
 
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-                        <span style={{
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                        <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            background: '#eff6ff',
-                            border: '1px solid #bfdbfe',
-                            color: '#2563eb',
-                            padding: '6px 16px',
-                            borderRadius: 999,
-                            fontSize: 12.5,
+                            gap: 8,
+                            background: '#ffffff',
+                            border: '1px solid #cbd5e1',
+                            borderLeft: '3px solid #2563eb',
+                            color: '#0f172a',
+                            padding: '7px 16px',
+                            borderRadius: 6,
+                            fontSize: 12,
                             fontWeight: 700,
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.04em',
                             textTransform: 'uppercase',
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Platform Evaluation
-                        </span>
+                            <span>[ BENCHMARK ]</span>
+                            <span style={{ color: '#475569' }}>Modern Cloud LIS vs Legacy Systems</span>
+                        </div>
                     </div>
+
                     <h2 style={{
                         fontSize: 'clamp(28px, 5.5vw, 42px)',
                         fontWeight: 800,

@@ -6,46 +6,46 @@ import Link from 'next/link'
 const stages = [
     {
         step: '01',
-        title: 'Smart Accession & Token Queue',
-        category: 'Intake Automation',
+        title: 'Receptionist Intake & Smart Accession',
+        category: 'Front-Desk Portal',
         icon: <ScanLine size={24} />,
         accent: '#2563eb',
         bgGlow: 'rgba(37,99,235,0.08)',
-        badge: 'Zero Waiting Time',
-        summary: 'Register patients in under 30 seconds with auto-generated barcode labels and instant digital tokens.',
+        badge: '30-Sec Intake & Queue',
+        summary: 'Dedicated receptionist portal for 30-second patient intake, instant counter billing, and automatic barcode vial generation.',
         points: [
-            'Direct barcode printing on collection vials',
-            'Auto-fetches previous patient records by phone number',
-            'Instant doctor referral tagging with commission rules',
+            'Role-based front-desk security (restricts non-doctor test edits)',
+            'Instant barcode printing on collection vials & token queue',
+            'Quick billing collection with cash/UPI receipts & GST invoices',
         ],
         mockData: {
-            title: 'Live Accession Stream',
-            id: 'PAT-2026-8941',
-            patient: 'Ramesh Kumar (42M)',
-            tests: 'Complete Blood Count (CBC), Lipid Profile',
-            status: 'Barcoded & Queued',
+            title: 'Front-Desk Reception Terminal',
+            id: 'REC-TERM-01 · Staff Portal',
+            patient: 'Ramesh Kumar (42M) · Walk-in',
+            tests: 'CBC, Lipid Profile (Paid ₹950 UPI)',
+            status: 'Billed, Barcoded & Queued',
             statusColor: '#2563eb',
         }
     },
     {
         step: '02',
-        title: 'Bi-directional Machine Interfacing',
-        category: 'Hardware Bridge',
+        title: 'Bi-directional Machine & Inventory Sync',
+        category: 'Hardware & Reagent Bridge',
         icon: <Server size={24} />,
         accent: '#059669',
         bgGlow: 'rgba(5,150,105,0.08)',
         badge: 'ASTM / HL7 Protocols',
-        summary: 'Direct hardware connection with 200+ hematology and biochemistry analyzers — zero typing, zero human errors.',
+        summary: 'Direct hardware connection with 200+ hematology and biochemistry analyzers with automatic reagent stock deduction.',
         points: [
             'Seamless sync with Sysmex, Mindray, Roche, Abbott, Erba',
-            'Results flow directly to patient test parameters',
-            'Saves 3+ technician work hours every single day',
+            'Results flow directly to parameters — zero manual typing',
+            'Automated reagent inventory batch tracking & expiry alerts',
         ],
         mockData: {
-            title: 'Analyzer Live Feed',
+            title: 'Analyzer & Reagent Live Feed',
             id: 'Sysmex XN-350 / Mindray BS-240',
             patient: 'Sample Tube #B-40892',
-            tests: '22 Parameters Synced in 1.4s',
+            tests: '22 Parameters Synced · Reagent Deducted',
             status: 'Data Bridge Active',
             statusColor: '#059669',
         }
@@ -263,22 +263,26 @@ export default function HorizontalShowcase() {
                         marginBottom: 18,
                     }}>
                         <div style={{ maxWidth: 640 }}>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                                <span className="shimmer-badge" style={{
-                                    padding: '5px 14px',
-                                    borderRadius: 999,
-                                    fontSize: 12,
-                                    fontWeight: 700,
-                                    color: '#1d4ed8',
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.04em',
+                            <div style={{ display: 'flex', marginBottom: 12 }}>
+                                <div style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
-                                    gap: 6,
+                                    gap: 8,
+                                    background: '#f8fafc',
+                                    border: '1px solid #cbd5e1',
+                                    borderLeft: '3px solid #2563eb',
+                                    color: '#0f172a',
+                                    padding: '6px 14px',
+                                    borderRadius: 6,
+                                    fontSize: 12,
+                                    fontWeight: 700,
+                                    letterSpacing: '0.04em',
+                                    textTransform: 'uppercase',
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
                                 }}>
                                     <Sparkles size={13} color="#2563eb" />
-                                    Interactive Platform Tour
-                                </span>
+                                    <span>[ WORKFLOW TOUR ] Interactive Platform Walkthrough</span>
+                                </div>
                             </div>
 
                             <h2 style={{
@@ -366,13 +370,13 @@ export default function HorizontalShowcase() {
                                     display: 'inline-flex',
                                     alignItems: 'center',
                                     gap: 8,
-                                    padding: '6px 14px',
-                                    borderRadius: 999,
+                                    padding: '7px 16px',
+                                    borderRadius: 6,
                                     fontSize: 12.5,
                                     fontWeight: activeIndex === i ? 700 : 500,
                                     background: activeIndex === i ? '#0f172a' : '#ffffff',
                                     color: activeIndex === i ? '#ffffff' : '#64748b',
-                                    border: activeIndex === i ? '1px solid #0f172a' : '1px solid #e2e8f0',
+                                    border: activeIndex === i ? '1px solid #0f172a' : '1px solid #cbd5e1',
                                     cursor: 'pointer',
                                     whiteSpace: 'nowrap',
                                     transition: 'all 0.25s ease',
@@ -460,7 +464,7 @@ export default function HorizontalShowcase() {
                                                 <span style={{
                                                     fontSize: 10.5, fontWeight: 700, color: stage.accent,
                                                     background: `${stage.accent}12`, border: `1px solid ${stage.accent}25`,
-                                                    padding: '3px 9px', borderRadius: 999,
+                                                    padding: '3px 8px', borderRadius: 4,
                                                     textTransform: 'uppercase', letterSpacing: '0.04em',
                                                 }}>
                                                     {stage.badge}
@@ -523,7 +527,7 @@ export default function HorizontalShowcase() {
                                                 fontSize: 9.5, fontWeight: 700,
                                                 color: stage.mockData.statusColor,
                                                 background: `${stage.mockData.statusColor}18`,
-                                                padding: '2px 7px', borderRadius: 999,
+                                                padding: '2px 6px', borderRadius: 4,
                                             }}>
                                                 {stage.mockData.status}
                                             </span>
@@ -548,7 +552,7 @@ export default function HorizontalShowcase() {
                         width: '100%',
                         height: 4,
                         background: '#e2e8f0',
-                        borderRadius: 999,
+                        borderRadius: 2,
                         overflow: 'hidden',
                         marginBottom: 12,
                     }}>
@@ -556,7 +560,7 @@ export default function HorizontalShowcase() {
                             width: `${Math.max(scrollProgress * 100, 6)}%`,
                             height: '100%',
                             background: 'linear-gradient(90deg, #2563eb, #7c3aed)',
-                            borderRadius: 999,
+                            borderRadius: 2,
                             transition: 'width 0.1s linear',
                         }} />
                     </div>

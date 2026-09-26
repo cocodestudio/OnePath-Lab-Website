@@ -48,28 +48,32 @@ const integrations = [
 
 export default function Integrations() {
     return (
-        <section className="integrations-section" style={{ padding: '96px 20px', background: '#ffffff', boxSizing: 'border-box', overflow: 'hidden' }}>
-            <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', boxSizing: 'border-box' }}>
+        <section className="integrations-section" style={{ padding: '96px 0', background: '#ffffff', boxSizing: 'border-box', overflow: 'hidden' }}>
+            <div className="container" style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 40px)', boxSizing: 'border-box' }}>
 
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-                        <span style={{
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                        <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            background: '#eff6ff',
-                            border: '1px solid #bfdbfe',
-                            color: '#2563eb',
-                            padding: '6px 16px',
-                            borderRadius: 999,
-                            fontSize: 12.5,
+                            gap: 8,
+                            background: '#f8fafc',
+                            border: '1px solid #cbd5e1',
+                            borderLeft: '3px solid #2563eb',
+                            color: '#0f172a',
+                            padding: '7px 16px',
+                            borderRadius: 6,
+                            fontSize: 12,
                             fontWeight: 700,
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.04em',
                             textTransform: 'uppercase',
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Ecosystem & Connectivity
-                        </span>
+                            <span>[ ECOSYSTEM ]</span>
+                            <span style={{ color: '#475569' }}>Laboratory Hardware &amp; API Connectivity</span>
+                        </div>
                     </div>
+
 
                     <h2 style={{
                         fontSize: 'clamp(28px, 5.5vw, 42px)',

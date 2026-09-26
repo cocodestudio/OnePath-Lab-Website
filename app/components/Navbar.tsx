@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { X, ChevronDown, Home, FileSearch, Microscope, Info, Phone, CreditCard } from 'lucide-react'
+import { X, ChevronDown, Activity, ShieldCheck, Cpu, MessageSquare, Building2, Info, Phone, Sparkles } from 'lucide-react'
 
 interface SubItem {
     label: string;
@@ -20,36 +20,39 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
     {
-        label: 'Product',
-        href: '#',
+        label: 'Features',
+        href: '/lis-software',
         dropdown: true,
         subItems: [
-            { label: 'Home Collection Book', href: '/home-collection', icon: <Home size={15} />, desc: 'Book at-home sample pickup' },
-            { label: 'Test Pricing List', href: '/test-pricing', icon: <CreditCard size={15} />, desc: 'View all test rates' },
-            { label: 'Track / Download Report', href: '/track-report', icon: <FileSearch size={15} />, desc: 'Track & download your test report' },
-            { label: 'LIS Software', href: '/lis-software', icon: <Microscope size={15} />, desc: 'Full lab management suite' },
+            { label: 'Machine Interfacing', href: '/machine-interfacing', icon: <Activity size={15} />, desc: 'Bi-directional sync with 200+ analyzers' },
+            { label: 'Govt. ABDM / ABHA M1', href: '/abdm-abha', icon: <ShieldCheck size={15} />, desc: 'National Health Locker & DHIS incentives' },
+            { label: 'Dual AI Clinical Copilot', href: '/ai-clinical-copilot', icon: <Cpu size={15} />, desc: 'Auto-impressions & delta check alerts' },
+            { label: 'WhatsApp Reports & QR', href: '/whatsapp-reports', icon: <MessageSquare size={15} />, desc: 'Digital signatures & instant dispatch' },
+            { label: 'B2B Franchise & Wallet', href: '/b2b-franchise', icon: <Building2 size={15} />, desc: 'Multi-branch & deduct-and-print system' },
+            { label: 'Complete LIS Suite', href: '/lis-software', icon: <Sparkles size={15} />, desc: 'Master architecture overview' },
         ],
     },
+    { label: 'Why OnePath', href: '/why-onepath', dropdown: false },
+    { label: 'Pricing & Plans', href: '/pricing', dropdown: false },
     { label: 'Blogs', href: '/blogs', dropdown: false },
     {
-        label: 'More',
+        label: 'Company',
         href: '#',
         dropdown: true,
         subItems: [
-            { label: 'About Us', href: '/about', icon: <Info size={15} />, desc: 'Our story & mission' },
-            { label: 'Contact Support', href: '/contact', icon: <Phone size={15} />, desc: 'Get help anytime' },
+            { label: 'About Us', href: '/about', icon: <Info size={15} />, desc: 'Our mission & vision' },
+            { label: 'Contact Support', href: '/contact', icon: <Phone size={15} />, desc: '24/7 dedicated assistance' },
         ],
     },
 ]
 
+
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
-    const [mounted, setMounted] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        setMounted(true)
         const onScroll = () => setScrolled(window.scrollY > 12)
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
@@ -64,33 +67,33 @@ export default function Navbar() {
         return () => { document.body.style.overflow = '' }
     }, [menuOpen])
 
-    if (!mounted) return null
-
     return (
         <>
-            {/* ── Floating pill wrapper ── */}
+            {/* ── Enterprise Full-Width Header Bar ── */}
             <header className="nav-wrapper" style={{
                 position: 'fixed', top: 0, left: 0, right: 0,
                 zIndex: 1000,
-                display: 'flex', justifyContent: 'center',
-                pointerEvents: 'none',
-                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                width: '100%',
+                background: scrolled
+                    ? 'rgba(255, 255, 255, 0.97)'
+                    : 'rgba(255, 255, 255, 0.92)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                borderBottom: scrolled
+                    ? '1px solid rgba(226, 232, 240, 0.95)'
+                    : '1px solid rgba(226, 232, 240, 0.6)',
+                boxShadow: scrolled
+                    ? '0 4px 20px -4px rgba(15,23,42,0.08)'
+                    : 'none',
+                transition: 'all 0.25s ease',
             }}>
                 <nav className="nav-bar" style={{
-                    pointerEvents: 'all',
-                    width: '100%', maxWidth: 1120,
+                    width: '100%', maxWidth: 1440,
+                    margin: '0 auto',
+                    padding: '0 clamp(16px, 3.5vw, 40px)',
+                    height: 68,
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    borderRadius: 999,
-                    background: scrolled
-                        ? 'rgba(255, 255, 255, 0.95)'
-                        : 'rgba(255, 255, 255, 0.88)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(226, 232, 240, 0.9)',
-                    boxShadow: scrolled
-                        ? '0 10px 30px -10px rgba(15,23,42,0.12), 0 1px 3px rgba(0,0,0,0.05)'
-                        : '0 4px 20px -6px rgba(15,23,42,0.06)',
-                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxSizing: 'border-box',
                 }}>
 
                     {/* ── Brand / Logo ── */}
@@ -235,10 +238,10 @@ export default function Navbar() {
                     </button>
                 </div>
 
-                {/* Drawer Quick Action: Track Report */}
+                {/* Drawer Quick Action: Start Trial */}
                 <div style={{ padding: '14px 14px 4px', background: '#ffffff' }}>
                     <Link
-                        href="/track-report"
+                        href="/trial"
                         onClick={() => setMenuOpen(false)}
                         style={{
                             display: 'flex',
@@ -261,14 +264,14 @@ export default function Navbar() {
                                 flexShrink: 0,
                                 boxShadow: '0 2px 6px rgba(37,99,235,0.3)',
                             }}>
-                                <FileSearch size={17} />
+                                <Sparkles size={17} />
                             </div>
                             <div>
                                 <div style={{ fontSize: 13.5, fontWeight: 800, color: '#1e3a8a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                    Track / Download Report
+                                    Start 7-Day Free Trial
                                 </div>
                                 <div style={{ fontSize: 11, color: '#2563eb', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 600 }}>
-                                    Live status & vector PDF download
+                                    Instant full LIS access · Zero setup fee
                                 </div>
                             </div>
                         </div>
@@ -341,11 +344,11 @@ export default function Navbar() {
             <style dangerouslySetInnerHTML={{
                 __html: `
                 .nav-wrapper {
-                  padding: 16px 20px 0;
+                  padding: 0;
                 }
                 .nav-bar {
-                  height: 62px;
-                  padding: 0 10px 0 20px;
+                  height: 68px;
+                  padding: 0 clamp(16px, 3.5vw, 40px);
                 }
 
                 .nav-link-text:hover {
@@ -458,7 +461,7 @@ export default function Navbar() {
 
                 .cta-login-btn {
                     padding: 8px 18px; font-size: 13.5px; font-weight: 600; color: #334155;
-                    border: 1px solid #cbd5e1; border-radius: 999px; text-decoration: none;
+                    border: 1px solid #cbd5e1; border-radius: 8px; text-decoration: none;
                     font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s ease; background: transparent;
                 }
                 .cta-login-btn:hover { background: #f8fafc; border-color: #94a3b8; color: #0f172a; }
@@ -466,7 +469,7 @@ export default function Navbar() {
                 .cta-trial-btn {
                     display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px;
                     font-size: 13.5px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #2563eb, #4f46e5);
-                    border-radius: 999px; text-decoration: none; font-family: 'Plus Jakarta Sans', sans-serif;
+                    border-radius: 8px; text-decoration: none; font-family: 'Plus Jakarta Sans', sans-serif;
                     box-shadow: 0 4px 14px rgba(37,99,235,0.35); transition: all 0.2s ease; white-space: nowrap;
                 }
                 .cta-trial-btn:hover { background: linear-gradient(135deg, #1d4ed8, #4338ca); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
@@ -474,7 +477,7 @@ export default function Navbar() {
                 .mobile-menu-btn {
                     width: 100%; display: flex; align-items: center; justify-content: space-between;
                     padding: 11px 12px; background: transparent; border: none;
-                    border-radius: 10px; cursor: pointer; transition: background 0.15s; color: #0f172a;
+                    border-radius: 8px; cursor: pointer; transition: background 0.15s; color: #0f172a;
                     font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14.5px; font-weight: 700;
                     text-decoration: none;
                     box-sizing: border-box;
@@ -489,20 +492,20 @@ export default function Navbar() {
 
                 .drawer-login-btn {
                     display: block; text-align: center; padding: 11px; font-size: 14px; font-weight: 600;
-                    color: #0f172a; border: 1px solid #e2e8f0; border-radius: 12px; text-decoration: none;
+                    color: #0f172a; border: 1px solid #e2e8f0; border-radius: 8px; text-decoration: none;
                     font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; background: #ffffff;
                 }
                 .drawer-login-btn:hover, .drawer-login-btn:active { background: #f8fafc; }
 
                 .drawer-trial-btn {
                     display: block; text-align: center; padding: 12px; font-size: 14px; font-weight: 700;
-                    color: #fff; background: linear-gradient(135deg, #2563eb, #4f46e5); border-radius: 12px; text-decoration: none;
+                    color: #fff; background: linear-gradient(135deg, #2563eb, #4f46e5); border-radius: 8px; text-decoration: none;
                     font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 4px 14px rgba(37,99,235,0.35);
                 }
          
                 @media (max-width: 900px) {
-                  .nav-wrapper { padding: 10px 12px 0 !important; }
-                  .nav-bar     { height: 54px !important; padding: 0 12px 0 16px !important; }
+                  .nav-wrapper { padding: 0 !important; }
+                  .nav-bar     { height: 60px !important; padding: 0 16px !important; }
                   .nav-links   { display: none !important; }
                   .nav-cta     { display: none !important; }
                   .nav-hamburger { display: flex !important; }

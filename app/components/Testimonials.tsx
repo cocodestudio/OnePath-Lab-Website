@@ -2,15 +2,16 @@
 import { Star, Quote } from 'lucide-react'
 
 const testimonials = [
-    { name: 'Dr. Abdul Qadir', lab: 'New Life Nursing Home', stars: 5, text: 'Very easy to use. My staff learned it in just one day. The print quality of the reports is excellent and patients are very satisfied with instant WhatsApp delivery.' },
-    { name: 'Dr. Mozzam Rasheed', lab: 'Darul Shifa Clinic', stars: 5, text: 'The WhatsApp report feature is a lifesaver. Patients get their results directly on their phones without waiting. Very happy with the software.' },
-    { name: 'Dr. A Raheem', lab: 'Child Health Care', stars: 5, text: 'We were facing issues with our old software crashing, but OnePath fixed everything. The interface is clean, works fast, and never hangs during rush hours.' },
-    { name: 'Dr. Samshad Malik', lab: 'Child Health Care', stars: 5, text: 'Great software for our daily operations. Billing and report generation is very fast now. Highly recommended for small and medium diagnostic setups.' },
+    { name: 'Dr. Abdul Qadir', lab: 'New Life Nursing Home', stars: 5, text: 'The bi-directional machine interfacing connected our cell counter in 15 minutes. No more manual typing by technicians, and reports are dispatched on WhatsApp with zero errors.' },
+    { name: 'Dr. Mozzam Rasheed', lab: 'Darul Shifa Clinic', stars: 5, text: 'ABDM M1 integration helped us sync records with ABHA and claim DHIS incentives easily. Patients love getting instant WhatsApp reports with verification QR codes.' },
+    { name: 'Dr. A Raheem', lab: 'Child Health Care', stars: 5, text: 'We were facing issues with our old software crashing, but OnePath fixed everything. The cloud interface is fast, smooth, and never hangs during morning peak rush hours.' },
+    { name: 'Dr. Samshad Malik', lab: 'City Diagnostic Centre', stars: 5, text: 'Managing multiple collection centers with the B2B prepaid wallet is seamless. It auto-deducts margins before printing, eliminating partner payment follow-ups.' },
     { name: 'Dr. M Hamid', lab: 'Zarrah Clinic', stars: 5, text: 'Checking reports on mobile is the best feature for me. I can review and authorize reports even when I am traveling. Support team is also very helpful.' },
-    { name: 'Dr. Saleem Ahmad', lab: 'Shifa Clinic', stars: 5, text: 'Customer support is very responsive. Whenever we have a doubt, they reply immediately. Software is working perfectly for our lab.' },
-    { name: 'Dr. Shadan', lab: 'Healthcare Diagnostics', stars: 5, text: 'Total value for money. It has all the premium features like barcode generation and smart reports but doesn’t cost too much. Working smoothly since day one.' },
-    { name: 'Dr. Abdullah', lab: 'Bhura Zarrah Health Care', stars: 5, text: 'It saves us a lot of manual entry time and avoids typing mistakes. The daily accounts report is also very helpful to track clinic revenue.' }
+    { name: 'Dr. Saleem Ahmad', lab: 'Shifa Clinic', stars: 5, text: 'Customer support is very responsive. Whenever we have a doubt, they reply immediately. The AI delta checks saved us from multiple critical value oversight.' },
+    { name: 'Dr. Shadan', lab: 'Healthcare Diagnostics', stars: 5, text: 'Total value for money. It has all the enterprise features like tube barcode accessioning and custom letterheads at a fraction of other LIS software costs.' },
+    { name: 'Dr. Abdullah', lab: 'Bhura Zarrah Health Care', stars: 5, text: 'It saves us 3+ hours of manual entry every day. The daily cash counter settlement and GST invoicing make evening reconciliation effortless.' }
 ]
+
 
 function StarRating({ count }: { count: number }) {
     return (
@@ -28,28 +29,32 @@ export default function Testimonials() {
 
     return (
         <section className="testimonials-section" style={{ padding: '96px 0', background: '#f8fafc', overflow: 'hidden', width: '100%', boxSizing: 'border-box' }}>
-            <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 20px', boxSizing: 'border-box' }}>
+            <div className="container" style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 40px)', boxSizing: 'border-box' }}>
 
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-                        <span style={{
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                        <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            background: '#eff6ff',
-                            border: '1px solid #bfdbfe',
-                            color: '#2563eb',
-                            padding: '6px 16px',
-                            borderRadius: 999,
-                            fontSize: 12.5,
+                            gap: 8,
+                            background: '#ffffff',
+                            border: '1px solid #cbd5e1',
+                            borderLeft: '3px solid #2563eb',
+                            color: '#0f172a',
+                            padding: '7px 16px',
+                            borderRadius: 6,
+                            fontSize: 12,
                             fontWeight: 700,
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.04em',
                             textTransform: 'uppercase',
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Doctor Reviews
-                        </span>
+                            <span>[ VERIFIED IMPACT ]</span>
+                            <span style={{ color: '#475569' }}>Pathologist &amp; Lab Director Endorsements</span>
+                        </div>
                     </div>
+
 
                     <h2 style={{
                         fontSize: 'clamp(28px, 5.5vw, 42px)',

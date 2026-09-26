@@ -37,7 +37,10 @@ export default function Login() {
 
         // Actual API Login Call for Laravel Backend
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
+            const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+                ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
+                : "http://127.0.0.1:8000"
+            const response = await fetch(`${apiOrigin}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

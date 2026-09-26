@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
   allowedDevOrigins: ['192.168.31.192', 'localhost'],
   async redirects() {
     return [
@@ -8,6 +7,21 @@ const nextConfig = {
         source: '/r/:id*',
         destination: 'https://lis.onepathlab.com/r/:id*',
         permanent: false,
+      },
+      {
+        source: '/track-report',
+        destination: '/lis-software',
+        permanent: true,
+      },
+      {
+        source: '/test-pricing',
+        destination: '/lis-software',
+        permanent: true,
+      },
+      {
+        source: '/home-collection',
+        destination: '/lis-software',
+        permanent: true,
       },
     ];
   },

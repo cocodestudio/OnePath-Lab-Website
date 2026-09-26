@@ -102,74 +102,100 @@ export default function Hero() {
                 overflow: 'hidden',
             }} />
 
-            <div className="container hero-container" style={{ position: 'relative', zIndex: 2, padding: '0 20px', width: '100%', boxSizing: 'border-box' }}>
+            <div className="container hero-container" style={{ position: 'relative', zIndex: 2, padding: '0 clamp(16px, 3.5vw, 40px)', maxWidth: 1440, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
 
-                {/* ─── Eyebrow Shimmer Badge ─── */}
+                {/* ─── Modern Sharp Enterprise Eyebrow ─── */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-                    <span className="hero-badge shimmer-badge" style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 7,
-                        borderRadius: 999,
-                        padding: '7px 20px', fontSize: 13, fontWeight: 700, color: '#1d4ed8',
-                        letterSpacing: '0.01em',
-                        textAlign: 'center', maxWidth: '100%',
-                    }}>
-                        <Wand2 size={14} color="#6366f1" style={{ flexShrink: 0 }} />
-                        <span>India&apos;s #1 AI-Powered Cloud LIS — 200+ Pathology Labs</span>
-                    </span>
-                </div>
-
-                {/* ─── Storytelling Headline ─── */}
-                <div className="hero-text-area" style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center', paddingBottom: 32 }}>
-                    <h1 className="hero-title-top" style={{
-                        fontSize: 'clamp(28px, 6.5vw, 68px)', fontWeight: 800, lineHeight: 1.12,
-                        color: '#0f172a', marginBottom: 4, letterSpacing: '-0.035em',
+                    <div style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 9,
+                        background: '#f8fafc',
+                        border: '1px solid #cbd5e1',
+                        borderLeft: '3px solid #2563eb',
+                        borderRadius: 8,
+                        padding: '8px 18px', fontSize: 13, fontWeight: 700, color: '#0f172a',
+                        letterSpacing: '0.02em',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
                     }}>
-                        Your Lab is Working
+                        <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#2563eb' }} />
+                        <span>Govt. ABDM (ABHA) M1 Certified · 200+ Analyzers Sync · Dual AI Engine</span>
+                    </div>
+                </div>
+
+                {/* ─── SEO High-Intent Headline ─── */}
+                <div className="hero-text-area" style={{ maxWidth: 1040, margin: '0 auto', textAlign: 'center', paddingBottom: 32 }}>
+                    <h1 className="hero-title-top" style={{
+                        fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 800, lineHeight: 1.14,
+                        color: '#0f172a', marginBottom: 6, letterSpacing: '-0.035em',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    }}>
+                        India&apos;s #1 AI &amp; ABDM-Ready
                     </h1>
 
                     <h1 className="hero-title-bottom shimmer-text" style={{
-                        fontSize: 'clamp(28px, 6.5vw, 68px)', fontWeight: 900, lineHeight: 1.12,
+                        fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 900, lineHeight: 1.14,
                         marginBottom: 20, letterSpacing: '-0.035em', fontFamily: "'Plus Jakarta Sans', sans-serif",
                     }}>
-                        Hard. Not Smart.
+                        Pathology Lab Software &amp; Cloud LIS
                     </h1>
 
-                    {/* ─── Proof Point Pills ─── */}
-                    <div className="hero-proof-row" style={{ display: 'flex', justifyContent: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 22 }}>
+                    {/* ─── Sharp Enterprise Feature Chips ─── */}
+                    <div className="hero-proof-row" style={{ display: 'flex', justifyContent: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 24 }}>
                         {[
-                            { icon: <Zap size={13} color="#d97706" />, text: 'Manual typing wastes 3+ hrs/day', bg: '#fffbeb', border: '#fde68a', col: '#78350f' },
-                            { icon: <Shield size={13} color="#059669" />, text: 'Patients wait hours for reports', bg: '#f0fdf4', border: '#bbf7d0', col: '#064e3b' },
-                            { icon: <TrendingUp size={13} color="#7c3aed" />, text: 'No live MIS for revenue & TAT', bg: '#f5f3ff', border: '#ddd6fe', col: '#3b0764' },
+                            { icon: <Zap size={14} color="#2563eb" />, text: 'Bi-directional Analyzer Interfacing (200+ Models)', border: '#cbd5e1', col: '#0f172a' },
+                            { icon: <Shield size={14} color="#059669" />, text: 'ABDM M1 & Earn DHIS Cash Incentives', border: '#cbd5e1', col: '#0f172a' },
+                            { icon: <TrendingUp size={14} color="#7c3aed" />, text: 'Dual AI Copilot & Abnormal Delta Checks', border: '#cbd5e1', col: '#0f172a' },
                         ].map((item, i) => (
-                            <span key={i} className="proof-pill" style={{
-                                display: 'inline-flex', alignItems: 'center', gap: 6,
-                                background: item.bg, border: `1px solid ${item.border}`,
-                                borderRadius: 999, padding: '6px 13px', fontSize: 12.5, fontWeight: 600, color: item.col,
+                            <div key={i} style={{
+                                display: 'inline-flex', alignItems: 'center', gap: 8,
+                                background: '#ffffff', border: `1px solid ${item.border}`,
+                                borderRadius: 8, padding: '7px 15px', fontSize: 13, fontWeight: 600, color: item.col,
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                boxShadow: '0 1px 3px rgba(15,23,42,0.04)',
                             }}>
                                 {item.icon} <span>{item.text}</span>
-                            </span>
+                            </div>
                         ))}
                     </div>
 
                     <p className="hero-desc" style={{
-                        fontSize: 'clamp(15px, 2.2vw, 18px)', color: '#475569',
-                        maxWidth: 620, margin: '0 auto 28px', lineHeight: 1.68, fontWeight: 500,
+                        fontSize: 'clamp(15.5px, 2.2vw, 18.5px)', color: '#475569',
+                        maxWidth: 780, margin: '0 auto 28px', lineHeight: 1.68, fontWeight: 500,
                         fontFamily: "'Plus Jakarta Sans', sans-serif",
                     }}>
-                        OnePath automates machine interfacing, calculates derived parameters, flags abnormal values, and delivers smart reports via WhatsApp — instantly.
+                        Eliminate manual typing errors with automated machine interfacing, push records to National Health Locker via ABDM, calculate clinical delta checks with AI, and deliver QR-verified PDF reports directly on patient WhatsApp in seconds.
                     </p>
 
-                    {/* ─── CTAs ─── */}
-                    <div className="hero-cta-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 14 }}>
-                        <Link href="/trial" className="hero-cta-primary btn-primary" style={{
-                            padding: '15px 36px',
-                            fontSize: 15.5,
-                            borderRadius: 999,
+                    {/* ─── CTAs with Modern 12px Radius ─── */}
+                    <div className="hero-cta-wrapper" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, flexWrap: 'wrap', marginBottom: 14 }}>
+                        <Link href="/trial" className="btn-primary" style={{
+                            padding: '16px 36px',
+                            fontSize: 16,
+                            borderRadius: 12,
                             boxShadow: '0 8px 24px -4px rgba(37,99,235,0.4)',
+                            textDecoration: 'none',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 8,
+                            fontWeight: 700,
                         }}>
                             Start 7-Day Free Trial <ArrowRight size={17} />
+                        </Link>
+                        <Link href="/pricing" style={{
+                            padding: '16px 30px',
+                            fontSize: 16,
+                            borderRadius: 12,
+                            background: '#ffffff',
+                            color: '#0f172a',
+                            border: '1px solid #cbd5e1',
+                            textDecoration: 'none',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 8,
+                            fontWeight: 700,
+                            boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                        }}>
+                            View Plans
                         </Link>
                     </div>
 
@@ -178,11 +204,12 @@ export default function Hero() {
                     </p>
                 </div>
 
-                {/* ─── 3D White Mockup with Shimmer Border ─── */}
+                {/* ─── 3D White Mockup with Full Width ─── */}
                 <div className="mockup-wrapper" style={{
-                    width: '100%', maxWidth: 1080, margin: '0 auto',
+                    width: '100%', maxWidth: 1280, margin: '0 auto',
                     perspective: '1400px', perspectiveOrigin: '50% 30%', boxSizing: 'border-box',
                 }}>
+
                     <div ref={cardRef} className="mockup-tilt-card shimmer-border" style={{
                         transform: 'rotateX(2deg) rotateY(0deg)',
                         transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)', transformStyle: 'preserve-3d',
@@ -269,8 +296,9 @@ export default function Hero() {
                                     }}>+ New Registration</div>
                                     {[
                                         { em: '⚡', label: 'Accession', active: true },
+                                        { em: '👩‍💼', label: 'Reception Desk', active: false },
                                         { em: '🔬', label: 'Analysis', active: false },
-                                        { em: '📋', label: 'Patient List', active: false },
+                                        { em: '📦', label: 'Inventory & Stock', active: false },
                                         { em: '📄', label: 'Reports', active: false },
                                     ].map((item, i) => (
                                         <div key={i} style={{
@@ -305,7 +333,7 @@ export default function Hero() {
                                                 </div>
                                                 <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 8 }}>
                                                     <div style={{ fontSize: 21, fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{card.count}</div>
-                                                    <span style={{ fontSize: 10.5, fontWeight: 700, color: card.color, background: card.bg, padding: '2px 6px', borderRadius: 999 }}>{card.delta}</span>
+                                                    <span style={{ fontSize: 10.5, fontWeight: 700, color: card.color, background: card.bg, padding: '2px 6px', borderRadius: 4 }}>{card.delta}</span>
                                                 </div>
                                                 <div style={{ display: 'flex', gap: 2, alignItems: 'flex-end', height: 22 }}>
                                                     {card.bars.map((h, j) => (
@@ -320,7 +348,7 @@ export default function Hero() {
                                     <div className="mockup-patient-table" style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 10, overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.03)' }}>
                                         <div style={{ padding: '8px 12px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                             <span style={{ fontSize: 12, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Live Registrations</span>
-                                            <span style={{ fontSize: 10.5, color: '#059669', fontWeight: 700, background: '#f0fdf4', padding: '2px 8px', borderRadius: 999, display: 'flex', alignItems: 'center', gap: 4 }}>
+                                            <span style={{ fontSize: 10.5, color: '#059669', fontWeight: 700, background: '#f0fdf4', padding: '2px 8px', borderRadius: 4, display: 'flex', alignItems: 'center', gap: 4 }}>
                                                 <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
                                                 Live
                                             </span>
@@ -337,7 +365,7 @@ export default function Hero() {
                                                         <div style={{ fontSize: 10.5, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{row.test}</div>
                                                     </div>
                                                 </div>
-                                                <span style={{ fontSize: 10.5, fontWeight: 700, color: row.sc, background: row.sb, padding: '2px 8px', borderRadius: 999 }}>{row.status}</span>
+                                                <span style={{ fontSize: 10.5, fontWeight: 700, color: row.sc, background: row.sb, padding: '2px 8px', borderRadius: 4 }}>{row.status}</span>
                                             </div>
                                         ))}
                                     </div>

@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import { Mail, Lock, User, Phone, Building, Users, CheckCircle2, ArrowRight, ShieldCheck, Zap, Sparkles, ChevronDown, Home, Gift } from 'lucide-react'
 
 const labelStyle: React.CSSProperties = {
@@ -125,18 +127,9 @@ export default function SignUp() {
     const selectedOpt = patientOptions.find(o => o.value === formData.patientCount)
 
     return (
-        <main style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', flexDirection: 'column' }}>
-            {/* Navbar */}
-            <div style={{ padding: '24px 32px', position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-                    <Image src="/logo.png" alt="OnePath" width={36} height={36} style={{ width: 'auto', height: 'auto', objectFit: 'contain' }} />
-                    <span style={{ fontSize: 24, fontWeight: 800, fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a', letterSpacing: '-0.03em' }}>OnePath</span>
-                </Link>
-                <div style={{ fontSize: 15, fontWeight: 600, color: '#475569', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                    <span className="hide-on-mobile">Already have an account? </span>
-                    <a href="https://lis.onepathlab.com" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 700 }}>Log in</a>
-                </div>
-            </div>
+        <>
+            <Navbar />
+            <main style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', flexDirection: 'column' }}>
 
             <div className="signup-wrapper" style={{ display: 'flex', flex: 1, paddingTop: 88 }}>
                 {/* —— Left: Form —— */}
@@ -248,7 +241,7 @@ export default function SignUp() {
                                                             }}
                                                         >
                                                             <span>{opt.label}</span>
-                                                            <span style={{ fontSize: 11, fontWeight: 700, color: opt.tagColor, background: opt.tagBg, padding: '2px 9px', borderRadius: 100, whiteSpace: 'nowrap', flexShrink: 0 }}>
+                                                            <span style={{ fontSize: 11, fontWeight: 700, color: opt.tagColor, background: opt.tagBg, padding: '2px 9px', borderRadius: 4, whiteSpace: 'nowrap', flexShrink: 0 }}>
                                                                 {opt.tag}
                                                             </span>
                                                         </div>
@@ -265,7 +258,7 @@ export default function SignUp() {
                                                 Referral Code <span style={{ fontWeight: 500, color: '#94a3b8', fontSize: 13 }}>(Optional)</span>
                                             </label>
                                             {formData.referralCode && (
-                                                <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a', background: '#dcfce7', padding: '2px 8px', borderRadius: 100, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                                                <span style={{ fontSize: 11, fontWeight: 700, color: '#16a34a', background: '#dcfce7', padding: '2px 8px', borderRadius: 4, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
                                                     <CheckCircle2 size={11} /> Applied
                                                 </span>
                                             )}
@@ -452,7 +445,7 @@ export default function SignUp() {
                 .plan-price span { font-size: 13px; font-weight: 600; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; }
                 .plan-desc { font-size: 13px; color: #64748b; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.5; margin: 0; }
                 .check-icon { position: absolute; top: 14px; right: 14px; color: #2563eb; animation: scaleIn 0.3s cubic-bezier(0.175,0.885,0.32,1.275); }
-                .recommended-badge { position: absolute; top: -10px; left: 16px; background: #2563eb; color: white; font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 100px; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; }
+                .recommended-badge { position: absolute; top: -10px; left: 16px; background: #2563eb; color: white; font-size: 10px; font-weight: 800; padding: 2px 10px; border-radius: 4px; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em; }
                 .submit-btn:hover:not(:disabled) { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 12px 30px -6px rgba(37, 99, 235, 0.6) !important; }
                 .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
                 @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
@@ -467,6 +460,8 @@ export default function SignUp() {
                     .hide-on-mobile { display: none; }
                 }
             ` }} />
+            <Footer />
         </main>
+        </>
     )
 }

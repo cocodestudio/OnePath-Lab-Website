@@ -5,32 +5,32 @@ const steps = [
     {
         number: '01',
         icon: <Server size={20} />,
-        title: 'Direct Machine Integration',
-        desc: 'Test data is automatically fetched from cell counters and biochemistry analyzers, eliminating manual entry completely.',
+        title: 'Bi-directional Machine Bridge',
+        desc: 'Test parameters are automatically fetched from 200+ analyzers via ASTM/HL7 bridge with real-time reagent stock deduction, eliminating manual typing.',
     },
     {
         number: '02',
         icon: <AlertCircle size={20} />,
-        title: 'Auto-Flagging & Calculation',
-        desc: 'System automatically calculates derived parameters and highlights abnormal values in red based on age/gender reference ranges.',
+        title: 'AI Delta Checks & Panic Flags',
+        desc: 'Dual AI copilot automatically calculates derived parameters, flags abnormal panic values, and compares results against past patient history.',
     },
     {
         number: '03',
         icon: <UserCheck size={20} />,
         title: 'Technician Verification',
-        desc: 'Lab technicians cross-verify fetched results, input any manual parameters, and prepare the draft report.',
+        desc: 'Lab technicians cross-verify fetched results, inspect accessioned tube barcodes & reagent batch validity, and prepare the NABL-formatted draft report.',
     },
     {
         number: '04',
         icon: <FileSignature size={20} />,
-        title: 'Digital Approval',
-        desc: 'Pathologists review the draft, add specific clinical notes if needed, and authorize the report with a secure digital signature.',
+        title: 'Digital Signature & ABDM Sync',
+        desc: 'Pathologists authorize reports with a secure digital signature, automatically pushing data to the Ayushman Bharat (ABDM) National Health Locker.',
     },
     {
         number: '05',
         icon: <Send size={20} />,
-        title: 'Automated Dispatch',
-        desc: 'Final PDF reports with QR codes are instantly delivered to the patient’s and doctor’s WhatsApp, SMS, and email.',
+        title: 'Instant WhatsApp & QR Dispatch',
+        desc: 'Final NABL-format PDF reports with dynamic verification QR codes are delivered within seconds to patient and doctor WhatsApp.',
     },
 ]
 
@@ -61,23 +61,26 @@ export default function Workflow() {
 
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 60px)', padding: '0 10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-                        <span style={{
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                        <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            background: '#eff6ff',
-                            border: '1px solid #bfdbfe',
-                            color: '#2563eb',
-                            padding: '6px 16px',
-                            borderRadius: 999,
-                            fontSize: 12.5,
+                            gap: 8,
+                            background: '#f8fafc',
+                            border: '1px solid #cbd5e1',
+                            borderLeft: '3px solid #2563eb',
+                            color: '#0f172a',
+                            padding: '7px 16px',
+                            borderRadius: 6,
+                            fontSize: 12,
                             fontWeight: 700,
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.04em',
                             textTransform: 'uppercase',
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Operational Lifecycle
-                        </span>
+                            <span>[ LIFECYCLE ]</span>
+                            <span style={{ color: '#475569' }}>End-to-End Operational Pipeline</span>
+                        </div>
                     </div>
                     <h2 style={{
                         fontSize: 'clamp(28px, 5.5vw, 42px)',

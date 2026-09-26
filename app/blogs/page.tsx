@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { ArrowRight, Clock, Calendar, Search, Loader2, X } from 'lucide-react'
+import { ArrowRight, Clock, Calendar, Search, Loader2, X, BookOpen } from 'lucide-react'
 
 const gradients = [
     'linear-gradient(135deg, #e0eaff 0%, #3b82f6 100%)',
@@ -23,27 +23,39 @@ export default function Blogs() {
     const [selectedPost, setSelectedPost] = useState<any | null>(null)
 
     useEffect(() => {
+        let isMounted = true
         const fetchBlogs = async () => {
             try {
                 const apiOrigin = process.env.NEXT_PUBLIC_API_URL
                     ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
                     : "http://127.0.0.1:8000"
 
+                const controller = new AbortController()
+                const timeoutId = setTimeout(() => controller.abort(), 3000)
+
                 const response = await fetch(`${apiOrigin}/api/blogs/public`, {
                     method: 'GET',
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Accept': 'application/json' },
+                    signal: controller.signal
                 })
-                if (response.ok) {
+                clearTimeout(timeoutId)
+
+                if (response.ok && isMounted) {
                     const data = await response.json()
-                    setBlogs(data)
+                    if (Array.isArray(data)) {
+                        setBlogs(data)
+                    } else if (data && Array.isArray(data.data)) {
+                        setBlogs(data.data)
+                    }
                 }
-            } catch (error) {
-                console.error("Failed to fetch blogs:", error)
+            } catch {
+                // Backend is offline or not running locally - silently keep empty list without console.error
             } finally {
-                setIsLoading(false)
+                if (isMounted) setIsLoading(false)
             }
         }
         fetchBlogs()
+        return () => { isMounted = false }
     }, [])
 
     // Modal open hone par background scroll band karne ke liye
@@ -64,8 +76,8 @@ export default function Blogs() {
         return matchesCategory && matchesSearch
     })
 
-    const featuredPost = filteredPosts.find(p => p.featured)
-    const gridPosts = filteredPosts.filter(p => !p.featured || activeCategory !== 'All')
+    const featuredPost = filteredPosts.find(p => Boolean(p.featured) && p.featured !== '0' && p.featured !== 0)
+    const gridPosts = filteredPosts.filter(p => !featuredPost || p !== featuredPost)
 
     const formatDate = (dateString: string) => {
         if (!dateString) return 'N/A'
@@ -74,8 +86,9 @@ export default function Blogs() {
     }
 
     return (
-        <main style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <>
             <Navbar />
+            <main style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
 
             {/* Hero Section */}
             <section style={{ padding: '160px 20px 80px', background: '#ffffff', borderBottom: '1px solid #e2e8f0', position: 'relative' }}>
@@ -138,7 +151,7 @@ export default function Blogs() {
                                         <div className="featured-content" style={{ padding: '56px 48px', width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                             <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: 24 }}>
                                                 <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{featuredPost.category}</span>
-                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Clock size={14} /> {featuredPost.read_time}</span>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Clock size={14} /> {featuredPost.read_time || featuredPost.readTime || '5 min read'}</span>
                                             </div>
                                             <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 20, lineHeight: 1.3 }}>{featuredPost.title}</h2>
 
@@ -160,15 +173,15 @@ export default function Blogs() {
                                     {gridPosts.map((post, i) => {
                                         const cardGradient = gradients[(i + 1) % gradients.length];
                                         return (
-                                            <div key={post.id} onClick={() => setSelectedPost(post)} style={{ cursor: 'pointer' }}>
+                                            <div key={post.id || i} onClick={() => setSelectedPost(post)} style={{ cursor: 'pointer' }}>
                                                 <div className="blog-card" style={{ background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%', transition: 'all 0.3s ease' }}>
                                                     <div style={{ height: 200, background: cardGradient, position: 'relative' }}>
-                                                        <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{post.category}</div>
+                                                        <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{post.category || 'General'}</div>
                                                     </div>
                                                     <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, color: '#94a3b8', fontSize: 13, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={14} /> {formatDate(post.created_at)}</span>
-                                                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={14} /> {post.read_time}</span>
+                                                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={14} /> {post.read_time || post.readTime || '3 min read'}</span>
                                                         </div>
                                                         <h3 className="line-clamp-2" style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, lineHeight: 1.4 }}>{post.title}</h3>
 
@@ -183,7 +196,19 @@ export default function Blogs() {
                                     })}
                                 </div>
                             ) : (
-                                !featuredPost && <div style={{ textAlign: 'center', padding: '60px 20px', color: '#64748b', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 16 }}>No articles found.</div>
+                                !featuredPost && (
+                                    <div style={{ textAlign: 'center', padding: '80px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+                                        <div style={{ width: 56, height: 56, borderRadius: 16, background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--blue-primary, #2563eb)', marginBottom: 6 }}>
+                                            <BookOpen size={26} />
+                                        </div>
+                                        <h3 style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", margin: 0 }}>
+                                            {searchQuery ? `No articles matching "${searchQuery}"` : 'No articles published yet'}
+                                        </h3>
+                                        <p style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif", margin: 0, maxWidth: 420 }}>
+                                            {searchQuery ? 'Try searching with different keywords.' : 'Articles published from the admin portal will appear here in real time.'}
+                                        </p>
+                                    </div>
+                                )
                             )}
                         </>
                     )}
@@ -207,7 +232,7 @@ export default function Blogs() {
                             </h2>
                             <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: '#64748b', fontSize: 14.5, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                 <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={16} /> {formatDate(selectedPost.created_at)}</span>
-                                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={16} /> {selectedPost.read_time}</span>
+                                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={16} /> {selectedPost.read_time || selectedPost.readTime || '5 min read'}</span>
                             </div>
                         </div>
 
@@ -280,5 +305,6 @@ export default function Blogs() {
                 }
             `}} />
         </main>
+        </>
     )
 }

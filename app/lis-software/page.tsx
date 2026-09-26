@@ -46,18 +46,18 @@ function useInView(threshold = 0.15) {
 const coreFeatures = [
     { icon: <Cpu size={22} />, color: '#7c3aed', bg: '#f5f3ff', title: 'Smart Rules Engine', desc: 'Automated calculations for derived parameters, delta checks against patient history, and automatic red-flagging of critical values based on age and gender.' },
     { icon: <Microscope size={22} />, color: '#2563eb', bg: '#eff6ff', title: 'Machine Interfacing', desc: 'Bi-directional integration with 200+ analyzer models (Sysmex, Roche, Abbott, Mindray, Beckman). Results flow straight to the report — zero manual entry.' },
+    { icon: <Users size={22} />, color: '#4f46e5', bg: '#eef2ff', title: 'Front-Desk Reception Portal', desc: 'Fast patient intake terminal with barcode tube printing, instant cash/UPI billing, queue management, and strict doctor-only report editing locks.' },
+    { icon: <FlaskConical size={22} />, color: '#dc2626', bg: '#fef2f2', title: 'Reagents & Stock Management', desc: 'Admin control for lab consumables, real-time stock valuation, 2-8°C cold chain storage logs, batch tracking, low-stock warnings, and automated expiry alerts.' },
     { icon: <MessageSquare size={22} />, color: '#059669', bg: '#ecfdf5', title: 'WhatsApp Automation', desc: 'Reports delivered to patients and referring doctors via WhatsApp, SMS, and email within seconds of digital signature approval.' },
     { icon: <GitBranch size={22} />, color: '#d97706', bg: '#fffbeb', title: 'Multi-Branch Management', desc: 'Manage unlimited lab branches from a single dashboard. Each center has independent queues, billing, and reporting — with centralized MIS analytics.' },
     { icon: <CreditCard size={22} />, color: '#0891b2', bg: '#ecfeff', title: 'Integrated Billing & Finance', desc: 'GST-compliant invoicing, corporate B2B billing, credit management, doctor commissions, and daily financial reconciliation reports.' },
-    { icon: <BarChart3 size={22} />, color: '#dc2626', bg: '#fef2f2', title: 'Real-Time Analytics', desc: 'Live dashboards for TAT tracking, test volume trends, revenue analytics, referral performance, and dynamic inventory consumption.' },
+    { icon: <BarChart3 size={22} />, color: '#2563eb', bg: '#eff6ff', title: 'Real-Time Analytics', desc: 'Live dashboards for TAT tracking, test volume trends, revenue analytics, referral performance, and dynamic inventory consumption.' },
     { icon: <Smartphone size={22} />, color: '#7c3aed', bg: '#f5f3ff', title: 'Mobile-Ready Portals', desc: 'Dedicated web portals for phlebotomists (home collection), referring doctors, and patients. Full lab workflow accessible securely on any device.' },
-    { icon: <FlaskConical size={22} />, color: '#2563eb', bg: '#eff6ff', title: 'NABL Quality Control', desc: 'Built-in Levey-Jennings charts, Westgard rules engine, IQC/EQC management, and complete audit trails for NABL ISO 15189:2022 compliance.' },
-    { icon: <Stethoscope size={22} />, color: '#059669', bg: '#ecfdf5', title: 'Doctor Referral System', desc: 'Track referrals, automate commission calculations, generate doctor-wise MIS, and provide referring doctors a portal to view their patients\' reports.' },
 ]
 
 const securityFeatures = [
     { icon: <Lock size={20} />, title: 'AES-256 Encryption', desc: 'All patient data encrypted at rest using AES-256. In transit, TLS 1.3 — same standard used by major banks.' },
-    { icon: <Server size={20} />, title: 'AWS Mumbai (India)', desc: 'Data hosted exclusively on Indian soil. ap-south-1 region. Automated backups every 4 hours with 30-day retention.' },
+    { icon: <Server size={20} />, title: 'AWS', desc: 'Enterprise cloud hosting powered by AWS infrastructure. Automated backups every 4 hours with 30-day retention.' },
     { icon: <Shield size={20} />, title: 'DPDP Act 2023 Compliant', desc: 'Fully aligned with India\'s Digital Personal Data Protection Act. Explicit consent flows, data minimization, and subject rights honored.' },
     { icon: <Database size={20} />, title: 'Multi-Tenant Isolation', desc: 'Every lab\'s data lives in a completely isolated namespace. Lab A can never access Lab B\'s data — enforced at the database level, not just UI.' },
     { icon: <Users size={20} />, title: 'Role-Based Access Control', desc: 'Granular permissions for Admin, Pathologist, Technician, Receptionist, Accountant, and Doctor roles. Each role sees only what it needs.' },
@@ -75,6 +75,8 @@ const multiTenancyPoints = [
 const comparisonData = [
     { feature: 'Cloud-Based Access Anywhere', onepath: true, offline: false, saas: true },
     { feature: 'Bi-directional Machine Interfacing', onepath: true, offline: false, saas: false },
+    { feature: 'Front-Desk Receptionist Portal & Queue', onepath: true, offline: false, saas: false },
+    { feature: 'Reagents & Stock Expiry Tracking', onepath: true, offline: false, saas: false },
     { feature: 'Auto-Calculations & Delta Checks', onepath: true, offline: false, saas: false },
     { feature: 'WhatsApp Report Delivery', onepath: true, offline: false, saas: true },
     { feature: 'Multi-Branch Management', onepath: true, offline: false, saas: false },
@@ -84,7 +86,7 @@ const comparisonData = [
     { feature: 'Real-Time MIS Analytics', onepath: true, offline: false, saas: true },
     { feature: 'ABHA / ABDM Integration', onepath: true, offline: false, saas: false },
     { feature: 'Free Data Migration', onepath: true, offline: 'NA', saas: false },
-    { feature: 'Data Stored in India (AWS Mumbai)', onepath: true, offline: false, saas: false },
+    { feature: 'Enterprise Cloud Infrastructure (AWS)', onepath: true, offline: false, saas: false },
     { feature: 'Per-Lab Data Isolation', onepath: true, offline: true, saas: false },
     { feature: 'Automatic Software Updates', onepath: true, offline: false, saas: true },
     { feature: 'Starting Price', onepath: '₹3,999 / 6 months', offline: '₹25,000 one-time', saas: '₹5,999 / year' },
@@ -97,12 +99,14 @@ const testimonials = [
 ]
 
 const integrations = [
-    { name: 'Razorpay', desc: 'Automate B2B & retail payments', color: '#3395ff' },
+    { name: 'PayU', desc: 'Automate B2B wallet & counter payments', color: '#00bfa5' },
     { name: 'WhatsApp API', desc: 'Official report & bill delivery', color: '#25d366' },
-    { name: 'ABHA / ABDM', desc: 'Health ID verification', color: '#0891b2' },
-    { name: 'EkaCare', desc: 'Prescription sync', color: '#7c3aed' },
-    { name: 'Sysmex', desc: 'Cell counter interfacing', color: '#dc2626' },
-    { name: 'Roche Cobas', desc: 'Bi-directional interfacing', color: '#d97706' },
+    { name: 'ABHA / ABDM', desc: 'Health ID & Ayushman Bharat sync', color: '#0891b2' },
+    { name: 'Sysmex', desc: 'Cell counter auto-interfacing', color: '#dc2626' },
+    { name: 'Roche Cobas', desc: 'Biochemistry bi-directional sync', color: '#d97706' },
+    { name: 'Mindray', desc: 'Hematology analyzer integration', color: '#2563eb' },
+    { name: 'Abbott', desc: 'Immunoassay middleware sync', color: '#7c3aed' },
+    { name: 'EkaCare', desc: 'Doctor prescription & PHR sync', color: '#059669' },
 ]
 
 /* ── Cell helper ── */
@@ -124,8 +128,9 @@ export default function LISSoftware() {
     const c4 = useCounter(200, 1400, statsRef.inView)
 
     return (
-        <main style={{ background: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
+        <>
             <Navbar />
+            <main style={{ background: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
 
             {/* ══════════════════════════════════════════
           HERO
@@ -143,9 +148,27 @@ export default function LISSoftware() {
 
                 <div style={{ maxWidth: 880, margin: '0 auto', position: 'relative', zIndex: 1 }}>
                     {/* Top badge */}
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 100, padding: '6px 18px', fontSize: 13, fontWeight: 600, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 28, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse-dot 2s infinite' }} />
-                        India's Most Reliable Lab Information System
+                    <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        background: '#f8fafc',
+                        border: '1px solid #cbd5e1',
+                        borderLeft: '3px solid #2563eb',
+                        borderRadius: 6,
+                        padding: '7px 16px',
+                        fontSize: 12,
+                        fontWeight: 700,
+                        color: '#0f172a',
+                        letterSpacing: '0.04em',
+                        textTransform: 'uppercase',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        marginBottom: 28,
+                        boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
+                    }}>
+                        <span style={{ width: 6, height: 6, borderRadius: 2, background: '#22c55e', display: 'inline-block', animation: 'pulse-dot 2s infinite' }} />
+                        <span>[ ENTERPRISE LIS ]</span>
+                        <span style={{ color: '#475569' }}>India&apos;s Most Reliable Lab Information System</span>
                     </div>
 
                     <h1 style={{ fontSize: 'clamp(40px, 6.5vw, 76px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 24, letterSpacing: '-0.03em', lineHeight: 1.08 }}>
@@ -171,7 +194,7 @@ export default function LISSoftware() {
                                 display: 'inline-flex', alignItems: 'center', gap: 10,
                                 background: '#2563eb', color: '#ffffff',
                                 textDecoration: 'none', fontWeight: 700, fontSize: 16,
-                                padding: '16px 36px', borderRadius: 50,
+                                padding: '16px 36px', borderRadius: 8,
                                 fontFamily: "'Plus Jakarta Sans',sans-serif",
                                 boxShadow: '0 8px 28px rgba(37,99,235,0.4)',
                                 transition: 'all 0.2s ease',
@@ -184,9 +207,9 @@ export default function LISSoftware() {
                             <ArrowRight size={16} />
                         </a>
 
-                        <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#0f172a', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 50, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid #e2e8f0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', transition: 'all 0.2s ease' }}
+                        <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#0f172a', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid #cbd5e1', boxShadow: '0 1px 3px rgba(15,23,42,0.04)', transition: 'all 0.2s ease' }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.color = '#0f172a'; e.currentTarget.style.transform = 'translateY(0)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#0f172a'; e.currentTarget.style.transform = 'translateY(0)' }}
                         >
                             Start 7-Day Free Trial
                         </a>
@@ -194,9 +217,9 @@ export default function LISSoftware() {
 
                     {/* Trust badges */}
                     <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-                        {['NABL ISO 15189 Compliant', 'DPDP Act 2023 Aligned', 'AWS Mumbai Hosted', 'ABHA Integrated'].map(b => (
-                            <div key={b} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 100, padding: '5px 14px', fontSize: 12, fontWeight: 600, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
-                                <CheckCircle size={12} color="#22c55e" /> {b}
+                        {['NABL ISO 15189 Compliant', 'DPDP Act 2023 Aligned', 'AWS', 'ABHA Integrated'].map(b => (
+                            <div key={b} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 6, padding: '6px 14px', fontSize: 12, fontWeight: 700, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                                <CheckCircle size={13} color="#16a34a" /> {b}
                             </div>
                         ))}
                     </div>
@@ -231,9 +254,10 @@ export default function LISSoftware() {
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                            Core Features
-                        </span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                            <span>[ CORE FEATURES ]</span>
+                            <span style={{ color: '#475569' }}>Everything Your Lab Needs</span>
+                        </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,46px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Everything Your Lab Needs — In One Platform
                         </h2>
@@ -267,9 +291,10 @@ export default function LISSoftware() {
 
                         {/* Left — Multi-tenancy */}
                         <div>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#7c3aed', background: '#f5f3ff', border: '1px solid #e9d5ff', padding: '5px 14px', borderRadius: 100, marginBottom: 20, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                                Multi-Tenancy Architecture
-                            </span>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6d28d9', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #7c3aed', padding: '7px 16px', borderRadius: 6, marginBottom: 20, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                                <span>[ MULTI-TENANCY ]</span>
+                                <span style={{ color: '#475569' }}>Zero Cross-Lab Data Leakage</span>
+                            </div>
                             <h2 style={{ fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
                                 Every Lab Gets Its Own
                                 <span style={{ color: '#7c3aed' }}> Isolated Universe</span>
@@ -303,7 +328,7 @@ export default function LISSoftware() {
                                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: i === 0 ? '#eff6ff' : '#f8fafc', borderRadius: 10, marginBottom: 8, border: `1px solid ${i === 0 ? '#dbeafe' : '#f1f5f9'}` }}>
                                         <div style={{ width: 8, height: 8, borderRadius: '50%', background: ['#2563eb', '#7c3aed', '#059669', '#d97706'][i], flexShrink: 0 }} />
                                         <span style={{ fontSize: 13.5, fontWeight: 600, color: '#334155', fontFamily: "'Plus Jakarta Sans',sans-serif", flex: 1 }}>{lab}</span>
-                                        <span style={{ fontSize: 11, background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: 100, fontWeight: 700, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Isolated</span>
+                                        <span style={{ fontSize: 11, background: '#dcfce7', color: '#15803d', padding: '2px 8px', borderRadius: 4, fontWeight: 700, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Isolated</span>
                                     </div>
                                 ))}
                                 <div style={{ marginTop: 16, padding: '12px 14px', background: '#fef2f2', borderRadius: 10, border: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -339,9 +364,10 @@ export default function LISSoftware() {
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 56 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#059669', background: '#ecfdf5', border: '1px solid #bbf7d0', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                            Enterprise Security
-                        </span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#166534', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #16a34a', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                            <span>[ ENTERPRISE SECURITY ]</span>
+                            <span style={{ color: '#475569' }}>Data Safety &amp; Compliance</span>
+                        </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Your Patient Data is Sacred to Us
                         </h2>
@@ -368,12 +394,12 @@ export default function LISSoftware() {
                     {/* Compliance strip */}
                     <div style={{ marginTop: 40, background: 'linear-gradient(135deg, #1e40af 0%, #2563eb 100%)', borderRadius: 20, padding: '32px 36px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
                         <div>
-                            <div style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 6 }}>Compliance & Certifications</div>
+                            <div style={{ fontSize: 20, fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 6 }}>Compliance &amp; Certifications</div>
                             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>OnePath Lab meets or exceeds all Indian healthcare data regulations</div>
                         </div>
                         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                             {['NABL ISO 15189', 'DPDP Act 2023', 'ISO 27001', 'HIPAA Aligned', 'ABDM / ABHA'].map(cert => (
-                                <div key={cert} style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 100, padding: '6px 16px', fontSize: 13, fontWeight: 600, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{cert}</div>
+                                <div key={cert} style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 6, padding: '6px 16px', fontSize: 13, fontWeight: 600, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{cert}</div>
                             ))}
                         </div>
                     </div>
@@ -386,9 +412,10 @@ export default function LISSoftware() {
             <section style={{ padding: '96px 20px', background: '#f8fafc' }}>
                 <div style={{ maxWidth: 1000, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 56 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                            Comparison
-                        </span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                            <span>[ BENCHMARK COMPARISON ]</span>
+                            <span style={{ color: '#475569' }}>Why Labs Choose OnePath</span>
+                        </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Why Labs Choose OnePath Over Alternatives
                         </h2>
@@ -425,9 +452,10 @@ export default function LISSoftware() {
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 900, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#2563eb', background: '#eff6ff', border: '1px solid #dbeafe', padding: '5px 14px', borderRadius: 100, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                            Automated Workflow
-                        </span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
+                            <span>[ 4-MINUTE PIPELINE ]</span>
+                            <span style={{ color: '#475569' }}>Automated Laboratory Workflow</span>
+                        </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             From Registration to Delivery in 4 Minutes
                         </h2>
@@ -455,9 +483,9 @@ export default function LISSoftware() {
                                 </div>
                                 <div style={{ background: '#ffffff', borderRadius: 16, padding: '22px 26px', border: '1px solid #e2e8f0', flex: 1, marginLeft: 8, marginBottom: 16, boxShadow: '0 2px 12px -4px rgba(0,0,0,0.06)' }}>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
-                                        <span style={{ fontSize: 11, fontWeight: 800, color: w.color, background: w.color + '15', padding: '2px 10px', borderRadius: 100, fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '0.06em' }}>STEP {w.step}</span>
+                                        <span style={{ fontSize: 11, fontWeight: 800, color: w.color, background: w.color + '15', padding: '2px 10px', borderRadius: 4, fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '0.06em' }}>STEP {w.step}</span>
                                         <span style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{w.title}</span>
-                                        <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 600, color: '#22c55e', background: '#dcfce7', padding: '3px 10px', borderRadius: 100, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{w.time}</span>
+                                        <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, color: '#15803d', background: '#dcfce7', padding: '3px 10px', borderRadius: 4, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{w.time}</span>
                                     </div>
                                     <p style={{ fontSize: 14, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>{w.desc}</p>
                                 </div>
@@ -476,7 +504,7 @@ export default function LISSoftware() {
                         <h2 style={{ fontSize: 'clamp(24px,3.5vw,38px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 12 }}>Works With Tools You Already Use</h2>
                         <p style={{ color: '#64748b', fontSize: 15.5, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Plug-and-play integrations — no technical setup needed on your end.</p>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: 14 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 16 }}>
                         {integrations.map((int, i) => (
                             <div key={i} style={{ background: '#ffffff', borderRadius: 16, padding: '22px 20px', border: '1px solid #e2e8f0', display: 'flex', gap: 14, alignItems: 'center', transition: 'all 0.2s ease' }}
                                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px -6px rgba(0,0,0,0.1)' }}
@@ -503,9 +531,9 @@ export default function LISSoftware() {
                 <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)', bottom: -100, left: -50 }} />
 
                 <div style={{ maxWidth: 740, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 100, padding: '6px 18px', fontSize: 13, fontWeight: 600, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 28 }}>
-                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#4ade80', display: 'inline-block' }} />
-                        No credit card · 7-day free trial · Cancel anytime
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderLeft: '3px solid #4ade80', borderRadius: 6, padding: '7px 18px', fontSize: 13, fontWeight: 700, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 28, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        <span style={{ width: 6, height: 6, borderRadius: 2, background: '#4ade80', display: 'inline-block' }} />
+                        <span>No credit card · 7-day free trial · Cancel anytime</span>
                     </div>
 
                     <h2 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
@@ -518,7 +546,7 @@ export default function LISSoftware() {
 
                     <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
                         <a href="https://lis.onepathlab.com" target="_blank" rel="noreferrer"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 800, fontSize: 16, padding: '16px 36px', borderRadius: 50, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.2)', transition: 'all 0.2s ease' }}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 800, fontSize: 16, padding: '16px 36px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.2)', transition: 'all 0.2s ease' }}
                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.3)' }}
                             onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)' }}
                         >
@@ -527,7 +555,7 @@ export default function LISSoftware() {
                             <ArrowRight size={16} />
                         </a>
                         <a href="/trial"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', color: '#ffffff', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 50, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid rgba(255,255,255,0.3)', transition: 'all 0.2s ease' }}
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', color: '#ffffff', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid rgba(255,255,255,0.3)', transition: 'all 0.2s ease' }}
                             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)' }}
                             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
                         >
@@ -549,5 +577,6 @@ export default function LISSoftware() {
         }
       `}</style>
         </main>
+        </>
     )
 }

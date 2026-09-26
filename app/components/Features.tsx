@@ -1,99 +1,111 @@
-'use client'
-import { Activity, ScanBarcode, FileText, MessageCircle, Network, UserPlus, PackageOpen, BarChart3, ShieldCheck } from 'lucide-react'
+import Link from 'next/link'
+import { Activity, ScanBarcode, FileText, MessageCircle, Network, Users, Boxes, ShieldCheck, Cpu, Wallet, ArrowRight } from 'lucide-react'
 
 const labFeatures = [
     {
         icon: <Activity size={22} />,
-        title: 'Bidirectional Interfacing',
-        desc: 'Direct integration with lab analyzers (Cell Counters, Biochemistry). Eliminates manual entry errors entirely.',
+        title: 'Bi-directional Machine Interfacing',
+        desc: 'Direct bridge integration with 200+ analyzers (Sysmex, Mindray, Erba, Roche, Abbott). Results flow directly to reports — zero manual typing.',
         color: '#2563eb',
         bg: '#eff6ff',
-    },
-    {
-        icon: <ScanBarcode size={22} />,
-        title: 'Smart Barcode Tracking',
-        desc: 'Automated barcode generation for flawless sample tracking from collection to final report dispatch.',
-        color: '#7c3aed',
-        bg: '#f5f3ff',
-    },
-    {
-        icon: <FileText size={22} />,
-        title: 'Professional Reporting',
-        desc: 'Generate neat, customizable PDF reports with digital signatures, QR verification, and auto-highlighted abnormal values.',
-        color: '#059669',
-        bg: '#ecfdf5',
-    },
-    {
-        icon: <MessageCircle size={22} />,
-        title: 'WhatsApp Automation',
-        desc: 'Instantly send invoice links and final PDF reports to patients and referring doctors via official WhatsApp API.',
-        color: '#2563eb',
-        bg: '#eff6ff',
-    },
-    {
-        icon: <Network size={22} />,
-        title: 'Multi-Branch Sync',
-        desc: 'Manage multiple collection centers and processing labs from a single centralized dashboard in real-time.',
-        color: '#d97706',
-        bg: '#fffbeb',
-    },
-    {
-        icon: <UserPlus size={22} />,
-        title: 'B2B & Referral Management',
-        desc: 'Track doctor commissions, corporate tie-ups, and manage separate price lists for B2B clients easily.',
-        color: '#0891b2',
-        bg: '#ecfeff',
-    },
-    {
-        icon: <PackageOpen size={22} />,
-        title: 'Inventory Control',
-        desc: 'Track reagents, manage stock consumption per test, and get alerts before critical supplies run out.',
-        color: '#dc2626',
-        bg: '#fef2f2',
-    },
-    {
-        icon: <BarChart3 size={22} />,
-        title: 'Financial Analytics',
-        desc: 'Track daily collections, pending dues, revenue by department, and business growth patterns.',
-        color: '#2563eb',
-        bg: '#eff6ff',
+        link: '/machine-interfacing',
     },
     {
         icon: <ShieldCheck size={22} />,
-        title: 'Role-Based Security',
-        desc: 'Create secure logins for phlebotomists, technicians, and pathologists with restricted access and audit logs.',
+        title: 'Govt. ABDM / ABHA M1 & HFR Ready',
+        desc: 'Certified Ayushman Bharat Digital Mission integration. Create ABHA IDs, push to National Health Locker, and claim Govt. DHIS cash incentives.',
         color: '#059669',
         bg: '#ecfdf5',
+        link: '/abdm-abha',
+    },
+    {
+        icon: <Cpu size={22} />,
+        title: 'Dual AI Clinical Copilot',
+        desc: 'Dual Gemini + Groq engine generates automatic clinical impressions, performs historical delta checks, and triggers panic alert warnings.',
+        color: '#7c3aed',
+        bg: '#f5f3ff',
+        link: '/ai-clinical-copilot',
+    },
+    {
+        icon: <MessageCircle size={22} />,
+        title: 'Automated WhatsApp & QR Reports',
+        desc: 'Delivers PDF reports with doctor digital signatures and dynamic authenticity QR codes instantly to patient and doctor WhatsApp.',
+        color: '#2563eb',
+        bg: '#eff6ff',
+        link: '/whatsapp-reports',
+    },
+    {
+        icon: <Wallet size={22} />,
+        title: 'B2B Franchise & Prepaid Wallet',
+        desc: 'Seamlessly manage collection centers with prepaid wallet balances, online UPI recharges, and automated deduct-and-print report rules.',
+        color: '#d97706',
+        bg: '#fffbeb',
+        link: '/b2b-franchise',
+    },
+    {
+        icon: <ScanBarcode size={22} />,
+        title: 'Smart Barcode Accessioning',
+        desc: 'Instant barcode printing for EDTA, Serum, and Fluoride tubes. Guarantees 100% sample traceability from intake to disposal.',
+        color: '#0891b2',
+        bg: '#ecfeff',
+        link: '/lis-software',
+    },
+    {
+        icon: <Users size={22} />,
+        title: 'Front-Desk Receptionist Portal',
+        desc: 'Dedicated intake workstation for receptionists: 30-sec patient registration, barcode token printing, bill collection, and queue management with doctor-only edit locks.',
+        color: '#4f46e5',
+        bg: '#eef2ff',
+        link: '/lis-software',
+    },
+    {
+        icon: <Boxes size={22} />,
+        title: 'Reagents & Lab Inventory Management',
+        desc: 'Admin stock control for lab consumables: batch numbers, 2-8°C cold chain tracking, real-time stock valuation, low-stock warnings, and expiry alerts before testing.',
+        color: '#dc2626',
+        bg: '#fef2f2',
+        link: '/lis-software',
+    },
+    {
+        icon: <FileText size={22} />,
+        title: 'NABL & ISO 15189 Audit Trail',
+        desc: 'Tamper-proof digital records, technician verification stages, pathologist sign-off workflows, and strict role-based access security.',
+        color: '#059669',
+        bg: '#ecfdf5',
+        link: '/why-onepath',
     },
 ]
 
 export default function Features() {
     return (
-        <section className="features-section" style={{ padding: '96px 20px', background: '#ffffff', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-            <div className="container" style={{ maxWidth: '1240px', margin: '0 auto', boxSizing: 'border-box' }}>
+        <section className="features-section" style={{ padding: '96px 0', background: '#ffffff', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+            <div className="container" style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 40px)', boxSizing: 'border-box' }}>
 
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-                        <span style={{
+                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+                        <div style={{
                             display: 'inline-flex',
                             alignItems: 'center',
-                            background: '#eff6ff',
-                            border: '1px solid #bfdbfe',
-                            color: '#2563eb',
-                            padding: '6px 16px',
-                            borderRadius: 999,
-                            fontSize: 12.5,
+                            gap: 8,
+                            background: '#f8fafc',
+                            border: '1px solid #cbd5e1',
+                            borderLeft: '3px solid #2563eb',
+                            color: '#0f172a',
+                            padding: '7px 16px',
+                            borderRadius: 6,
+                            fontSize: 12,
                             fontWeight: 700,
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.04em',
                             textTransform: 'uppercase',
                             fontFamily: "'Plus Jakarta Sans', sans-serif",
                         }}>
-                            Enterprise Capabilities
-                        </span>
+                            <span>[ ARCHITECTURE ]</span>
+                            <span style={{ color: '#475569' }}>Enterprise Laboratory Capabilities</span>
+                        </div>
                     </div>
 
                     <h2 style={{
-                        fontSize: 'clamp(28px, 5.5vw, 42px)',
+                        fontSize: 'clamp(28px, 5.5vw, 44px)',
                         fontWeight: 800,
                         color: '#0f172a',
                         marginBottom: 14,
@@ -108,13 +120,13 @@ export default function Features() {
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                         }}>
-                            Scale Faster & Error-Free
+                            Scale Faster &amp; Error-Free
                         </span>
                     </h2>
 
                     <p style={{
                         color: '#64748b',
-                        maxWidth: 540,
+                        maxWidth: 640,
                         margin: '0 auto',
                         fontSize: 'clamp(14.5px, 2.5vw, 17px)',
                         lineHeight: 1.65,
@@ -126,10 +138,11 @@ export default function Features() {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-                    gap: 20,
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
+                    gap: 22,
                     width: '100%',
                 }}>
+
                     {labFeatures.map((feat, index) => (
                         <div
                             key={index}
@@ -178,10 +191,28 @@ export default function Features() {
                                 fontSize: 14,
                                 lineHeight: 1.65,
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
-                                margin: 0,
+                                margin: '0 0 16px',
+                                flex: 1,
                             }}>
                                 {feat.desc}
                             </p>
+                            <Link
+                                href={feat.link}
+                                style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: 6,
+                                    fontSize: 13,
+                                    fontWeight: 700,
+                                    color: feat.color,
+                                    textDecoration: 'none',
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                    marginTop: 'auto',
+                                    transition: 'gap 0.2s ease',
+                                }}
+                            >
+                                Explore Details <ArrowRight size={14} />
+                            </Link>
                         </div>
                     ))}
                 </div>

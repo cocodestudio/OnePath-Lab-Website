@@ -7,7 +7,7 @@ import { Mail, Phone, MapPin, MessageCircle, Clock, CheckCircle, Headphones, Set
 const contactCards = [
     {
         icon: <Phone size={22} />, title: 'Sales Enquiry', sub: 'Talk to our sales team', color: '#2563eb', bg: '#eff6ff',
-        lines: ['+91 9045757272', '+91 9058459848'],
+        lines: ['+91 9045757272', '+91 9045757272'],
         note: 'Mon–Sat, 8 AM to 9 PM IST',
     },
     {
