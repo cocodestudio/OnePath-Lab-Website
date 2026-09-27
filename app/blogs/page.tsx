@@ -1,8 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { ArrowRight, Clock, Calendar, Search, Loader2, X, BookOpen } from 'lucide-react'
+import { ArrowRight, Clock, Calendar, Search, Loader2, BookOpen } from 'lucide-react'
 
 const gradients = [
     'linear-gradient(135deg, #e0eaff 0%, #3b82f6 100%)',
@@ -13,14 +14,20 @@ const gradients = [
     'linear-gradient(135deg, #fae8ff 0%, #c026d3 100%)'
 ]
 
+const resolveImageUrl = (url?: string) => {
+    if (!url) return ''
+    if (url.startsWith('http://') || url.startsWith('https://')) return url
+    const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+        ? process.env.NEXT_PUBLIC_API_URL.replace(/\/api\/lis\/?$/, "").replace(/\/api\/?$/, "")
+        : "http://127.0.0.1:8000"
+    return `${apiOrigin}${url.startsWith('/') ? '' : '/'}${url}`
+}
+
 export default function Blogs() {
     const [activeCategory, setActiveCategory] = useState('All')
     const [searchQuery, setSearchQuery] = useState('')
     const [blogs, setBlogs] = useState<any[]>([])
     const [isLoading, setIsLoading] = useState(true)
-
-    // Naya state post modal ke liye
-    const [selectedPost, setSelectedPost] = useState<any | null>(null)
 
     useEffect(() => {
         let isMounted = true
@@ -31,7 +38,7 @@ export default function Blogs() {
                     : "http://127.0.0.1:8000"
 
                 const controller = new AbortController()
-                const timeoutId = setTimeout(() => controller.abort(), 3000)
+                const timeoutId = setTimeout(() => controller.abort(), 4000)
 
                 const response = await fetch(`${apiOrigin}/api/blogs/public`, {
                     method: 'GET',
@@ -49,7 +56,7 @@ export default function Blogs() {
                     }
                 }
             } catch {
-                // Backend is offline or not running locally - silently keep empty list without console.error
+                // Backend is offline or not running locally - silently keep empty list
             } finally {
                 if (isMounted) setIsLoading(false)
             }
@@ -57,16 +64,6 @@ export default function Blogs() {
         fetchBlogs()
         return () => { isMounted = false }
     }, [])
-
-    // Modal open hone par background scroll band karne ke liye
-    useEffect(() => {
-        if (selectedPost) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = ''
-        }
-        return () => { document.body.style.overflow = '' }
-    }, [selectedPost])
 
     const categories = ['All', ...Array.from(new Set(blogs.map(blog => blog.category).filter(Boolean)))]
 
@@ -97,37 +94,47 @@ export default function Blogs() {
                         Insights & <span style={{ color: 'var(--blue-primary, #2563eb)' }}>Resources</span>
                     </h1>
                     <p style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 48, maxWidth: 600, margin: '0 auto' }}>
-                        Expert advice, industry updates, and operational strategies to help you scale your pathology lab.
+                        Expert clinical advice, industry updates, and operational strategies to help you scale your pathology laboratory.
                     </p>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
-                        <div className="search-bar" style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '100px', padding: '12px 24px', width: '100%', maxWidth: 450 }}>
-                            <Search size={20} color="#94a3b8" style={{ marginRight: 12 }} />
-                            <input type="text" placeholder="Search articles..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontSize: 15, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }} />
-                        </div>
+                    {/* Search Bar */}
+                    <div className="search-bar" style={{ display: 'flex', alignItems: 'center', background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '50px', padding: '10px 24px', maxWidth: 540, margin: '0 auto 40px', transition: 'all 0.3s ease' }}>
+                        <Search size={20} color="#94a3b8" style={{ marginRight: 12 }} />
+                        <input
+                            type="text"
+                            placeholder="Search by topic, analyzer, or pathology guide..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            style={{ border: 'none', background: 'transparent', outline: 'none', width: '100%', fontSize: '15px', color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                        />
+                    </div>
 
-                        {blogs.length > 0 && (
-                            <div className="category-scroll-container">
-                                <div className="category-scroll">
-                                    {categories.map(cat => (
-                                        <button
-                                            key={cat}
-                                            onClick={() => setActiveCategory(cat as string)}
-                                            style={{
-                                                padding: '8px 20px', borderRadius: '100px', fontSize: 14, fontWeight: 600,
-                                                fontFamily: "'Plus Jakarta Sans', sans-serif", cursor: 'pointer', whiteSpace: 'nowrap',
-                                                transition: 'all 0.2s ease',
-                                                background: activeCategory === cat ? 'var(--blue-primary, #2563eb)' : 'transparent',
-                                                color: activeCategory === cat ? '#ffffff' : '#64748b',
-                                                border: activeCategory === cat ? '1px solid var(--blue-primary, #2563eb)' : '1px solid #e2e8f0',
-                                            }}
-                                        >
-                                            {cat}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                    {/* Category Filter Pills */}
+                    <div className="category-scroll-container">
+                        <div className="category-scroll">
+                            {categories.map(category => (
+                                <button
+                                    key={category}
+                                    onClick={() => setActiveCategory(category)}
+                                    style={{
+                                        padding: '10px 20px',
+                                        borderRadius: '30px',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                        border: activeCategory === category ? '1px solid var(--blue-primary, #2563eb)' : '1px solid #e2e8f0',
+                                        background: activeCategory === category ? 'var(--blue-primary, #2563eb)' : '#ffffff',
+                                        color: activeCategory === category ? '#ffffff' : '#64748b',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s ease',
+                                        whiteSpace: 'nowrap',
+                                        flexShrink: 0
+                                    }}
+                                >
+                                    {category}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -139,32 +146,57 @@ export default function Blogs() {
                     {isLoading ? (
                         <div style={{ textAlign: 'center', padding: '100px 20px', color: '#64748b', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
                             <Loader2 size={40} className="animate-spin" color="var(--blue-primary, #2563eb)" />
-                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 16, fontWeight: 500 }}>Loading latest articles...</span>
+                            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 16, fontWeight: 500 }}>Loading latest diagnostic articles...</span>
                         </div>
                     ) : (
                         <>
                             {/* Featured Post */}
                             {featuredPost && activeCategory === 'All' && !searchQuery && (
-                                <div onClick={() => setSelectedPost(featuredPost)} style={{ cursor: 'pointer' }}>
+                                <Link
+                                    href={`/blogs/${featuredPost.slug || featuredPost.id}`}
+                                    style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+                                >
                                     <div className="featured-card" style={{ background: '#ffffff', borderRadius: '32px', border: '1px solid #e2e8f0', overflow: 'hidden', display: 'flex', marginBottom: 60, transition: 'all 0.3s ease' }}>
-                                        <div className="featured-image" style={{ width: '50%', background: gradients[0] }} />
+                                        {featuredPost.image_url ? (
+                                            <div className="featured-image" style={{ width: '50%', minHeight: 320, position: 'relative', overflow: 'hidden' }}>
+                                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                <img
+                                                    src={resolveImageUrl(featuredPost.image_url)}
+                                                    alt={featuredPost.title}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="featured-image" style={{ width: '50%', background: gradients[0] }} />
+                                        )}
                                         <div className="featured-content" style={{ padding: '56px 48px', width: '50%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                             <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: 24 }}>
-                                                <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{featuredPost.category}</span>
-                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Clock size={14} /> {featuredPost.read_time || featuredPost.readTime || '5 min read'}</span>
+                                                <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>
+                                                    {featuredPost.category}
+                                                </span>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                                                    <Clock size={14} /> {featuredPost.read_time || featuredPost.readTime || '5 min read'}
+                                                </span>
                                             </div>
-                                            <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 20, lineHeight: 1.3 }}>{featuredPost.title}</h2>
+                                            <h2 style={{ fontSize: 'clamp(24px, 3vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 20, lineHeight: 1.3 }}>
+                                                {featuredPost.title}
+                                            </h2>
 
-                                            {/* Truncated Excerpt */}
-                                            <p className="line-clamp-3" style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 32 }}>{featuredPost.excerpt}</p>
+                                            <p className="line-clamp-3" style={{ fontSize: 16, color: '#64748b', lineHeight: 1.7, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 32 }}>
+                                                {featuredPost.excerpt}
+                                            </p>
 
                                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}><Calendar size={14} /> {formatDate(featuredPost.created_at)}</span>
-                                                <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s' }}>Read Article <ArrowRight size={18} /></span>
+                                                <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#94a3b8', fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                                                    <Calendar size={14} /> {formatDate(featuredPost.created_at)}
+                                                </span>
+                                                <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 15, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s' }}>
+                                                    Read Article <ArrowRight size={18} />
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             )}
 
                             {/* Standard Grid Posts */}
@@ -173,25 +205,50 @@ export default function Blogs() {
                                     {gridPosts.map((post, i) => {
                                         const cardGradient = gradients[(i + 1) % gradients.length];
                                         return (
-                                            <div key={post.id || i} onClick={() => setSelectedPost(post)} style={{ cursor: 'pointer' }}>
+                                            <Link
+                                                key={post.id || i}
+                                                href={`/blogs/${post.slug || post.id}`}
+                                                style={{ textDecoration: 'none', color: 'inherit' }}
+                                            >
                                                 <div className="blog-card" style={{ background: '#ffffff', borderRadius: '24px', border: '1px solid #e2e8f0', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%', transition: 'all 0.3s ease' }}>
-                                                    <div style={{ height: 200, background: cardGradient, position: 'relative' }}>
-                                                        <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>{post.category || 'General'}</div>
-                                                    </div>
+                                                    {post.image_url ? (
+                                                        <div style={{ height: 210, position: 'relative', overflow: 'hidden' }}>
+                                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                            <img
+                                                                src={resolveImageUrl(post.image_url)}
+                                                                alt={post.title}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                                                            />
+                                                            <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.92)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>
+                                                                {post.category || 'General'}
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <div style={{ height: 200, background: cardGradient, position: 'relative' }}>
+                                                            <div style={{ position: 'absolute', top: 16, left: 16, background: 'rgba(255,255,255,0.9)', color: '#0f172a', padding: '6px 12px', borderRadius: '8px', fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase' }}>
+                                                                {post.category || 'General'}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                     <div style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                                                         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, color: '#94a3b8', fontSize: 13, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                                                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Calendar size={14} /> {formatDate(post.created_at)}</span>
                                                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={14} /> {post.read_time || post.readTime || '3 min read'}</span>
                                                         </div>
-                                                        <h3 className="line-clamp-2" style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, lineHeight: 1.4 }}>{post.title}</h3>
+                                                        <h3 className="line-clamp-2" style={{ fontSize: 20, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 12, lineHeight: 1.4 }}>
+                                                            {post.title}
+                                                        </h3>
 
-                                                        {/* Truncated Excerpt */}
-                                                        <p className="line-clamp-3" style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 24, flex: 1 }}>{post.excerpt}</p>
+                                                        <p className="line-clamp-3" style={{ fontSize: 15, color: '#64748b', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans', sans-serif", marginBottom: 24, flex: 1 }}>
+                                                            {post.excerpt}
+                                                        </p>
 
-                                                        <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s', marginTop: 'auto' }}>Read Article <ArrowRight size={16} /></span>
+                                                        <span className="read-more-link" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--blue-primary, #2563eb)', fontWeight: 700, fontSize: 14, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: 'gap 0.2s', marginTop: 'auto' }}>
+                                                            Read Article <ArrowRight size={16} />
+                                                        </span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )
                                     })}
                                 </div>
@@ -215,33 +272,6 @@ export default function Blogs() {
                 </div>
             </section>
 
-            {/* ── MODAL POPUP (FULL POST) ── */}
-            {selectedPost && (
-                <div className="modal-backdrop" onClick={() => setSelectedPost(null)}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <button className="modal-close" onClick={() => setSelectedPost(null)}>
-                            <X size={22} />
-                        </button>
-
-                        <div style={{ marginBottom: 32, paddingBottom: 24, borderBottom: '1px solid #f1f5f9' }}>
-                            <span style={{ background: '#eff6ff', color: 'var(--blue-primary, #2563eb)', padding: '6px 14px', borderRadius: '8px', fontSize: 13, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", textTransform: 'uppercase', display: 'inline-block', marginBottom: 16 }}>
-                                {selectedPost.category}
-                            </span>
-                            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif", lineHeight: 1.2, marginBottom: 20 }}>
-                                {selectedPost.title}
-                            </h2>
-                            <div style={{ display: 'flex', gap: 16, alignItems: 'center', color: '#64748b', fontSize: 14.5, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Calendar size={16} /> {formatDate(selectedPost.created_at)}</span>
-                                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Clock size={16} /> {selectedPost.read_time || selectedPost.readTime || '5 min read'}</span>
-                            </div>
-                        </div>
-
-                        {/* Full Post Content (pre-wrap for text formatting, or dangerouslySetInnerHTML if using HTML from admin) */}
-                        <div className="post-body" dangerouslySetInnerHTML={{ __html: selectedPost.content || selectedPost.excerpt }} />
-                    </div>
-                </div>
-            )}
-
             <Footer />
 
             <style dangerouslySetInnerHTML={{
@@ -263,35 +293,6 @@ export default function Blogs() {
                 .category-scroll-container { width: 100%; max-width: 100%; overflow-x: hidden; }
                 .category-scroll { display: flex; gap: 12px; overflow-x: auto; padding: 4px 20px 12px; justify-content: flex-start; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
                 .category-scroll::-webkit-scrollbar { display: none; }
-                
-                /* Modal Styles */
-                .modal-backdrop {
-                    position: fixed; inset: 0; z-index: 1050;
-                    background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(6px);
-                    display: flex; align-items: center; justify-content: center; padding: 20px;
-                    animation: fadeIn 0.2s ease-out;
-                }
-                .modal-content {
-                    background: #ffffff; width: 100%; max-width: 860px; max-height: 90vh;
-                    border-radius: 24px; padding: 48px; position: relative;
-                    overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-                    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-                }
-                .modal-close {
-                    position: absolute; top: 24px; right: 24px;
-                    background: #f1f5f9; border: none; border-radius: 50%;
-                    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-                    cursor: pointer; color: #475569; transition: all 0.2s;
-                }
-                .modal-close:hover { background: #e2e8f0; color: #0f172a; transform: scale(1.05); }
-                
-                .post-body {
-                    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; color: #334155;
-                    line-height: 1.8; white-space: pre-wrap;
-                }
-
-                @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-                @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
                 @media (min-width: 768px) {
                     .category-scroll-container { width: auto; }
@@ -299,9 +300,8 @@ export default function Blogs() {
                 }
                 @media (max-width: 850px) {
                     .featured-card { flex-direction: column !important; }
-                    .featured-image { width: 100% !important; height: 250px !important; }
+                    .featured-image { width: 100% !important; min-height: 250px !important; }
                     .featured-content { width: 100% !important; padding: 32px 24px !important; }
-                    .modal-content { padding: 32px 24px; }
                 }
             `}} />
         </main>
