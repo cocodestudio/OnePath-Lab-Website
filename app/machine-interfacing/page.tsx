@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     'automated lab test results transfer'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/machine-interfacing',
+    canonical: 'https://onepathlab.com/machine-interfacing',
   },
   openGraph: {
     title: 'Bi-directional Machine Interfacing LIS | 200+ Analyzers Supported',
     description: 'Eliminate manual typing errors with automated machine interfacing for Sysmex, Mindray, Erba, Roche, and Abbott instruments.',
-    url: 'https://www.onepathlab.com/machine-interfacing',
+    url: 'https://onepathlab.com/machine-interfacing',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -87,9 +87,9 @@ export default function MachineInterfacingPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://www.onepathlab.com/lis-software' },
-          { '@type': 'ListItem', 'position': 3, 'name': 'Machine Interfacing', 'item': 'https://www.onepathlab.com/machine-interfacing' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://onepathlab.com/lis-software' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'Machine Interfacing', 'item': 'https://onepathlab.com/machine-interfacing' }
         ]
       },
       {
@@ -137,26 +137,10 @@ export default function MachineInterfacingPage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #cbd5e1',
-                borderLeft: '3px solid #2563eb',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#0f172a',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <Activity size={14} color="#2563eb" />
-                <span>[ LAB HARDWARE BRIDGE ]</span>
-                <span style={{ color: '#475569' }}>ASTM &amp; HL7 Protocol Middleware</span>
+              <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                <span className="badge-tag">[ LAB HARDWARE BRIDGE ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">ASTM &amp; HL7 Protocol Middleware</span>
               </div>
             </div>
 
@@ -236,24 +220,10 @@ export default function MachineInterfacingPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ PROTOCOL WORKFLOW ]</span>
-                  <span>How OnePath Middleware Operates</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ PROTOCOL WORKFLOW ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">How OnePath Middleware Operates</span>
                 </div>
               </div>
 
@@ -271,7 +241,7 @@ export default function MachineInterfacingPage() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: 24
             }}>
               {[
@@ -342,24 +312,10 @@ export default function MachineInterfacingPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ 200+ COMPATIBLE INSTRUMENTS ]</span>
-                  <span>Supported Hardware List</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ 200+ COMPATIBLE INSTRUMENTS ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Supported Hardware List</span>
                 </div>
               </div>
               <h2 style={{ fontSize: 'clamp(26px, 4vw, 38px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -367,7 +323,7 @@ export default function MachineInterfacingPage() {
               </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 20 }}>
               {supportedAnalyzers.map((group, idx) => (
                 <div key={idx} style={{
                   background: '#ffffff',

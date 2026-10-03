@@ -1,45 +1,33 @@
-'use client'
-import { useState, useEffect, useRef } from 'react'
+import type { Metadata } from 'next'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import LisStats from './LisStats'
 import {
-    ArrowRight, CheckCircle, Shield, Zap, Globe, Users,
+    ArrowRight, CheckCircle, Shield, Users,
     BarChart3, Smartphone, Lock, Server, Clock, FileText,
-    Microscope, GitBranch, CreditCard, MessageSquare, Star,
-    ChevronDown, Play, TrendingUp, Database, Cpu, Award,
-    Building2, Stethoscope, FlaskConical, AlertCircle, Check, X
+    Microscope, GitBranch, CreditCard, MessageSquare,
+    TrendingUp, Database, Cpu, FlaskConical, AlertCircle, Check, X
 } from 'lucide-react'
 
-/* ── Animated counter hook ── */
-function useCounter(end: number, duration: number = 2000, start: boolean = false) {
-    const [count, setCount] = useState(0)
-    useEffect(() => {
-        if (!start) return
-        let startTime: number
-        const step = (timestamp: number) => {
-            if (!startTime) startTime = timestamp
-            const progress = Math.min((timestamp - startTime) / duration, 1)
-            setCount(Math.floor(progress * end))
-            if (progress < 1) requestAnimationFrame(step)
-        }
-        requestAnimationFrame(step)
-    }, [end, duration, start])
-    return count
-}
-
-/* ── Intersection Observer hook ── */
-function useInView(threshold = 0.15) {
-    const ref = useRef<HTMLDivElement>(null)
-    const [inView, setInView] = useState(false)
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => { if (entry.isIntersecting) setInView(true) },
-            { threshold }
-        )
-        if (ref.current) observer.observe(ref.current)
-        return () => observer.disconnect()
-    }, [threshold])
-    return { ref, inView }
+export const metadata: Metadata = {
+    title: 'Best Cloud LIS Software in India | Laboratory Information System | OnePath Lab',
+    description: 'Modern, NABL ISO 15189 compliant cloud LIS software for diagnostic and pathology labs. Bi-directional machine interfacing for 200+ analyzers, WhatsApp report delivery, multi-branch control & DPDP compliance.',
+    alternates: {
+        canonical: 'https://onepathlab.com/lis-software',
+    },
+    openGraph: {
+        title: 'Best Cloud LIS Software in India | OnePath Lab',
+        description: 'Transform your pathology lab with automated machine interfacing, WhatsApp reports, and multi-tenant security.',
+        url: 'https://onepathlab.com/lis-software',
+        siteName: 'OnePath Lab',
+        locale: 'en_IN',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Cloud LIS Software for Modern Pathology Labs | OnePath Lab',
+        description: 'Automate your lab from patient registration to WhatsApp delivery in 4 minutes.',
+    },
 }
 
 /* ── Data ── */
@@ -57,7 +45,7 @@ const coreFeatures = [
 
 const securityFeatures = [
     { icon: <Lock size={20} />, title: 'AES-256 Encryption', desc: 'All patient data encrypted at rest using AES-256. In transit, TLS 1.3 — same standard used by major banks.' },
-    { icon: <Server size={20} />, title: 'AWS', desc: 'Enterprise cloud hosting powered by AWS infrastructure. Automated backups every 4 hours with 30-day retention.' },
+    { icon: <Server size={20} />, title: 'AWS Cloud Infrastructure', desc: 'Enterprise cloud hosting powered by AWS Mumbai (ap-south-1). Automated backups every 4 hours with 30-day retention.' },
     { icon: <Shield size={20} />, title: 'DPDP Act 2023 Compliant', desc: 'Fully aligned with India\'s Digital Personal Data Protection Act. Explicit consent flows, data minimization, and subject rights honored.' },
     { icon: <Database size={20} />, title: 'Multi-Tenant Isolation', desc: 'Every lab\'s data lives in a completely isolated namespace. Lab A can never access Lab B\'s data — enforced at the database level, not just UI.' },
     { icon: <Users size={20} />, title: 'Role-Based Access Control', desc: 'Granular permissions for Admin, Pathologist, Technician, Receptionist, Accountant, and Doctor roles. Each role sees only what it needs.' },
@@ -69,7 +57,7 @@ const multiTenancyPoints = [
     { title: 'Independent Customization', desc: 'Every lab can configure its own test masters, reference ranges, report templates, letterhead, logo, fee schedule, and branch structure — without affecting any other lab on the platform.' },
     { title: 'Separate Audit Trails', desc: 'Every action by every user in every lab is logged in an isolated, tamper-proof audit trail. Perfect for NABL audits. You can see who accessed what, when, and from which device.' },
     { title: 'Independent Backup & Recovery', desc: 'Backups are per-lab, not shared. If a restore is needed, only your lab\'s backup is restored — instantly, without impacting any other customer on the platform.' },
-    { title: 'Scaling Without Interference', desc: 'A sudden spike in patients at one lab (say, a disease outbreak) does not affect the performance of other labs. Each tenant gets dedicated compute resources during peak load.' },
+    { title: 'Scaling Without Interference', desc: 'A sudden spike in patients at one lab does not affect the performance of other labs. Each tenant gets dedicated compute resources during peak load.' },
 ]
 
 const comparisonData = [
@@ -92,14 +80,8 @@ const comparisonData = [
     { feature: 'Starting Price', onepath: '₹3,999 / 6 months', offline: '₹25,000 one-time', saas: '₹5,999 / year' },
 ]
 
-const testimonials = [
-    { name: 'Dr. Rakesh Gupta', lab: 'Gupta Diagnostics, Delhi', stars: 5, text: 'Switched from a 12-year-old offline software to OnePath in 2 days. The bi-directional interfacing alone saves my team 3 hours every single day. The NABL audit last month was the smoothest in our lab\'s history.' },
-    { name: 'Ms. Sunita Sharma', lab: 'Wellness Path Labs, Jaipur', stars: 5, text: 'We run 7 branches across Rajasthan. Managing them all from one screen felt impossible before OnePath. Now I can see which branch is slow, which technician is behind TAT, and our revenue — all in real time.' },
-    { name: 'Mr. Anil Mehta', lab: 'Apex Diagnostics, Mumbai', stars: 5, text: 'Our patient complaints about waiting for reports dropped to nearly zero after WhatsApp delivery went live. Patients actually text us to say thank you. Never happened before.' },
-]
-
 const integrations = [
-    { name: 'PayU', desc: 'Automate B2B wallet & counter payments', color: '#00bfa5' },
+    { name: 'PayU India', desc: 'Automate B2B wallet & counter payments', color: '#00bfa5' },
     { name: 'WhatsApp API', desc: 'Official report & bill delivery', color: '#25d366' },
     { name: 'ABHA / ABDM', desc: 'Health ID & Ayushman Bharat sync', color: '#0891b2' },
     { name: 'Sysmex', desc: 'Cell counter auto-interfacing', color: '#dc2626' },
@@ -109,7 +91,6 @@ const integrations = [
     { name: 'EkaCare', desc: 'Doctor prescription & PHR sync', color: '#059669' },
 ]
 
-/* ── Cell helper ── */
 function CompCell({ val }: { val: boolean | string }) {
     if (val === 'NA') return <span style={{ fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>N/A</span>
     if (typeof val === 'string') return <span style={{ fontSize: 13, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{val}</span>
@@ -119,22 +100,14 @@ function CompCell({ val }: { val: boolean | string }) {
 }
 
 export default function LISSoftware() {
-    const [activeTab, setActiveTab] = useState(0)
-    const statsRef = useInView()
-    // Realistic Stats Match
-    const c1 = useCounter(200, 200, statsRef.inView)
-    const c2 = useCounter(10, 1800, statsRef.inView)
-    const c3 = useCounter(99, 1600, statsRef.inView)
-    const c4 = useCounter(200, 1400, statsRef.inView)
-
     return (
         <>
             <Navbar />
             <main style={{ background: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflowX: 'hidden' }}>
 
             {/* ══════════════════════════════════════════
-          HERO
-      ══════════════════════════════════════════ */}
+                HERO
+            ══════════════════════════════════════════ */}
             <section style={{
                 position: 'relative',
                 padding: '160px 20px 100px',
@@ -142,33 +115,15 @@ export default function LISSoftware() {
                 overflow: 'hidden',
                 textAlign: 'center',
             }}>
-                {/* Blobs */}
                 <div style={{ position: 'absolute', width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(219,234,254,0.65) 0%, transparent 70%)', top: -200, right: -200, pointerEvents: 'none' }} />
                 <div style={{ position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(224,234,255,0.5) 0%, transparent 70%)', bottom: -100, left: -100, pointerEvents: 'none' }} />
 
                 <div style={{ maxWidth: 880, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-                    {/* Top badge */}
-                    <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 8,
-                        background: '#f8fafc',
-                        border: '1px solid #cbd5e1',
-                        borderLeft: '3px solid #2563eb',
-                        borderRadius: 6,
-                        padding: '7px 16px',
-                        fontSize: 12,
-                        fontWeight: 700,
-                        color: '#0f172a',
-                        letterSpacing: '0.04em',
-                        textTransform: 'uppercase',
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        marginBottom: 28,
-                        boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-                    }}>
-                        <span style={{ width: 6, height: 6, borderRadius: 2, background: '#22c55e', display: 'inline-block', animation: 'pulse-dot 2s infinite' }} />
-                        <span>[ ENTERPRISE LIS ]</span>
-                        <span style={{ color: '#475569' }}>India&apos;s Most Reliable Lab Information System</span>
+                    <div className="section-badge">
+                        <span style={{ width: 6, height: 6, borderRadius: 2, background: '#22c55e', display: 'inline-block', flexShrink: 0 }} />
+                        <span className="badge-tag">[ ENTERPRISE LIS ]</span>
+                        <span className="badge-dot" />
+                        <span className="badge-desc">India&apos;s Most Reliable Lab Information System</span>
                     </div>
 
                     <h1 style={{ fontSize: 'clamp(40px, 6.5vw, 76px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 24, letterSpacing: '-0.03em', lineHeight: 1.08 }}>
@@ -183,9 +138,7 @@ export default function LISSoftware() {
                         Automate every step — from patient registration to WhatsApp report delivery. NABL-compliant, machine-integrated, and built for Indian diagnostic labs of every size.
                     </p>
 
-                    {/* CTA buttons */}
                     <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 56 }}>
-                        {/* PRIMARY BUTTON — opens LIS software */}
                         <a
                             href="https://lis.onepathlab.com"
                             target="_blank"
@@ -199,25 +152,19 @@ export default function LISSoftware() {
                                 boxShadow: '0 8px 28px rgba(37,99,235,0.4)',
                                 transition: 'all 0.2s ease',
                             }}
-                            onMouseEnter={e => { e.currentTarget.style.background = '#1d4ed8'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 36px rgba(37,99,235,0.5)' }}
-                            onMouseLeave={e => { e.currentTarget.style.background = '#2563eb'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 28px rgba(37,99,235,0.4)' }}
                         >
                             <Server size={18} />
                             Open LIS Software
                             <ArrowRight size={16} />
                         </a>
 
-                        <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#0f172a', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid #cbd5e1', boxShadow: '0 1px 3px rgba(15,23,42,0.04)', transition: 'all 0.2s ease' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#0f172a'; e.currentTarget.style.transform = 'translateY(0)' }}
-                        >
+                        <a href="/trial" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#0f172a', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid #cbd5e1', boxShadow: '0 1px 3px rgba(15,23,42,0.04)', transition: 'all 0.2s ease' }}>
                             Start 7-Day Free Trial
                         </a>
                     </div>
 
-                    {/* Trust badges */}
                     <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-                        {['NABL ISO 15189 Compliant', 'DPDP Act 2023 Aligned', 'AWS', 'ABHA Integrated'].map(b => (
+                        {['NABL ISO 15189 Compliant', 'DPDP Act 2023 Aligned', 'AWS Cloud India', 'ABHA Integrated'].map(b => (
                             <div key={b} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 6, padding: '6px 14px', fontSize: 12, fontWeight: 700, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
                                 <CheckCircle size={13} color="#16a34a" /> {b}
                             </div>
@@ -227,36 +174,20 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          STATS
-      ══════════════════════════════════════════ */}
-            <section style={{ padding: '0 20px', marginTop: '-36px', position: 'relative', zIndex: 10 }}>
-                <div ref={statsRef.ref} style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', background: '#ffffff', borderRadius: 20, border: '1px solid #e2e8f0', boxShadow: '0 20px 60px -15px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
-                    {[
-                        { value: c1, suffix: '+', label: 'Labs Onboarded', sub: 'Across India & abroad', color: '#2563eb' },
-                        { value: c2, suffix: '0K+', label: 'Reports / Month', sub: 'Processed seamlessly', color: '#7c3aed' },
-                        { value: c3, suffix: '.9%', label: 'Uptime SLA', sub: 'Enterprise reliability', color: '#059669' },
-                        { value: c4, suffix: '+', label: 'Analyzer Models', sub: 'Machine interfacing', color: '#d97706' },
-                    ].map((s, i) => (
-                        <div key={i} style={{ padding: '32px 20px', textAlign: 'center', borderRight: i < 3 ? '1px solid #f1f5f9' : 'none' }}>
-                            <div style={{ fontSize: 40, fontWeight: 800, color: s.color, fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 6 }}>
-                                {s.value}{s.suffix}
-                            </div>
-                            <div style={{ fontSize: 14, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 3 }}>{s.label}</div>
-                            <div style={{ fontSize: 12, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>{s.sub}</div>
-                        </div>
-                    ))}
-                </div>
-            </section>
+                STATS (Animated Client Component)
+            ══════════════════════════════════════════ */}
+            <LisStats />
 
             {/* ══════════════════════════════════════════
-          CORE FEATURES
-      ══════════════════════════════════════════ */}
+                CORE FEATURES
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
-                            <span>[ CORE FEATURES ]</span>
-                            <span style={{ color: '#475569' }}>Everything Your Lab Needs</span>
+                        <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                            <span className="badge-tag">[ CORE FEATURES ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Everything Your Lab Needs</span>
                         </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,46px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Everything Your Lab Needs — In One Platform
@@ -269,9 +200,7 @@ export default function LISSoftware() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: 18 }}>
                         {coreFeatures.map((f, i) => (
                             <div key={i}
-                                style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 18, padding: '28px', transition: 'all 0.25s ease', cursor: 'default' }}
-                                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = f.color + '40'; el.style.boxShadow = '0 12px 40px -8px rgba(0,0,0,0.1)'; el.style.transform = 'translateY(-3px)' }}
-                                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = '#e2e8f0'; el.style.boxShadow = 'none'; el.style.transform = 'translateY(0)' }}
+                                style={{ background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: 18, padding: '28px', transition: 'all 0.25s ease' }}
                             >
                                 <div style={{ width: 48, height: 48, borderRadius: 13, background: f.bg, color: f.color, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>{f.icon}</div>
                                 <h3 style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 10 }}>{f.title}</h3>
@@ -283,24 +212,25 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          MULTI-TENANCY & DATA SAFETY
-      ══════════════════════════════════════════ */}
+                MULTI-TENANCY & DATA SAFETY
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: '#f8fafc' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }} className="split-grid">
 
                         {/* Left — Multi-tenancy */}
                         <div>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6d28d9', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #7c3aed', padding: '7px 16px', borderRadius: 6, marginBottom: 20, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
-                                <span>[ MULTI-TENANCY ]</span>
-                                <span style={{ color: '#475569' }}>Zero Cross-Lab Data Leakage</span>
+                            <div className="section-badge" style={{ borderLeftColor: '#7c3aed' }}>
+                                <span className="badge-tag">[ MULTI-TENANCY ]</span>
+                                <span className="badge-dot" />
+                                <span className="badge-desc">Zero Cross-Lab Data Leakage</span>
                             </div>
                             <h2 style={{ fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
                                 Every Lab Gets Its Own
                                 <span style={{ color: '#7c3aed' }}> Isolated Universe</span>
                             </h2>
                             <p style={{ fontSize: 15.5, color: '#64748b', lineHeight: 1.8, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 28 }}>
-                                200+ labs run on the same OnePath infrastructure — yet no lab can ever see, touch, or affect another lab's data. This is enforced at the database level, not just the UI.
+                                200+ labs run on the same OnePath infrastructure — yet no lab can ever see, touch, or affect another lab&apos;s data. This is enforced at the database level, not just the UI.
                             </p>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                                 {multiTenancyPoints.map((p, i) => (
@@ -342,7 +272,7 @@ export default function LISSoftware() {
                                     { label: 'Uptime', value: '99.9%', icon: <TrendingUp size={16} />, color: '#059669', bg: '#ecfdf5' },
                                     { label: 'Backup Freq.', value: 'Every 4h', icon: <Clock size={16} />, color: '#2563eb', bg: '#eff6ff' },
                                     { label: 'Encryption', value: 'AES-256', icon: <Lock size={16} />, color: '#7c3aed', bg: '#f5f3ff' },
-                                    { label: 'Data Region', value: 'India Only', icon: <Globe size={16} />, color: '#d97706', bg: '#fffbeb' },
+                                    { label: 'Data Region', value: 'India Only', icon: <Server size={16} />, color: '#d97706', bg: '#fffbeb' },
                                 ].map((stat, i) => (
                                     <div key={i} style={{ background: '#ffffff', borderRadius: 14, padding: '18px', border: '1px solid #e2e8f0', display: 'flex', gap: 10, alignItems: 'center' }}>
                                         <div style={{ width: 36, height: 36, borderRadius: 10, background: stat.bg, color: stat.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{stat.icon}</div>
@@ -359,14 +289,15 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          DATA SAFETY
-      ══════════════════════════════════════════ */}
+                DATA SAFETY & SECURITY
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 56 }}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#166534', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #16a34a', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
-                            <span>[ ENTERPRISE SECURITY ]</span>
-                            <span style={{ color: '#475569' }}>Data Safety &amp; Compliance</span>
+                        <div className="section-badge" style={{ borderLeftColor: '#16a34a' }}>
+                            <span className="badge-tag">[ ENTERPRISE SECURITY ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Data Safety &amp; Compliance</span>
                         </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Your Patient Data is Sacred to Us
@@ -378,10 +309,7 @@ export default function LISSoftware() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px,1fr))', gap: 18 }}>
                         {securityFeatures.map((f, i) => (
-                            <div key={i} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 18, padding: '28px', display: 'flex', gap: 18, alignItems: 'flex-start', transition: 'all 0.2s ease' }}
-                                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#ffffff'; el.style.boxShadow = '0 8px 32px -8px rgba(0,0,0,0.1)'; el.style.borderColor = '#bfdbfe' }}
-                                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#f8fafc'; el.style.boxShadow = 'none'; el.style.borderColor = '#e2e8f0' }}
-                            >
+                            <div key={i} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 18, padding: '28px', display: 'flex', gap: 18, alignItems: 'flex-start', transition: 'all 0.2s ease' }}>
                                 <div style={{ width: 44, height: 44, borderRadius: 12, background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{f.icon}</div>
                                 <div>
                                     <h3 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 7 }}>{f.title}</h3>
@@ -407,14 +335,15 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          COMPARISON TABLE
-      ══════════════════════════════════════════ */}
+                COMPARISON TABLE
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: '#f8fafc' }}>
                 <div style={{ maxWidth: 1000, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 56 }}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
-                            <span>[ BENCHMARK COMPARISON ]</span>
-                            <span style={{ color: '#475569' }}>Why Labs Choose OnePath</span>
+                        <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                            <span className="badge-tag">[ BENCHMARK COMPARISON ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Why Labs Choose OnePath</span>
                         </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             Why Labs Choose OnePath Over Alternatives
@@ -424,7 +353,6 @@ export default function LISSoftware() {
                     <div style={{ background: '#ffffff', borderRadius: 20, border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 8px 40px -12px rgba(0,0,0,0.1)' }}>
                         <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', width: '100%' }}>
                             <div style={{ minWidth: 620 }}>
-                                {/* Header */}
                                 <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', padding: '16px 24px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
                                     <div style={{ fontSize: 12, fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Feature</div>
                                     <div style={{ textAlign: 'center', fontSize: 14, fontWeight: 800, color: '#2563eb', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>✦ OnePath</div>
@@ -447,14 +375,15 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          WORKFLOW
-      ══════════════════════════════════════════ */}
+                WORKFLOW PIPELINE
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: '#ffffff' }}>
                 <div style={{ maxWidth: 900, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#1d4ed8', background: '#f8fafc', border: '1px solid #cbd5e1', borderLeft: '3px solid #2563eb', padding: '7px 16px', borderRadius: 6, marginBottom: 16, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 1px 3px rgba(15,23,42,0.04)' }}>
-                            <span>[ 4-MINUTE PIPELINE ]</span>
-                            <span style={{ color: '#475569' }}>Automated Laboratory Workflow</span>
+                        <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                            <span className="badge-tag">[ 4-MINUTE PIPELINE ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Automated Laboratory Workflow</span>
                         </div>
                         <h2 style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", letterSpacing: '-0.02em', marginBottom: 14 }}>
                             From Registration to Delivery in 4 Minutes
@@ -474,7 +403,7 @@ export default function LISSoftware() {
                             { step: '05', icon: <FileText size={18} />, title: 'Pathologist Digital Approval', time: '< 2 minutes', desc: 'Doctor reviews draft report on mobile or desktop. Digital signature applied. Report locked — no edits possible post-approval.', color: '#0891b2' },
                             { step: '06', icon: <MessageSquare size={18} />, title: 'Instant Report Delivery', time: '< 10 seconds', desc: 'Branded PDF automatically sent via WhatsApp + SMS + Email. Patient portal updated. Referring doctor\'s portal updated. Corporate client API notified.', color: '#dc2626' },
                         ].map((w, i) => (
-                            <div key={i} style={{ position: 'relative', marginBottom: i < 5 ? 0 : 0, display: 'flex', gap: 24, paddingBottom: i < 5 ? 0 : 0 }}>
+                            <div key={i} style={{ position: 'relative', display: 'flex', gap: 24 }}>
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, marginLeft: -48 }}>
                                     <div style={{ width: 40, height: 40, borderRadius: '50%', background: w.color, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid #ffffff', boxShadow: `0 0 0 3px ${w.color}30`, zIndex: 1, flexShrink: 0 }}>
                                         {w.icon}
@@ -496,8 +425,8 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          INTEGRATIONS
-      ══════════════════════════════════════════ */}
+                INTEGRATIONS
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -506,10 +435,7 @@ export default function LISSoftware() {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 16 }}>
                         {integrations.map((int, i) => (
-                            <div key={i} style={{ background: '#ffffff', borderRadius: 16, padding: '22px 20px', border: '1px solid #e2e8f0', display: 'flex', gap: 14, alignItems: 'center', transition: 'all 0.2s ease' }}
-                                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px -6px rgba(0,0,0,0.1)' }}
-                                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none' }}
-                            >
+                            <div key={i} style={{ background: '#ffffff', borderRadius: 16, padding: '22px 20px', border: '1px solid #e2e8f0', display: 'flex', gap: 14, alignItems: 'center', transition: 'all 0.2s ease' }}>
                                 <div style={{ width: 40, height: 40, borderRadius: 10, background: int.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                                     <div style={{ width: 16, height: 16, borderRadius: 4, background: int.color }} />
                                 </div>
@@ -524,16 +450,17 @@ export default function LISSoftware() {
             </section>
 
             {/* ══════════════════════════════════════════
-          FINAL CTA
-      ══════════════════════════════════════════ */}
+                FINAL CTA
+            ══════════════════════════════════════════ */}
             <section style={{ padding: '96px 20px', background: 'linear-gradient(135deg, #1e40af 0%, #2563eb 60%, #3b82f6 100%)', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)', top: -200, right: -100 }} />
                 <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)', bottom: -100, left: -50 }} />
 
                 <div style={{ maxWidth: 740, margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.25)', borderLeft: '3px solid #4ade80', borderRadius: 6, padding: '7px 18px', fontSize: 13, fontWeight: 700, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 28, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                        <span style={{ width: 6, height: 6, borderRadius: 2, background: '#4ade80', display: 'inline-block' }} />
-                        <span>No credit card · 7-day free trial · Cancel anytime</span>
+                    <div className="section-badge" style={{ borderLeftColor: '#4ade80', background: 'rgba(255,255,255,0.15)', borderColor: 'rgba(255,255,255,0.25)', color: '#ffffff' }}>
+                        <span className="badge-tag" style={{ color: '#4ade80' }}>7-DAY FREE TRIAL</span>
+                        <span className="badge-dot" />
+                        <span className="badge-desc" style={{ color: '#ffffff' }}>No credit card · Cancel anytime</span>
                     </div>
 
                     <h2 style={{ fontSize: 'clamp(32px,5vw,56px)', fontWeight: 800, color: '#ffffff', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 16, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
@@ -547,8 +474,6 @@ export default function LISSoftware() {
                     <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
                         <a href="https://lis.onepathlab.com" target="_blank" rel="noreferrer"
                             style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#ffffff', color: '#1d4ed8', textDecoration: 'none', fontWeight: 800, fontSize: 16, padding: '16px 36px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", boxShadow: '0 8px 32px rgba(0,0,0,0.2)', transition: 'all 0.2s ease' }}
-                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.3)' }}
-                            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)' }}
                         >
                             <Server size={18} />
                             Open LIS Software
@@ -556,8 +481,6 @@ export default function LISSoftware() {
                         </a>
                         <a href="/trial"
                             style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,0.15)', color: '#ffffff', textDecoration: 'none', fontWeight: 600, fontSize: 16, padding: '15px 32px', borderRadius: 8, fontFamily: "'Plus Jakarta Sans',sans-serif", border: '1.5px solid rgba(255,255,255,0.3)', transition: 'all 0.2s ease' }}
-                            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)' }}
-                            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)' }}
                         >
                             Start 7-Day Free Trial
                         </a>
@@ -568,15 +491,11 @@ export default function LISSoftware() {
             <Footer />
 
             <style>{`
-        @media (max-width: 768px) {
-          .split-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-        }
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-      `}</style>
-        </main>
+                @media (max-width: 768px) {
+                    .split-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+                }
+            `}</style>
+            </main>
         </>
     )
 }

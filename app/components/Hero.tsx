@@ -92,6 +92,7 @@ export default function Hero() {
                 transform: 'none',
                 transition: 'transform 0.4s ease-out',
                 overflow: 'hidden',
+                willChange: 'transform',
             }} />
             <div ref={orb2Ref} style={{
                 position: 'absolute', bottom: '5%', right: '-8%', width: 'min(450px, 80vw)', height: 'min(450px, 80vw)',
@@ -100,43 +101,40 @@ export default function Hero() {
                 transform: 'none',
                 transition: 'transform 0.4s ease-out',
                 overflow: 'hidden',
+                willChange: 'transform',
             }} />
 
             <div className="container hero-container" style={{ position: 'relative', zIndex: 2, padding: '0 clamp(16px, 3.5vw, 40px)', maxWidth: 1440, width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
 
                 {/* ─── Modern Sharp Enterprise Eyebrow ─── */}
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-                    <div style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 9,
-                        background: '#f8fafc',
-                        border: '1px solid #cbd5e1',
-                        borderLeft: '3px solid #2563eb',
-                        borderRadius: 8,
-                        padding: '8px 18px', fontSize: 13, fontWeight: 700, color: '#0f172a',
-                        letterSpacing: '0.02em',
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    }}>
-                        <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#2563eb' }} />
-                        <span>Govt. ABDM (ABHA) M1 Certified · 200+ Analyzers Sync · Dual AI Engine</span>
+                    <div className="section-badge">
+                        <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#2563eb', flexShrink: 0 }} />
+                        <span className="badge-tag">Govt. ABDM M1 Certified</span>
+                        <span className="badge-dot" />
+                        <span className="badge-desc">200+ Analyzers Sync · Dual AI Engine</span>
                     </div>
                 </div>
 
-                {/* ─── SEO High-Intent Headline ─── */}
+                {/* ─── SEO High-Intent Headline (Single Unified H1) ─── */}
                 <div className="hero-text-area" style={{ maxWidth: 1040, margin: '0 auto', textAlign: 'center', paddingBottom: 32 }}>
-                    <h1 className="hero-title-top" style={{
-                        fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 800, lineHeight: 1.14,
-                        color: '#0f172a', marginBottom: 6, letterSpacing: '-0.035em',
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    }}>
-                        India&apos;s #1 AI &amp; ABDM-Ready
-                    </h1>
+                    <h1 className="hero-main-h1" style={{ margin: 0, padding: 0 }}>
+                        <span className="hero-title-top" style={{
+                            display: 'block',
+                            fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 800, lineHeight: 1.14,
+                            color: '#0f172a', marginBottom: 6, letterSpacing: '-0.035em',
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        }}>
+                            India&apos;s #1 AI &amp; ABDM-Ready
+                        </span>
 
-                    <h1 className="hero-title-bottom shimmer-text" style={{
-                        fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 900, lineHeight: 1.14,
-                        marginBottom: 20, letterSpacing: '-0.035em', fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    }}>
-                        Pathology Lab Software &amp; Cloud LIS
+                        <span className="hero-title-bottom shimmer-text" style={{
+                            display: 'block',
+                            fontSize: 'clamp(30px, 6.2vw, 68px)', fontWeight: 900, lineHeight: 1.14,
+                            marginBottom: 20, letterSpacing: '-0.035em', fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        }}>
+                            Pathology Lab Software &amp; Cloud LIS
+                        </span>
                     </h1>
 
                     {/* ─── Sharp Enterprise Feature Chips ─── */}

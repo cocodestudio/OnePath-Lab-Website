@@ -62,24 +62,10 @@ export default function Workflow() {
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 60px)', padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
-                        <div style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 8,
-                            background: '#f8fafc',
-                            border: '1px solid #cbd5e1',
-                            borderLeft: '3px solid #2563eb',
-                            color: '#0f172a',
-                            padding: '7px 16px',
-                            borderRadius: 6,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            letterSpacing: '0.04em',
-                            textTransform: 'uppercase',
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        }}>
-                            <span>[ LIFECYCLE ]</span>
-                            <span style={{ color: '#475569' }}>End-to-End Operational Pipeline</span>
+                        <div className="section-badge">
+                            <span className="badge-tag">[ LIFECYCLE ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">End-to-End Operational Pipeline</span>
                         </div>
                     </div>
                     <h2 style={{

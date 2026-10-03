@@ -270,8 +270,8 @@ export default function Footer() {
                 __html: `
                 .footer-grid {
                     display: grid;
-                    grid-template-columns: 1.4fr 1.1fr 1fr 0.7fr 0.8fr;
-                    gap: 36px;
+                    grid-template-columns: 1.5fr 1.1fr 1fr 0.85fr 0.85fr 0.85fr;
+                    gap: 32px;
                 }
 
                 .footer-heading {
@@ -319,17 +319,24 @@ export default function Footer() {
                     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
                 }
 
-                @media (max-width: 1024px) {
+                @media (max-width: 1240px) {
                     .footer-grid {
-                        grid-template-columns: 1fr 1fr;
+                        grid-template-columns: repeat(3, 1fr);
                         row-gap: 36px;
                     }
                 }
 
-                @media (max-width: 600px) {
+                @media (max-width: 800px) {
+                    .footer-grid {
+                        grid-template-columns: 1fr 1fr;
+                        row-gap: 32px;
+                    }
+                }
+
+                @media (max-width: 540px) {
                     .footer-grid {
                         grid-template-columns: 1fr;
-                        gap: 32px;
+                        gap: 28px;
                     }
                 }
             `}} />

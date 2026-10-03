@@ -4,6 +4,7 @@ import './globals.css'
 import { TopProgressBar } from './components/TopProgressBar'
 import { SmoothScrolling } from './components/SmoothScrolling'
 import GoogleAnalytics from './components/GoogleAnalytics'
+import WhatsAppWidget from './components/WhatsAppWidget'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -152,6 +153,7 @@ export default function RootLayout({
         <SmoothScrolling>
           {children}
         </SmoothScrolling>
+        <WhatsAppWidget />
       </body>
     </html>
   )

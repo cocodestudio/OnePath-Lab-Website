@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     'affordable pathology lims'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/why-onepath',
+    canonical: 'https://onepathlab.com/why-onepath',
   },
   openGraph: {
     title: 'Why OnePath Lab LIS? | Cloud LIS Built for Modern Diagnostic Centers',
     description: 'Stop data loss, eliminate manual typing errors, and earn Govt. ABDM DHIS incentives. Discover why 200+ labs trust OnePath Cloud LIS.',
-    url: 'https://www.onepathlab.com/why-onepath',
+    url: 'https://onepathlab.com/why-onepath',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -69,8 +69,8 @@ export default function WhyOnePathPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Why OnePath', 'item': 'https://www.onepathlab.com/why-onepath' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Why OnePath', 'item': 'https://onepathlab.com/why-onepath' }
         ]
       },
       {
@@ -121,25 +121,10 @@ export default function WhyOnePathPage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #cbd5e1',
-                borderLeft: '3px solid #2563eb',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#0f172a',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <span>[ STRATEGIC ADVANTAGE ]</span>
-                <span style={{ color: '#475569' }}>Why 200+ Pathology Labs Choose OnePath</span>
+              <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                <span className="badge-tag">[ STRATEGIC ADVANTAGE ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">Why 200+ Pathology Labs Choose OnePath</span>
               </div>
             </div>
 
@@ -219,24 +204,10 @@ export default function WhyOnePathPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#fef2f2',
-                  border: '1px solid #fecaca',
-                  borderLeft: '3px solid #dc2626',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#991b1b',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ CRITICAL VULNERABILITIES ]</span>
-                  <span>Why Offline Software Fails Pathology Labs</span>
+                <div className="section-badge" style={{ borderLeftColor: '#dc2626', background: '#fef2f2', borderColor: '#fecaca' }}>
+                  <span className="badge-tag" style={{ color: '#dc2626' }}>[ CRITICAL VULNERABILITIES ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc" style={{ color: '#991b1b' }}>Why Offline Software Fails Pathology Labs</span>
                 </div>
               </div>
 
@@ -353,24 +324,10 @@ export default function WhyOnePathPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ ARCHITECTURE MATRIX ]</span>
-                  <span>Head-to-Head Capability Comparison</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ ARCHITECTURE MATRIX ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Head-to-Head Capability Comparison</span>
                 </div>
               </div>
 
@@ -504,24 +461,10 @@ export default function WhyOnePathPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 44 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ COMMON QUESTIONS ]</span>
-                  <span>Switching to OnePath</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ COMMON QUESTIONS ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Switching to OnePath</span>
                 </div>
               </div>
               <h2 style={{ fontSize: 'clamp(26px, 4vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>

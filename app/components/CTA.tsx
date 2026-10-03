@@ -46,25 +46,10 @@ export default function CTA() {
 
                 {/* Sharp Tag */}
                 <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
-                    <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 8,
-                        background: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        borderLeft: '3px solid #16a34a',
-                        borderRadius: 6,
-                        padding: '7px 16px',
-                        fontSize: 12,
-                        fontWeight: 700,
-                        letterSpacing: '0.04em',
-                        textTransform: 'uppercase',
-                        color: '#0f172a',
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
-                    }}>
-                        <span style={{ width: 7, height: 7, background: '#16a34a', borderRadius: '50%' }} />
-                        <span>Instant Lab Onboarding · Zero Setup Fees</span>
+                    <div className="section-badge" style={{ borderLeftColor: '#16a34a' }}>
+                        <span className="badge-tag" style={{ color: '#16a34a' }}>[ ONBOARDING ]</span>
+                        <span className="badge-dot" />
+                        <span className="badge-desc">Zero Setup Fees · 24-Hour Migration</span>
                     </div>
                 </div>
 

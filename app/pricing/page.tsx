@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { 
-  CheckCircle2, XCircle, ArrowRight, ShieldCheck, Zap, 
-  HelpCircle, Phone, Mail, Building2, Sparkles, MessageCircle, 
+import {
+  CheckCircle2, XCircle, ArrowRight, ShieldCheck, Zap,
+  HelpCircle, Phone, Mail, Building2, Sparkles, MessageCircle,
   Layers, Database, Clock, Award, Activity, Cpu
 } from 'lucide-react'
 
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     'multi year pathology software licensing'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/pricing',
+    canonical: 'https://onepathlab.com/pricing',
   },
   openGraph: {
     title: 'OnePath Lab LIS Pricing | Transparent Pathology Software Plans',
     description: 'No per-test fees, no expensive server AMC. Explore our 6-Month, 1-Year, and Custom Multi-Year Enterprise Organization plans.',
-    url: 'https://www.onepathlab.com/pricing',
+    url: 'https://onepathlab.com/pricing',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -69,8 +69,8 @@ export default function PricingPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Pricing', 'item': 'https://www.onepathlab.com/pricing' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Pricing', 'item': 'https://onepathlab.com/pricing' }
         ]
       },
       {
@@ -89,7 +89,7 @@ export default function PricingPage() {
             'priceCurrency': 'INR',
             'priceValidUntil': '2027-12-31',
             'availability': 'https://schema.org/InStock',
-            'url': 'https://www.onepathlab.com/pricing'
+            'url': 'https://onepathlab.com/pricing'
           },
           {
             '@type': 'Offer',
@@ -98,7 +98,7 @@ export default function PricingPage() {
             'priceCurrency': 'INR',
             'priceValidUntil': '2027-12-31',
             'availability': 'https://schema.org/InStock',
-            'url': 'https://www.onepathlab.com/pricing'
+            'url': 'https://onepathlab.com/pricing'
           }
         ]
       },
@@ -126,9 +126,9 @@ export default function PricingPage() {
       <Navbar />
 
       <main style={{ background: '#ffffff', minHeight: '100vh', paddingTop: 68, overflowX: 'hidden' }}>
-        
+
         {/* ─── Hero Section (Full-Width Edge-to-Edge) ─── */}
-        <section style={{ 
+        <section style={{
           padding: '72px 0 56px',
           background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
           borderBottom: '1px solid #e2e8f0',
@@ -136,27 +136,12 @@ export default function PricingPage() {
           boxSizing: 'border-box'
         }}>
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
-            
+
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #cbd5e1',
-                borderLeft: '3px solid #16a34a',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#0f172a',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <span>[ TRANSPARENT PRICING ]</span>
-                <span style={{ color: '#475569' }}>Zero Hidden Machine Fees · 100% Predictable SaaS</span>
+              <div className="section-badge" style={{ borderLeftColor: '#16a34a' }}>
+                <span className="badge-tag">[ TRANSPARENT PRICING ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">Zero Hidden Machine Fees · 100% Predictable SaaS</span>
               </div>
             </div>
 
@@ -219,14 +204,14 @@ export default function PricingPage() {
         {/* ─── The 3 Plans Cards (6-Month, 1-Year, Enterprise) ─── */}
         <section style={{ padding: '80px 0 96px', background: '#ffffff', width: '100%', boxSizing: 'border-box' }}>
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
-            
+
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 310px), 1fr))',
               gap: 28,
               alignItems: 'stretch'
             }}>
-              
+
               {/* ─── Plan 1: 6-Month Plan ─── */}
               <div style={{
                 background: '#ffffff',
@@ -399,8 +384,6 @@ export default function PricingPage() {
                     'Multi-Counter Front-Desk Reception Terminals with Role Privileges',
                     'Advanced Reagent Stock Tracking with Cold Chain (2-8°C) Logs',
                     'Priority High-Speed Server Cluster for Instant PDF Rendering',
-                    'Free VIP Onboarding & Technician Video Training',
-                    '1-Year Immutable Cloud Backup & NABL Audit Trail Retention',
                     'Priority 15-Minute Support SLA via Phone & WhatsApp',
                   ].map((feat, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: i === 0 ? '#0f172a' : '#334155', fontWeight: i === 0 ? 800 : 500, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -550,27 +533,13 @@ export default function PricingPage() {
         {/* ─── Comprehensive 30+ Feature Comparison Matrix ─── */}
         <section style={{ padding: '80px 0', background: '#f8fafc', width: '100%', boxSizing: 'border-box' }}>
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
-            
+
             <div style={{ textAlign: 'center', marginBottom: 48 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ GRANULAR BREAKDOWN ]</span>
-                  <span>Feature Comparison Matrix</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ GRANULAR BREAKDOWN ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Feature Comparison Matrix</span>
                 </div>
               </div>
 
@@ -609,7 +578,7 @@ export default function PricingPage() {
                       { f: 'Daily Patient Registrations', p6: 'Unlimited', p1: 'Unlimited', pe: 'Unlimited' },
                       { f: 'Diagnostic Report Generation', p6: 'Unlimited', p1: 'Unlimited', pe: 'Unlimited' },
                       { f: 'Concurrent User Logins', p6: 'Unlimited', p1: 'Unlimited', pe: 'Unlimited' },
-                      { f: 'Multi-Branch Hub & Spoke Server', p6: 'Up to 3 centers', p1: 'Unlimited branches', pe: 'Unlimited branches + Multi-city' },
+                      { f: 'Multi-Branch Hub & Spoke Server', p6: 'Up to 3 centers', p1: '', pe: 'Unlimited branches + Multi-city' },
                       { f: 'Automated Cloud Backup', p6: 'Daily', p1: 'Daily + Hourly snapshots', pe: 'Continuous real-time replication' },
 
                       { cat: 'Analyzer Interfacing & Hardware' },
@@ -628,7 +597,7 @@ export default function PricingPage() {
                       { f: 'Govt. DHIS Cash Incentives Reporting', p6: 'Basic', p1: 'Advanced real-time tracking', pe: 'Automated treasury reconciliation' },
 
                       { cat: 'AI Clinical Copilot & Safety' },
-                      { f: 'AI Out-of-Range Clinical Impression', p6: 'Standard', p1: 'Advanced Gemini + Groq', pe: 'Customized clinical rules' },
+                      { f: 'AI Out-of-Range Clinical Impression', p6: 'Standard', p1: 'Advanced AI', pe: 'Customized clinical rules' },
                       { f: 'Historical Delta Checks against Past Tests', p6: 'No', p1: 'Yes (Auto-flagged)', pe: 'Yes (Multi-facility historical data)' },
                       { f: 'Critical Panic Value Alert Warning', p6: 'No', p1: 'Yes (Instant alert)', pe: 'Yes (SMS, WhatsApp, Audio alarm)' },
 
@@ -683,27 +652,13 @@ export default function PricingPage() {
         {/* ─── Pricing FAQs ─── */}
         <section style={{ padding: '80px 0', background: '#ffffff', width: '100%', boxSizing: 'border-box' }}>
           <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 40px)', boxSizing: 'border-box' }}>
-            
+
             <div style={{ textAlign: 'center', marginBottom: 44 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ PRICING CLARIFICATIONS ]</span>
-                  <span>Everything Answered</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ PRICING CLARIFICATIONS ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Everything Answered</span>
                 </div>
               </div>
               <h2 style={{ fontSize: 'clamp(26px, 4vw, 36px)', fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>

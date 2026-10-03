@@ -229,3 +229,63 @@ html.lenis, html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* ─── Global Responsive Section Badge ─── */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-left: 3px solid #2563eb;
+  color: #0f172a;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-plus-jakarta), sans-serif;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.section-badge .badge-tag {
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.section-badge .badge-dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #94a3b8;
+  flex-shrink: 0;
+}
+
+.section-badge .badge-desc {
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .section-badge {
+    padding: 5px 12px;
+    font-size: 11px;
+    gap: 6px;
+    max-width: calc(100vw - 32px);
+    width: fit-content;
+  }
+  .section-badge .badge-desc,
+  .section-badge .badge-dot {
+    display: none !important;
+  }
+}

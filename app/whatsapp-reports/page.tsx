@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     'pathology whatsapp software'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/whatsapp-reports',
+    canonical: 'https://onepathlab.com/whatsapp-reports',
   },
   openGraph: {
     title: 'Automated WhatsApp Reports & QR Verification | OnePath Lab',
     description: 'Instant PDF report delivery on WhatsApp with digital signatures and smartphone QR verification in 4 seconds.',
-    url: 'https://www.onepathlab.com/whatsapp-reports',
+    url: 'https://onepathlab.com/whatsapp-reports',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -67,9 +67,9 @@ export default function WhatsappReportsPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://www.onepathlab.com/lis-software' },
-          { '@type': 'ListItem', 'position': 3, 'name': 'WhatsApp Reports & QR', 'item': 'https://www.onepathlab.com/whatsapp-reports' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://onepathlab.com/lis-software' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'WhatsApp Reports & QR', 'item': 'https://onepathlab.com/whatsapp-reports' }
         ]
       },
       {
@@ -117,26 +117,10 @@ export default function WhatsappReportsPage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #bfdbfe',
-                borderLeft: '3px solid #2563eb',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#1d4ed8',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <MessageSquare size={14} color="#2563eb" />
-                <span>[ PATIENT ENGAGEMENT SUITE ]</span>
-                <span style={{ color: '#475569' }}>Official Meta WhatsApp Business API Cloud</span>
+              <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                <span className="badge-tag">[ PATIENT ENGAGEMENT SUITE ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">Official Meta WhatsApp Business API Cloud</span>
               </div>
             </div>
 
@@ -216,24 +200,10 @@ export default function WhatsappReportsPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #2563eb',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ MODERN PATIENT EXPERIENCE ]</span>
-                  <span>Why Labs Love WhatsApp Dispatch</span>
+                <div className="section-badge" style={{ borderLeftColor: '#2563eb' }}>
+                  <span className="badge-tag">[ MODERN PATIENT EXPERIENCE ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">Why Labs Love WhatsApp Dispatch</span>
                 </div>
               </div>
 
@@ -251,7 +221,7 @@ export default function WhatsappReportsPage() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: 24
             }}>
               {[

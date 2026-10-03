@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     'nabl abdm pathology'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/abdm-abha',
+    canonical: 'https://onepathlab.com/abdm-abha',
   },
   openGraph: {
     title: 'Govt. ABDM & ABHA M1 Certified LIS | OnePath Lab',
     description: 'Empower your laboratory with official ABDM M1 integration. Issue ABHA IDs, push to National Health Locker, and claim Govt. DHIS cash rewards.',
-    url: 'https://www.onepathlab.com/abdm-abha',
+    url: 'https://onepathlab.com/abdm-abha',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -68,9 +68,9 @@ export default function AbdmAbhaPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://www.onepathlab.com/lis-software' },
-          { '@type': 'ListItem', 'position': 3, 'name': 'ABDM & ABHA M1', 'item': 'https://www.onepathlab.com/abdm-abha' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://onepathlab.com/lis-software' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'ABDM & ABHA M1', 'item': 'https://onepathlab.com/abdm-abha' }
         ]
       },
       {
@@ -118,26 +118,10 @@ export default function AbdmAbhaPage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #bbf7d0',
-                borderLeft: '3px solid #16a34a',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#166534',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <ShieldCheck size={14} color="#16a34a" />
-                <span>[ NHA CERTIFIED COMPLIANCE ]</span>
-                <span style={{ color: '#475569' }}>Ayushman Bharat Digital Mission (ABDM) M1 &amp; HFR</span>
+              <div className="section-badge" style={{ borderLeftColor: '#16a34a' }}>
+                <span className="badge-tag" style={{ color: '#16a34a' }}>[ NHA CERTIFIED COMPLIANCE ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">Ayushman Bharat Digital Mission (ABDM) M1 &amp; HFR</span>
               </div>
             </div>
 
@@ -217,24 +201,10 @@ export default function AbdmAbhaPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #16a34a',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ NATIONAL HEALTH INITIATIVE ]</span>
-                  <span>How ABDM Functions Inside OnePath</span>
+                <div className="section-badge" style={{ borderLeftColor: '#16a34a' }}>
+                  <span className="badge-tag" style={{ color: '#16a34a' }}>[ NATIONAL HEALTH INITIATIVE ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">How ABDM Functions Inside OnePath</span>
                 </div>
               </div>
 
@@ -252,7 +222,7 @@ export default function AbdmAbhaPage() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: 24
             }}>
               {[

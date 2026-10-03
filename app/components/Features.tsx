@@ -83,24 +83,10 @@ export default function Features() {
 
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
-                        <div style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 8,
-                            background: '#f8fafc',
-                            border: '1px solid #cbd5e1',
-                            borderLeft: '3px solid #2563eb',
-                            color: '#0f172a',
-                            padding: '7px 16px',
-                            borderRadius: 6,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            letterSpacing: '0.04em',
-                            textTransform: 'uppercase',
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        }}>
-                            <span>[ ARCHITECTURE ]</span>
-                            <span style={{ color: '#475569' }}>Enterprise Laboratory Capabilities</span>
+                        <div className="section-badge">
+                            <span className="badge-tag">[ ARCHITECTURE ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Enterprise Laboratory Capabilities</span>
                         </div>
                     </div>
 
@@ -136,7 +122,7 @@ export default function Features() {
                     </p>
                 </div>
 
-                <div style={{
+                <div className="features-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))',
                     gap: 22,
@@ -231,6 +217,7 @@ export default function Features() {
                 
                 @media (max-width: 768px) {
                     .features-section { padding: 56px 16px !important; }
+                    .features-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
                     .features-section .feature-card { padding: 22px 18px !important; border-radius: 16px !important; }
                     .mobile-break { display: block; }
                 }

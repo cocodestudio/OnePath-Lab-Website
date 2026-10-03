@@ -5,7 +5,7 @@ const integrations = [
     {
         icon: <CreditCard size={22} />,
         name: 'Payment Gateways',
-        desc: 'Direct integration with Razorpay and PhonePe to auto-reconcile patient collections and B2B invoices.',
+        desc: 'Direct integration with PayU India, UPI QR, and PhonePe to auto-reconcile patient collections and B2B invoices.',
         color: '#2563eb',
         bg: '#eff6ff',
     },
@@ -53,24 +53,10 @@ export default function Integrations() {
 
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
-                        <div style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 8,
-                            background: '#f8fafc',
-                            border: '1px solid #cbd5e1',
-                            borderLeft: '3px solid #2563eb',
-                            color: '#0f172a',
-                            padding: '7px 16px',
-                            borderRadius: 6,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            letterSpacing: '0.04em',
-                            textTransform: 'uppercase',
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        }}>
-                            <span>[ ECOSYSTEM ]</span>
-                            <span style={{ color: '#475569' }}>Laboratory Hardware &amp; API Connectivity</span>
+                        <div className="section-badge">
+                            <span className="badge-tag">[ ECOSYSTEM ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Laboratory Hardware &amp; API Connectivity</span>
                         </div>
                     </div>
 

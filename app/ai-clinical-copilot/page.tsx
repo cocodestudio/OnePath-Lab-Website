@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     'diagnostic clinical decision support'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/ai-clinical-copilot',
+    canonical: 'https://onepathlab.com/ai-clinical-copilot',
   },
   openGraph: {
     title: 'Dual AI Clinical Copilot for Pathology Labs | OnePath Lab',
     description: 'Empower pathologists with dual AI clinical intelligence: automatic impressions, historical delta checks, and instant panic value alerts.',
-    url: 'https://www.onepathlab.com/ai-clinical-copilot',
+    url: 'https://onepathlab.com/ai-clinical-copilot',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -67,9 +67,9 @@ export default function AiClinicalCopilotPage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://www.onepathlab.com/lis-software' },
-          { '@type': 'ListItem', 'position': 3, 'name': 'AI Clinical Copilot', 'item': 'https://www.onepathlab.com/ai-clinical-copilot' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://onepathlab.com/lis-software' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'AI Clinical Copilot', 'item': 'https://onepathlab.com/ai-clinical-copilot' }
         ]
       },
       {
@@ -117,26 +117,10 @@ export default function AiClinicalCopilotPage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #ddd6fe',
-                borderLeft: '3px solid #7c3aed',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#5b21b6',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <Cpu size={14} color="#7c3aed" />
-                <span>[ CLINICAL DECISION SUPPORT ]</span>
-                <span style={{ color: '#475569' }}>Dual Gemini + Groq AI Reasoning Engine</span>
+              <div className="section-badge" style={{ borderLeftColor: '#7c3aed' }}>
+                <span className="badge-tag" style={{ color: '#7c3aed' }}>[ CLINICAL DECISION SUPPORT ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">Dual Gemini + Groq AI Reasoning Engine</span>
               </div>
             </div>
 
@@ -216,24 +200,10 @@ export default function AiClinicalCopilotPage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #7c3aed',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ CLINICAL INTELLIGENCE ]</span>
-                  <span>4 Pillars of the OnePath Copilot</span>
+                <div className="section-badge" style={{ borderLeftColor: '#7c3aed' }}>
+                  <span className="badge-tag" style={{ color: '#7c3aed' }}>[ CLINICAL INTELLIGENCE ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">4 Pillars of the OnePath Copilot</span>
                 </div>
               </div>
 

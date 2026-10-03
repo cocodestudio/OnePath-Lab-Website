@@ -34,24 +34,10 @@ export default function Testimonials() {
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: 56, padding: '0 10px' }}>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
-                        <div style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 8,
-                            background: '#ffffff',
-                            border: '1px solid #cbd5e1',
-                            borderLeft: '3px solid #2563eb',
-                            color: '#0f172a',
-                            padding: '7px 16px',
-                            borderRadius: 6,
-                            fontSize: 12,
-                            fontWeight: 700,
-                            letterSpacing: '0.04em',
-                            textTransform: 'uppercase',
-                            fontFamily: "'Plus Jakarta Sans', sans-serif",
-                        }}>
-                            <span>[ VERIFIED IMPACT ]</span>
-                            <span style={{ color: '#475569' }}>Pathologist &amp; Lab Director Endorsements</span>
+                        <div className="section-badge">
+                            <span className="badge-tag">[ VERIFIED IMPACT ]</span>
+                            <span className="badge-dot" />
+                            <span className="badge-desc">Pathologist &amp; Lab Director Endorsements</span>
                         </div>
                     </div>
 

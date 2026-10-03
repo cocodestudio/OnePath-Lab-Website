@@ -511,11 +511,12 @@ export default function Navbar() {
                   .nav-hamburger { display: flex !important; }
                 }
                 @media (max-width: 480px) {
-                  .nav-wrapper { padding: 8px 10px 0 !important; }
+                  .nav-wrapper { padding: 0 !important; }
+                  .nav-bar     { height: 60px !important; padding: 0 14px !important; }
                 }
                 @media (max-width: 360px) {
-                  .nav-wrapper { padding: 8px 6px 0 !important; }
-                  .nav-bar     { padding: 0 10px 0 12px !important; }
+                  .nav-wrapper { padding: 0 !important; }
+                  .nav-bar     { padding: 0 12px !important; }
                 }
                 @media (min-width: 901px) {
                   .mobile-drawer   { display: none !important; }

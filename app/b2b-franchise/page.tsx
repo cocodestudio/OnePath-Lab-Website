@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     'deduct and print pathology software'
   ],
   alternates: {
-    canonical: 'https://www.onepathlab.com/b2b-franchise',
+    canonical: 'https://onepathlab.com/b2b-franchise',
   },
   openGraph: {
     title: 'B2B Franchise & Collection Center LIS | OnePath Lab',
     description: 'Grow your diagnostic network risk-free. Manage satellite collection centers with prepaid partner wallets and automated deduct-and-print rules.',
-    url: 'https://www.onepathlab.com/b2b-franchise',
+    url: 'https://onepathlab.com/b2b-franchise',
     siteName: 'OnePath Lab LIS',
     locale: 'en_IN',
     type: 'website',
@@ -67,9 +67,9 @@ export default function B2bFranchisePage() {
       {
         '@type': 'BreadcrumbList',
         'itemListElement': [
-          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.onepathlab.com' },
-          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://www.onepathlab.com/lis-software' },
-          { '@type': 'ListItem', 'position': 3, 'name': 'B2B Franchise & Wallet', 'item': 'https://www.onepathlab.com/b2b-franchise' }
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://onepathlab.com' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Features', 'item': 'https://onepathlab.com/lis-software' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'B2B Franchise & Wallet', 'item': 'https://onepathlab.com/b2b-franchise' }
         ]
       },
       {
@@ -117,26 +117,11 @@ export default function B2bFranchisePage() {
           <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(16px, 3.5vw, 48px)', boxSizing: 'border-box' }}>
             
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
-              <div style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                background: '#ffffff',
-                border: '1px solid #fde68a',
-                borderLeft: '3px solid #d97706',
-                borderRadius: 6,
-                padding: '7px 16px',
-                fontSize: 12,
-                fontWeight: 700,
-                color: '#92400e',
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: '0 1px 3px rgba(15,23,42,0.04)'
-              }}>
-                <Building2 size={14} color="#d97706" />
-                <span>[ HUB &amp; SPOKE NETWORK ]</span>
-                <span style={{ color: '#475569' }}>B2B Franchise &amp; Collection Center Automation</span>
+              <div className="section-badge" style={{ borderLeftColor: '#d97706' }}>
+                <Building2 size={14} color="#d97706" style={{ flexShrink: 0 }} />
+                <span className="badge-tag">[ HUB &amp; SPOKE NETWORK ]</span>
+                <span className="badge-dot" />
+                <span className="badge-desc">B2B Franchise &amp; Collection Center Automation</span>
               </div>
             </div>
 
@@ -182,7 +167,7 @@ export default function B2bFranchisePage() {
                 {[
                   { m: '0% Bad Debts', l: 'Prepaid Wallet Security', d: 'Automated deduct-and-print authorization' },
                   { m: 'Unlimited', l: 'Collection Centers', d: 'Grow satellite branches without extra fees' },
-                  { m: '1-Click UPI', l: 'Partner Wallet Recharge', d: 'Instant credit via Razorpay & PhonePe' },
+                  { m: '1-Click UPI', l: 'Partner Wallet Recharge', d: 'Instant credit via PayU, UPI & PhonePe' },
                   { m: '100% Barcoded', l: 'Sample Logistics Tracking', d: 'Cold-chain batch dispatch & intake' },
                 ].map((s, idx) => (
                   <div key={idx} style={{
@@ -216,24 +201,10 @@ export default function B2bFranchisePage() {
             
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  background: '#f8fafc',
-                  border: '1px solid #cbd5e1',
-                  borderLeft: '3px solid #d97706',
-                  borderRadius: 6,
-                  padding: '6px 14px',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: '#0f172a',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: "'Plus Jakarta Sans', sans-serif"
-                }}>
-                  <span>[ FINANCIAL CONTROL ]</span>
-                  <span>How OnePath Protects Cashflow</span>
+                <div className="section-badge" style={{ borderLeftColor: '#d97706' }}>
+                  <span className="badge-tag">[ FINANCIAL CONTROL ]</span>
+                  <span className="badge-dot" />
+                  <span className="badge-desc">How OnePath Protects Cashflow</span>
                 </div>
               </div>
 
@@ -251,7 +222,7 @@ export default function B2bFranchisePage() {
 
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
               gap: 24
             }}>
               {[

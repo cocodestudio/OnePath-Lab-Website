@@ -19,7 +19,7 @@ const sections = [
         content: [
             { head: 'Service Delivery', body: 'To generate automated diagnostic reports, send WhatsApp/SMS notifications to patients on your behalf, and provide the full LIS functionality you\'ve subscribed to.' },
             { head: 'AI Model Training', body: 'We may use anonymized, non-identifiable aggregate data to improve our AI interpretation models. This requires explicit opt-in consent and follows strict anonymization protocols.' },
-            { head: 'Billing & Payments', body: 'Subscription billing, invoice generation, and payment processing via Razorpay. Your full card details are never stored on our servers.' },
+            { head: 'Billing & Payments', body: 'Subscription billing, invoice generation, and payment processing via PayU India and secure RBI-licensed gateways. Your full card details are never stored on our servers.' },
             { head: 'Customer Support', body: 'To diagnose issues, respond to queries, and provide onboarding/training support to your lab team.' },
         ],
     },
@@ -38,7 +38,7 @@ const sections = [
         title: '4. Data Sharing & Third Parties',
         content: [
             { head: 'WhatsApp / SMS Providers', body: 'AiSensy and other messaging providers receive only the patient\'s phone number and the pre-formatted report PDF link — nothing else. They are contractually prohibited from using this data for any other purpose.' },
-            { head: 'Payment Gateway', body: 'Razorpay receives only transaction metadata needed to process your subscription payment. Patient data is never shared with payment processors.' },
+            { head: 'Payment Gateway', body: 'PayU India and authorized payment partners receive only transaction metadata needed to process your subscription payment. Patient data is never shared with payment processors.' },
             { head: 'No Data Selling', body: 'We do not sell, rent, or trade your data or your patients\' data to advertisers, data brokers, or any third party for commercial purposes. Ever.' },
             { head: 'Legal Disclosure', body: 'We may disclose data if legally required by Indian law (e.g., court order or government directive). We will notify you within 48 hours of receiving such a request unless legally prohibited.' },
         ],
