@@ -60,7 +60,6 @@ export default function SignUpPage() {
       <Navbar />
       <main style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', flexDirection: 'column' }}>
         <TrialForm />
-        <Footer />
       </main>
     </>
   )
