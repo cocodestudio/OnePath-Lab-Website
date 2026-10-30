@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
+import "sileo/styles.css"
 import { TopProgressBar } from './components/TopProgressBar'
 import { SmoothScrolling } from './components/SmoothScrolling'
 import GoogleAnalytics from './components/GoogleAnalytics'
 import WhatsAppWidget from './components/WhatsAppWidget'
+import { ToastProvider } from './components/ui/toast'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -150,9 +152,11 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics />
         <TopProgressBar />
-        <SmoothScrolling>
-          {children}
-        </SmoothScrolling>
+        <ToastProvider>
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
+        </ToastProvider>
         <WhatsAppWidget />
       </body>
     </html>

@@ -3,8 +3,10 @@ import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import {
     Mail, Lock, User, Phone, Building, Users, CheckCircle2, ArrowRight,
-    ShieldCheck, Zap, Sparkles, ChevronDown, Gift, AlertCircle, Check, X
+    ShieldCheck, Zap, Sparkles, ChevronDown, Gift, AlertCircle, Check, X,
+    FileText, ExternalLink
 } from 'lucide-react'
+import { useToast } from '../components/ui/toast'
 
 const labelStyle: React.CSSProperties = {
     display: 'block', fontSize: '14px', fontWeight: 700,
@@ -31,10 +33,14 @@ const patientOptions = [
 ]
 
 export default function TrialForm() {
+    const toast = useToast()
     const [formData, setFormData] = useState({
         name: '', phone: '', email: '', password: '', labName: '', patientCount: '1-50', referralCode: ''
     })
     const [selectedPlan, setSelectedPlan] = useState<'6month' | '1year'>('1year')
+    const [hasReadTerms, setHasReadTerms] = useState(false)
+    const [hasReadPrivacy, setHasReadPrivacy] = useState(false)
+    const [agreedToTerms, setAgreedToTerms] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [isAutoApproved, setIsAutoApproved] = useState(false)
@@ -42,6 +48,8 @@ export default function TrialForm() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [touchedPassword, setTouchedPassword] = useState(false)
     const dropdownRef = useRef<HTMLDivElement>(null)
+
+    const isPolicyUnlocked = hasReadTerms && hasReadPrivacy
 
     // Password validation rules matching backend AuthController.php
     const pwd = formData.password
@@ -81,20 +89,106 @@ export default function TrialForm() {
         setError('')
     }
 
+    const handleAgreementClick = (e: React.MouseEvent) => {
+        const target = e.target as HTMLElement
+        if (target.closest('a')) {
+            return
+        }
+
+        if (!isPolicyUnlocked) {
+            e.preventDefault()
+            e.stopPropagation()
+            if (!hasReadTerms && !hasReadPrivacy) {
+                toast.warning("Agreement Locked", "Please review both Terms of Service and Privacy Policy to unlock the agreement checkbox.")
+            } else if (!hasReadTerms) {
+                toast.warning("Terms Required", "Please review the Terms of Service to unlock the agreement checkbox.")
+            } else {
+                toast.warning("Privacy Policy Required", "Please review the Privacy Policy to unlock the agreement checkbox.")
+            }
+        }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setError('')
 
-        if (!isPasswordValid) {
-            setTouchedPassword(true)
-            setError('Please ensure your password has at least 8 characters, with both uppercase and lowercase letters, and at least one number.')
+        // 1. Full Name
+        if (!formData.name.trim()) {
+            const msg = 'Please enter your full name.'
+            setError(msg)
+            toast.error("Full Name Required", msg)
             return
         }
 
-        if (!formData.patientCount) {
-            setError('Please select daily patient volume')
+        // 2. Phone
+        const cleanPhone = formData.phone.replace(/\D/g, '')
+        if (!cleanPhone || cleanPhone.length < 10) {
+            const msg = 'Please enter a valid 10-digit mobile number.'
+            setError(msg)
+            toast.error("Mobile Number Required", msg)
             return
         }
+
+        // 3. Email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+            const msg = 'Please enter a valid email address.'
+            setError(msg)
+            toast.error("Email Address Required", msg)
+            return
+        }
+
+        // 4. Password validation
+        if (!formData.password) {
+            const msg = 'Please create a password for your account.'
+            setTouchedPassword(true)
+            setError(msg)
+            toast.error("Password Required", msg)
+            return
+        }
+
+        if (!isPasswordValid) {
+            const msg = 'Password must have at least 8 characters, with uppercase, lowercase, and a number.'
+            setTouchedPassword(true)
+            setError(msg)
+            toast.error("Weak Password", msg)
+            return
+        }
+
+        // 5. Laboratory Name
+        if (!formData.labName.trim()) {
+            const msg = 'Please enter your laboratory name.'
+            setError(msg)
+            toast.error("Lab Name Required", msg)
+            return
+        }
+
+        // 6. Patient Count
+        if (!formData.patientCount) {
+            const msg = 'Please select daily patient volume.'
+            setError(msg)
+            toast.error("Workload Required", msg)
+            return
+        }
+
+        // 7. Policy Reading Requirement
+        if (!hasReadTerms || !hasReadPrivacy) {
+            const msg = !hasReadTerms && !hasReadPrivacy
+                ? 'Please review both Terms of Service and Privacy Policy before proceeding.'
+                : (!hasReadTerms ? 'Please review the Terms of Service before proceeding.' : 'Please review the Privacy Policy before proceeding.')
+            setError(msg)
+            toast.warning("Review Required", msg)
+            return
+        }
+
+        // 8. Consent Agreement Checkbox
+        if (!agreedToTerms) {
+            const msg = 'Please tick the agreement checkbox to accept the Terms, Privacy Policy & DPA.'
+            setError(msg)
+            toast.warning("Consent Required", msg)
+            return
+        }
+
         setIsLoading(true)
 
         try {
@@ -125,14 +219,18 @@ export default function TrialForm() {
 
             if (data.approved && data.access_token) {
                 setIsAutoApproved(true)
+                toast.success("Free Trial Activated", "🎉 7-Day Free Trial is live! Account created successfully.")
             } else {
                 setIsAutoApproved(false)
+                toast.success("Registration Successful", "Your OnePath Lab account is ready.")
             }
 
             setIsSuccess(true)
         } catch (err: any) {
             console.error("API Error Details:", err);
-            setError(err.message || 'Unable to connect to the server. Please check your internet connection.')
+            const errStr = err.message || 'Unable to connect to the server. Please check your internet connection.'
+            setError(errStr)
+            toast.error("Registration Error", errStr)
         } finally {
             setIsLoading(false)
         }
@@ -360,26 +458,142 @@ export default function TrialForm() {
                                     </div>
                                 </div>
 
+                                {/* Explicit DPDP Act Consent Checkbox with Read Tracking */}
+                                <div
+                                    onClick={handleAgreementClick}
+                                    style={{
+                                        background: isPolicyUnlocked ? '#f0fdf4' : '#f8fafc',
+                                        padding: '14px 16px',
+                                        borderRadius: '14px',
+                                        border: `1.5px solid ${isPolicyUnlocked ? (agreedToTerms ? '#86efac' : '#bbf7d0') : '#e2e8f0'}`,
+                                        marginTop: 6,
+                                        transition: 'all 0.25s ease',
+                                        cursor: !isPolicyUnlocked ? 'pointer' : 'default',
+                                        position: 'relative'
+                                    }}
+                                >
+                                    {/* Helper header tracking read status */}
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10, fontSize: 12, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: isPolicyUnlocked ? '#16a34a' : '#d97706' }}>
+                                            {isPolicyUnlocked ? (
+                                                <><CheckCircle2 size={14} color="#16a34a" /> Policies Reviewed (Ready to Accept)</>
+                                            ) : (
+                                                <><Lock size={13} color="#d97706" /> Please review both policies to unlock</>
+                                            )}
+                                        </span>
+                                        <div style={{ display: 'flex', gap: 6 }}>
+                                            <span style={{
+                                                fontSize: 10.5,
+                                                padding: '2px 8px',
+                                                borderRadius: 6,
+                                                fontWeight: 700,
+                                                background: hasReadTerms ? '#dcfce7' : '#fee2e2',
+                                                color: hasReadTerms ? '#15803d' : '#b91c1c'
+                                            }}>
+                                                Terms: {hasReadTerms ? 'Read ✓' : 'Unread'}
+                                            </span>
+                                            <span style={{
+                                                fontSize: 10.5,
+                                                padding: '2px 8px',
+                                                borderRadius: 6,
+                                                fontWeight: 700,
+                                                background: hasReadPrivacy ? '#dcfce7' : '#fee2e2',
+                                                color: hasReadPrivacy ? '#15803d' : '#b91c1c'
+                                            }}>
+                                                Privacy: {hasReadPrivacy ? 'Read ✓' : 'Unread'}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <label
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'flex-start',
+                                            gap: 11,
+                                            cursor: !isPolicyUnlocked ? 'not-allowed' : 'pointer',
+                                            fontSize: 13,
+                                            color: '#334155',
+                                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                            lineHeight: 1.5,
+                                            userSelect: 'none'
+                                        }}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            disabled={!isPolicyUnlocked}
+                                            checked={agreedToTerms}
+                                            onChange={(e) => {
+                                                if (isPolicyUnlocked) {
+                                                    setAgreedToTerms(e.target.checked)
+                                                    if (e.target.checked) {
+                                                        setError('')
+                                                        toast.success("Consent Accepted", "DPDP Act Data Processing Agreement accepted ✓")
+                                                    }
+                                                }
+                                            }}
+                                            style={{
+                                                marginTop: 2.5,
+                                                accentColor: '#2563eb',
+                                                width: 17,
+                                                height: 17,
+                                                cursor: !isPolicyUnlocked ? 'not-allowed' : 'pointer',
+                                                flexShrink: 0
+                                            }}
+                                        />
+                                        <span>
+                                            I agree to the{' '}
+                                            <Link
+                                                href="/terms"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    setHasReadTerms(true)
+                                                    toast.info("Terms of Service", "Document opened in a new tab. Marked as reviewed ✓")
+                                                }}
+                                                style={{ color: '#2563eb', fontWeight: 700, textDecoration: 'underline' }}
+                                            >
+                                                Terms of Service
+                                            </Link>
+                                            {hasReadTerms && <span style={{ color: '#16a34a', fontWeight: 800, marginLeft: 3 }}>✓</span>}
+                                            ,{' '}
+                                            <Link
+                                                href="/privacy-policy"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                onClick={(e) => {
+                                                    e.stopPropagation()
+                                                    setHasReadPrivacy(true)
+                                                    toast.info("Privacy Policy", "Document opened in a new tab. Marked as reviewed ✓")
+                                                }}
+                                                style={{ color: '#2563eb', fontWeight: 700, textDecoration: 'underline' }}
+                                            >
+                                                Privacy Policy
+                                            </Link>
+                                            {hasReadPrivacy && <span style={{ color: '#16a34a', fontWeight: 800, marginLeft: 3 }}>✓</span>}
+                                            , and the{' '}
+                                            <strong style={{ color: '#0f172a' }}>DPDP Act Data Processing Agreement (DPA)</strong>.
+                                        </span>
+                                    </label>
+                                </div>
+
                                 <button
                                     type="submit"
                                     disabled={isLoading}
                                     className="submit-btn"
                                     style={{
-                                        padding: '18px', borderRadius: '14px', background: '#2563eb', color: '#ffffff',
+                                        padding: '18px', borderRadius: '14px',
+                                        background: (!agreedToTerms || isLoading) ? '#64748b' : '#2563eb',
+                                        color: '#ffffff',
                                         fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
-                                        cursor: isLoading ? 'not-allowed' : 'pointer', transition: 'all 0.2s ease',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 8,
-                                        boxShadow: '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
+                                        cursor: isLoading ? 'not-allowed' : 'pointer',
+                                        transition: 'all 0.2s ease',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 6,
+                                        boxShadow: (!agreedToTerms || isLoading) ? 'none' : '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
                                     }}
                                 >
                                     {isLoading ? <span className="spinner" /> : <><ArrowRight size={18} /> Start 7-Day Free Trial</>}
                                 </button>
-
-                                <p style={{ textAlign: 'center', fontSize: 13, color: '#94a3b8', fontFamily: "'Plus Jakarta Sans', sans-serif", marginTop: 4 }}>
-                                    By signing up, you agree to our{' '}
-                                    <Link href="/terms" style={{ color: '#64748b', textDecoration: 'underline' }}>Terms of Service</Link>{' '}and{' '}
-                                    <Link href="/privacy-policy" style={{ color: '#64748b', textDecoration: 'underline' }}>Privacy Policy</Link>.
-                                </p>
                             </form>
                         </div>
                     ) : (

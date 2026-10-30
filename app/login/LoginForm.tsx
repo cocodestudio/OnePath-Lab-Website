@@ -4,8 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, Lock, Eye, EyeOff, ShieldCheck, Activity, Quote, ArrowLeft, ExternalLink, CheckCircle } from 'lucide-react'
+import { useToast } from '../components/ui/toast'
 
 export default function LoginForm() {
+    const toast = useToast()
     const [view, setView] = useState<'login' | 'forgot'>('login')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,7 +19,6 @@ export default function LoginForm() {
 
     const handleAction = async (e: React.FormEvent) => {
         e.preventDefault()
-        setIsLoading(true)
         setErrorMessage(null)
         setSuccessMessage(null)
 
@@ -26,6 +27,13 @@ export default function LoginForm() {
             : "http://127.0.0.1:8000"
 
         if (view === 'forgot') {
+            if (!email.trim()) {
+                const msg = 'Please enter your registered email address.'
+                setErrorMessage(msg)
+                toast.error("Email Required", msg)
+                return
+            }
+            setIsLoading(true)
             try {
                 const response = await fetch(`${apiOrigin}/api/auth/forgot-password`, {
                     method: 'POST',
@@ -43,9 +51,13 @@ export default function LoginForm() {
                 }
 
                 setResetSent(true)
-                setSuccessMessage('We have emailed you a secure link to reset your password.')
+                const okMsg = 'We have emailed you a secure link to reset your password.'
+                setSuccessMessage(okMsg)
+                toast.success("Reset Link Sent", okMsg)
             } catch (err: any) {
-                setErrorMessage(err.message || 'Unable to connect to authentication server.')
+                const errStr = err.message || 'Unable to connect to authentication server.'
+                setErrorMessage(errStr)
+                toast.error("Request Failed", errStr)
             } finally {
                 setIsLoading(false)
             }
@@ -53,6 +65,20 @@ export default function LoginForm() {
         }
 
         // Login Action
+        if (!email.trim()) {
+            const msg = 'Please enter your email address.'
+            setErrorMessage(msg)
+            toast.error("Email Required", msg)
+            return
+        }
+        if (!password) {
+            const msg = 'Please enter your password.'
+            setErrorMessage(msg)
+            toast.error("Password Required", msg)
+            return
+        }
+
+        setIsLoading(true)
         try {
             const response = await fetch(`${apiOrigin}/api/auth/login`, {
                 method: 'POST',
@@ -74,11 +100,13 @@ export default function LoginForm() {
             }
 
             if (data.status === 'success') {
-                // Redirect user to the LIS Workstation portal with pre-filled email
+                toast.success("Authenticated", "Credentials verified. Redirecting to workstation...")
                 window.location.href = `https://lis.onepathlab.com/login?email=${encodeURIComponent(email)}`
             }
         } catch (err: any) {
-            setErrorMessage(err.message || 'Unable to connect to authentication server.')
+            const errStr = err.message || 'Unable to connect to authentication server.'
+            setErrorMessage(errStr)
+            toast.error("Login Failed", errStr)
         } finally {
             setIsLoading(false)
         }

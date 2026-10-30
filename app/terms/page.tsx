@@ -133,12 +133,12 @@ export default function TermsAndConditions() {
                             <Mail size={22} />
                         </div>
                         <div>
-                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 8 }}>Have a Legal Query?</h3>
+                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 8 }}>Have a Legal or DPDP Compliance Query?</h3>
                             <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12 }}>
-                                For questions about these Terms, data processing agreements, or enterprise compliance requirements, contact our legal team. We respond within 1 business day.
+                                For inquiries concerning these Terms, enterprise Data Processing Agreements (DPAs), or to reach our statutory Grievance Redressal Officer under the DPDP Act, contact our legal and data protection team. We acknowledge queries within 72 hours.
                             </p>
                             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                                <a href="mailto:legal@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>support@onepathlab.com</a>
+                                <a href="mailto:support@onepathlab.com" style={{ fontSize: 14.5, fontWeight: 600, color: '#64748b', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>support@onepathlab.com</a>
                             </div>
                         </div>
                     </div>

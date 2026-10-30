@@ -289,3 +289,142 @@ html.lenis, html.lenis body {
     display: none !important;
   }
 }
+
+/* ── Sileo Physics-Based Toast Overrides (Top-Center & Lightweight Dark Professional Theme) ── */
+[data-sileo-viewport] {
+  z-index: 999999 !important;
+  pointer-events: none !important;
+}
+
+[data-sileo-viewport][data-position$="center"] {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+[data-sileo-viewport][data-position^="top"] {
+  top: max(1rem, env(safe-area-inset-top, 1rem)) !important;
+}
+
+[data-sileo-toast] {
+  pointer-events: auto !important;
+  width: 350px !important;
+  max-width: calc(100vw - 1.5rem) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: inherit !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: transparent !important;
+  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25)) !important;
+}
+
+/* SVG Vector Shape Protection - prevent CSS reset from squashing the rounded corners */
+[data-sileo-toast] svg,
+[data-sileo-svg],
+[data-sileo-canvas] svg {
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+/* Lightweight Dark Slate Background (Crisp edges, strictly zero background rectangular blur) */
+[data-sileo-viewport] [data-sileo-pill],
+[data-sileo-viewport] [data-sileo-body],
+[data-sileo-pill],
+[data-sileo-body] {
+  fill: #1e2536 !important;
+  stroke: none !important;
+}
+
+/* Professional Crisp Typography: Clean White Title */
+[data-sileo-viewport] [data-sileo-title],
+[data-sileo-viewport][data-theme] [data-sileo-title],
+[data-sileo-title] {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* High-Legibility Slate Description */
+[data-sileo-viewport] [data-sileo-description],
+[data-sileo-viewport][data-theme] [data-sileo-description],
+[data-sileo-description] {
+  color: #cbd5e1 !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+
+/* Vivid Status Icon Badges with Soft Glow */
+[data-sileo-badge] {
+  border-radius: 9999px !important;
+}
+
+[data-sileo-badge][data-state="success"] {
+  color: #34d399 !important;
+  background-color: rgba(16, 185, 129, 0.22) !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35) !important;
+}
+
+[data-sileo-badge][data-state="error"] {
+  color: #fb7185 !important;
+  background-color: rgba(244, 63, 94, 0.22) !important;
+  box-shadow: 0 0 12px rgba(244, 63, 94, 0.35) !important;
+}
+
+[data-sileo-badge][data-state="warning"] {
+  color: #fbbf24 !important;
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35) !important;
+}
+
+[data-sileo-badge][data-state="info"],
+[data-sileo-badge][data-state="loading"] {
+  color: #38bdf8 !important;
+  background-color: rgba(14, 165, 233, 0.22) !important;
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.35) !important;
+}
+
+[data-sileo-badge][data-state="action"] {
+  color: #a78bfa !important;
+  background-color: rgba(139, 92, 246, 0.22) !important;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Action Button: Refined Translucent Dark Pill */
+[data-sileo-button] {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-weight: 600 !important;
+  transition: all 0.18s ease !important;
+}
+
+[data-sileo-button]:hover {
+  background-color: rgba(255, 255, 255, 0.24) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Mobile & PC Top-Center Alignment & Responsiveness */
+@media (max-width: 640px) {
+  [data-sileo-viewport] {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  [data-sileo-toast] {
+    width: min(350px, calc(100vw - 1.5rem)) !important;
+    max-width: calc(100vw - 1.5rem) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

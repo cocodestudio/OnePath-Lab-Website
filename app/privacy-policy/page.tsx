@@ -1,65 +1,65 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { ShieldCheck, Lock, Eye, Server, AlertCircle, Mail, CheckCircle } from 'lucide-react'
+import { ShieldCheck, Lock, Eye, Server, AlertCircle, Mail, CheckCircle, Scale, UserCheck, FileText, Phone, MapPin, Clock } from 'lucide-react'
 
 const sections = [
     {
         icon: <Eye size={20} />, color: '#2563eb', bg: '#eff6ff',
         title: '1. Information We Collect',
         content: [
-            { head: 'Account Information', body: 'When your lab registers, we collect the lab owner\'s name, email address, phone number, lab name, address, and billing information required to set up and manage your account.' },
-            { head: 'Patient Data (Lab-Entered)', body: 'Information entered by your lab team — patient names, phone numbers, date of birth, test requests, and diagnostic results. This data is your property. We act only as a processor, never as the owner of this data.' },
-            { head: 'Usage Data', body: 'We collect anonymized usage logs (pages visited, features used, session duration) to improve product experience. This data cannot be used to identify individual patients.' },
-            { head: 'Device & Browser Data', body: 'IP address, browser type, device type, and operating system — collected to ensure compatibility, security, and fraud prevention.' },
+            { head: 'Account & Lab Registration Information', body: 'When your diagnostic laboratory signs up, we collect the lab administrator\'s name, email address, mobile phone number, lab business name, clinical establishment address, and billing details required to establish and maintain your cloud LIS tenant.' },
+            { head: 'Patient Health & Clinical Data (Lab-Entered)', body: 'Demographics and diagnostic information entered by your laboratory staff — including patient names, age, gender, contact phone numbers, test requests, sample collection timestamps, and pathology test results. This data is the exclusive property of your laboratory and patient. OnePath Lab acts strictly as a Data Processor under Indian law.' },
+            { head: 'Government & Health Identifiers', body: 'Where opted by the patient and lab, ABHA numbers, ABHA PHR addresses, and transactional verification tokens under the Ayushman Bharat Digital Mission (ABDM). We adhere to National Health Authority (NHA) security guidelines for all health identifier sync.' },
+            { head: 'Usage, Telemetry & Security Audit Logs', body: 'System activity logs (page navigations, feature usage, user login events, and diagnostic print/dispatch events) to maintain data integrity, security auditing, and fraud prevention. Technical logs are retained for forensic analysis in compliance with national cyber regulations.' },
+        ],
+    },
+    {
+        icon: <Scale size={20} />, color: '#0891b2', bg: '#ecfeff',
+        title: '2. Statutory Compliance with DPDP Act (2026–2027)',
+        content: [
+            { head: 'Statutory Roles: Data Processor vs. Data Fiduciary', body: 'Under India\'s Digital Personal Data Protection (DPDP) Act, your diagnostic laboratory operates as the "Data Fiduciary" which determines the purpose and lawful basis for collecting patient clinical data. OnePath Lab operates strictly as a "Data Processor", processing data strictly on your laboratory\'s documented instructions and service contract.' },
+            { head: 'Purpose Limitation & Data Minimization', body: 'Personal and clinical health data is processed solely for generating diagnostic reports, transmitting results to patients, managing lab finances, and facilitating care. We collect only what is strictly necessary for diagnostic and clinical operations.' },
+            { head: 'Protection of Children\'s & Minor Data (Section 9)', body: 'Diagnostic records of patients under 18 years of age are processed only with verifiable parental or legal guardian consent obtained by the testing laboratory. OnePath Lab never undertakes behavioral tracking, profiling, or targeted advertising directed at minors.' },
+            { head: 'Ayushman Bharat (ABDM) Consent Architecture', body: 'For laboratories participating in ABDM Milestone 1 (M1), digital health records are linked and shared with patient health lockers strictly via explicit, token-based consent granted through government-approved channels (such as Aarogya Setu or ABHA apps).' },
         ],
     },
     {
         icon: <Server size={20} />, color: '#7c3aed', bg: '#f5f3ff',
-        title: '2. How We Use Your Data',
+        title: '3. How We Use Your Data',
         content: [
-            { head: 'Service Delivery', body: 'To generate automated diagnostic reports, send WhatsApp/SMS notifications to patients on your behalf, and provide the full LIS functionality you\'ve subscribed to.' },
-            { head: 'AI Model Training', body: 'We may use anonymized, non-identifiable aggregate data to improve our AI interpretation models. This requires explicit opt-in consent and follows strict anonymization protocols.' },
-            { head: 'Billing & Payments', body: 'Subscription billing, invoice generation, and payment processing via PayU India and secure RBI-licensed gateways. Your full card details are never stored on our servers.' },
-            { head: 'Customer Support', body: 'To diagnose issues, respond to queries, and provide onboarding/training support to your lab team.' },
+            { head: 'Diagnostic Service Delivery', body: 'To generate automated, pathologist-verified diagnostic reports, synchronize bi-directional analyzer machine data, deliver WhatsApp/SMS reports to patients on your behalf, and provide the complete LIS functionality.' },
+            { head: 'AI Clinical Decision Support', body: 'We may use de-identified, non-traceable aggregate statistical data to enhance our AI clinical decision-support algorithms. This requires explicit opt-in consent and adheres to rigorous clinical de-identification protocols.' },
+            { head: 'Billing, Invoicing & Settlements', body: 'Managing subscription billing, generating GST-compliant tax invoices, and processing payments via PayU India and secure RBI-licensed banking gateways. Card and bank credentials are never stored on our application servers.' },
+            { head: 'Laboratory Support & Onboarding', body: 'To diagnose technical issues, configure analyzer bridges, and deliver prompt onboarding and machine interfacing support to your lab staff.' },
         ],
     },
     {
         icon: <Lock size={20} />, color: '#059669', bg: '#ecfdf5',
-        title: '3. Data Security & Encryption',
+        title: '4. Data Security, Encryption & Sovereignty',
         content: [
-            { head: 'Encryption in Transit', body: 'All data exchanged between your browser/app and our servers is encrypted using TLS 1.3 (the same protocol used by banks). No plain-text transmission of any patient data.' },
-            { head: 'Encryption at Rest', body: 'Patient records stored in our database are encrypted using AES-256 encryption. Even in the unlikely event of a physical server breach, data remains unreadable.' },
-            { head: 'Data Centers', body: 'Hosted on ISO 27001-certified infrastructure (AWS Mumbai region — data stays in India). Automated backups every 4 hours with 30-day retention.' },
-            { head: 'Access Control', body: 'Role-based access ensures your technicians, doctors, and admin staff only see the data they need. Multi-factor authentication is available for all account roles.' },
+            { head: 'Encryption in Transit & at Rest', body: 'All data exchanged between your browser and our cloud servers is protected with TLS 1.3 encryption. Patient records and medical databases are stored using AES-256 encryption at rest to prevent unauthorized access.' },
+            { head: 'Sovereign Indian Cloud Infrastructure', body: 'Hosted entirely on ISO 27001, SOC 2 Type II certified cloud infrastructure located in the AWS Asia Pacific (Mumbai) region. All personal health data strictly resides within the territory of India with zero unauthorized cross-border transfers.' },
+            { head: 'Granular Role-Based Access Control (RBAC)', body: 'Enforces strict permission tiers ensuring phlebotomists, receptionists, technicians, and consulting pathologists only access the patient and financial records necessary for their specific job functions.' },
+            { head: 'Automated Backups & Disaster Recovery', body: 'Automated snapshots every 4 hours with encrypted 30-day multi-zone replication to ensure business continuity and zero clinical data loss.' },
         ],
     },
     {
         icon: <AlertCircle size={20} />, color: '#d97706', bg: '#fffbeb',
-        title: '4. Data Sharing & Third Parties',
+        title: '5. Data Sharing & Third-Party Processors',
         content: [
-            { head: 'WhatsApp / SMS Providers', body: 'AiSensy and other messaging providers receive only the patient\'s phone number and the pre-formatted report PDF link — nothing else. They are contractually prohibited from using this data for any other purpose.' },
-            { head: 'Payment Gateway', body: 'PayU India and authorized payment partners receive only transaction metadata needed to process your subscription payment. Patient data is never shared with payment processors.' },
-            { head: 'No Data Selling', body: 'We do not sell, rent, or trade your data or your patients\' data to advertisers, data brokers, or any third party for commercial purposes. Ever.' },
-            { head: 'Legal Disclosure', body: 'We may disclose data if legally required by Indian law (e.g., court order or government directive). We will notify you within 48 hours of receiving such a request unless legally prohibited.' },
+            { head: 'WhatsApp & Telecommunication Providers', body: 'Official Meta WhatsApp Cloud API gateways receive only the verified recipient phone number and encrypted diagnostic report link to fulfill delivery. Telecom partners are contractually bound under Data Processing Agreements (DPAs).' },
+            { head: 'Zero Commercial Data Selling or Renting', body: 'We do not sell, rent, monetize, or trade patient health records, laboratory financials, or contact details to pharmaceutical companies, insurance aggregators, or advertising networks. Ever.' },
+            { head: 'Statutory Law Enforcement Disclosures', body: 'We may disclose data only if legally required under valid orders from Indian judicial courts or competent public health authorities, with prompt notification provided to the concerned laboratory unless prohibited by law.' },
         ],
     },
     {
-        icon: <ShieldCheck size={20} />, color: '#0891b2', bg: '#ecfeff',
-        title: '5. Your Rights & Data Control',
+        icon: <UserCheck size={20} />, color: '#0891b2', bg: '#ecfeff',
+        title: '6. Data Principal Rights & Medical Record Retention',
         content: [
-            { head: 'Data Portability', body: 'You can export all your lab data — test masters, patient records, reports — in CSV or PDF format at any time from the Settings > Data Export panel.' },
-            { head: 'Account Deletion', body: 'If you cancel your subscription, your data is retained for 30 days so you can export it. After 30 days, it is permanently deleted from our servers. You can also request immediate deletion by emailing us.' },
-            { head: 'Data Rectification', body: 'You can correct any account-level information directly from your dashboard. For data entered by your lab staff, your admin account has full edit access.' },
-            { head: 'Consent Withdrawal', body: 'If you previously opted in to AI model training, you can withdraw consent at any time from Settings > Privacy. This will not affect your service in any way.' },
-        ],
-    },
-    {
-        icon: <Mail size={20} />, color: '#dc2626', bg: '#fef2f2',
-        title: '6. Cookies & Tracking',
-        content: [
-            { head: 'Essential Cookies', body: 'Used for login sessions and security tokens. Cannot be disabled as they are required for the software to function. These never contain personal health data.' },
-            { head: 'Analytics Cookies', body: 'We use Mixpanel for anonymized product analytics. You can opt out of analytics tracking from your account Settings > Privacy without affecting functionality.' },
-            { head: 'No Advertising Cookies', body: 'We do not run ad networks or retargeting pixels on our platform. No Facebook Pixel, no Google Ads tracking, no third-party behavioral profiling.' },
+            { head: 'Statutory Medical Retention vs. Right to Erasure', body: 'Under the Clinical Establishments Act and National Medical Commission (NMC) regulations, diagnostic investigation records and patient clinical reports must be maintained for mandatory medical retention periods (typically minimum 3 years). However, non-clinical data, promotional preferences, and inactive lab account details can be permanently erased upon written request under the DPDP Act.' },
+            { head: 'Right to Access & Data Portability', body: 'Authorized lab administrators can export full clinical histories, patient master lists, test catalogs, and financial ledgers in CSV and PDF formats anytime from Settings > Data Export.' },
+            { head: 'Right to Rectification & Correction', body: 'Inaccurate patient demographics or test parameters can be rectified directly through authorized lab workflows, with every revision tracked in our immutable audit history.' },
+            { head: 'Right to Withdraw Consent & Nominate', body: 'Patients have the statutory right to withdraw consent for non-essential communications (such as marketing announcements or AI assistance opt-in) and nominate an individual to exercise their rights in case of death or incapacity.' },
         ],
     },
 ]
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
                         Last updated: June 2026 · Effective immediately for all new and existing accounts.
                     </p>
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#dcfce7', border: '1px solid #bbf7d0', borderRadius: 10, padding: '8px 18px', fontSize: 13.5, fontWeight: 600, color: '#15803d', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
-                        <CheckCircle size={15} /> NABL Compliant · HIPAA Aligned · ISO 27001 Certified Infrastructure
+                        <CheckCircle size={15} /> NABL Compliant · DPDP Act (2026–2027) Aligned · ISO 27001 Certified Infrastructure
                     </div>
                 </div>
             </section>
@@ -120,19 +120,62 @@ export default function PrivacyPolicy() {
                         </div>
                     ))}
 
-                    {/* Contact block */}
-                    <div style={{ background: '#f8fafc', borderRadius: 20, padding: '32px 36px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'flex-start', gap: 20 }} className="contact-block">
-                        <div style={{ width: 48, height: 48, background: '#eff6ff', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2563eb', flexShrink: 0 }}>
-                            <Mail size={22} />
-                        </div>
-                        <div>
-                            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 8 }}>Questions About This Policy?</h3>
-                            <p style={{ fontSize: 14.5, color: '#64748b', lineHeight: 1.75, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 12 }}>
-                                If you have any questions about how we handle your data, want to request a data export, or want to report a potential security concern, contact our Data Protection Officer directly.
-                            </p>
-                            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                                <a href="mailto:privacy@onepath.in" style={{ fontSize: 14.5, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>support@onepathlab.com</a>
+                    {/* ── DPDP Act Statutory Grievance Redressal Officer & Data Protection Desk ── */}
+                    <div style={{ background: '#ffffff', borderRadius: 20, padding: '36px 36px', border: '1.5px solid #bfdbfe', boxShadow: '0 10px 30px -10px rgba(37,99,235,0.08)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                            <div style={{ width: 44, height: 44, background: '#eff6ff', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#2563eb', flexShrink: 0 }}>
+                                <ShieldCheck size={24} />
                             </div>
+                            <div>
+                                <h3 style={{ fontSize: 20, fontWeight: 800, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>
+                                    Statutory Grievance Redressal Officer (DPDP Act, 2023)
+                                </h3>
+                                <p style={{ fontSize: 13, color: '#2563eb', fontWeight: 600, fontFamily: "'Plus Jakarta Sans',sans-serif", margin: 0 }}>
+                                    Dedicated Data Protection & Redressal Desk for India
+                                </p>
+                            </div>
+                        </div>
+
+                        <p style={{ fontSize: 14.5, color: '#475569', lineHeight: 1.8, fontFamily: "'Plus Jakarta Sans',sans-serif", marginBottom: 24 }}>
+                            In accordance with Sections 11, 13 &amp; 14 of the Digital Personal Data Protection (DPDP) Act and the notified DPDP Rules, if you or your patients have any grievances, inquiries regarding data processing, requests to exercise statutory rights (access, correction, erasure, or withdrawal), or wish to report a security concern, you may contact our designated Grievance &amp; Data Protection Officer directly.
+                        </p>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 16, background: '#f8fafc', padding: '20px 24px', borderRadius: 16, border: '1px solid #e2e8f0', marginBottom: 20 }}>
+                            <div>
+                                <div style={{ fontSize: 11.5, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Officer Name</div>
+                                <div style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Mr. Moh Abuzar</div>
+                                <div style={{ fontSize: 13, color: '#475569', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Grievance &amp; Data Protection Officer</div>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 11.5, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Direct Contact</div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                                    <a href="mailto:support@onepathlab.com" style={{ fontSize: 14, fontWeight: 600, color: '#2563eb', textDecoration: 'none', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
+                                        support@onepathlab.com
+                                    </a>
+                                    <span style={{ fontSize: 13.5, color: '#334155', fontWeight: 600, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
+                                        +91 90457 57272
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style={{ fontSize: 11.5, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>Office Address</div>
+                                <div style={{ fontSize: 13.5, color: '#334155', lineHeight: 1.6, fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
+                                    Street No 04, Tibba Road, Mayapuri Chowk, Ludhiana, Punjab 141007, India
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Statutory SLAs & Escalation Notice */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '14px 18px', background: '#eff6ff', borderRadius: 12, border: '1px solid #dbeafe', fontSize: 13, color: '#1e40af', fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700 }}>
+                                <Clock size={16} />
+                                <span>Statutory Redressal SLA:</span>
+                            </div>
+                            <p style={{ margin: 0, lineHeight: 1.6 }}>
+                                • Acknowledgment ticket issued within <strong>72 hours</strong> of formal written receipt.<br />
+                                • Investigation and final statutory resolution delivered within <strong>15 business days</strong>.<br />
+                                • <em>Appellate Recourse:</em> If unsatisfied with our Grievance Redressal outcome, Data Principals may escalate their concern directly to the <strong>Data Protection Board of India (DPBI)</strong>.
+                            </p>
                         </div>
                     </div>
                 </div>
