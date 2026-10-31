@@ -134,11 +134,25 @@ export function normalizeToastOptions(
         position: (descriptionOrOptions as SileoOptions).position || "top-center",
       };
     }
-    // If a single long sentence was passed without a description,
-    // route it to description so Sileo expands its rounded body card instead of clipping
-    if (input.length > 28) {
+    // Defensive check for single long strings (e.g. "Password reset link sent to user@domain.com")
+    // When a single long sentence is passed without description, route it to description so
+    // Sileo's pill header doesn't overflow or produce negative pillX coordinates.
+    if (input.length > 24) {
+      let derivedTitle = "Notification";
+      if (/reset\s*link|password\s*reset/i.test(input)) {
+        derivedTitle = "Reset Link Sent";
+      } else if (/session|logged\s*out|revoked/i.test(input)) {
+        derivedTitle = "Session Terminated";
+      } else if (/failed|error|unable/i.test(input)) {
+        derivedTitle = "Action Failed";
+      } else if (/success|updated|saved|created/i.test(input)) {
+        derivedTitle = "Success";
+      } else if (/warning|caution/i.test(input)) {
+        derivedTitle = "Notice";
+      }
+
       return {
-        title: "Notification",
+        title: derivedTitle,
         description: input,
         position: "top-center",
         fill: defaultFill,
