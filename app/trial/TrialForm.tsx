@@ -47,7 +47,19 @@ export default function TrialForm() {
     const [error, setError] = useState('')
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [touchedPassword, setTouchedPassword] = useState(false)
+    const [isOtpSent, setIsOtpSent] = useState(false)
+    const [isSendingOtp, setIsSendingOtp] = useState(false)
+    const [otpCode, setOtpCode] = useState('')
+    const [resendCooldown, setResendCooldown] = useState(0)
     const dropdownRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (resendCooldown <= 0) return
+        const timer = setInterval(() => {
+            setResendCooldown(prev => prev - 1)
+        }, 1000)
+        return () => clearInterval(timer)
+    }, [resendCooldown])
 
     const isPolicyUnlocked = hasReadTerms && hasReadPrivacy
 
@@ -108,8 +120,7 @@ export default function TrialForm() {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
+    const validateForm = (): boolean => {
         setError('')
 
         // 1. Full Name
@@ -117,7 +128,7 @@ export default function TrialForm() {
             const msg = 'Please enter your full name.'
             setError(msg)
             toast.error("Full Name Required", msg)
-            return
+            return false
         }
 
         // 2. Phone
@@ -126,7 +137,7 @@ export default function TrialForm() {
             const msg = 'Please enter a valid 10-digit mobile number.'
             setError(msg)
             toast.error("Mobile Number Required", msg)
-            return
+            return false
         }
 
         // 3. Email
@@ -135,7 +146,7 @@ export default function TrialForm() {
             const msg = 'Please enter a valid email address.'
             setError(msg)
             toast.error("Email Address Required", msg)
-            return
+            return false
         }
 
         // 4. Password validation
@@ -144,7 +155,7 @@ export default function TrialForm() {
             setTouchedPassword(true)
             setError(msg)
             toast.error("Password Required", msg)
-            return
+            return false
         }
 
         if (!isPasswordValid) {
@@ -152,7 +163,7 @@ export default function TrialForm() {
             setTouchedPassword(true)
             setError(msg)
             toast.error("Weak Password", msg)
-            return
+            return false
         }
 
         // 5. Laboratory Name
@@ -160,7 +171,7 @@ export default function TrialForm() {
             const msg = 'Please enter your laboratory name.'
             setError(msg)
             toast.error("Lab Name Required", msg)
-            return
+            return false
         }
 
         // 6. Patient Count
@@ -168,7 +179,7 @@ export default function TrialForm() {
             const msg = 'Please select daily patient volume.'
             setError(msg)
             toast.error("Workload Required", msg)
-            return
+            return false
         }
 
         // 7. Policy Reading Requirement
@@ -178,7 +189,7 @@ export default function TrialForm() {
                 : (!hasReadTerms ? 'Please review the Terms of Service before proceeding.' : 'Please review the Privacy Policy before proceeding.')
             setError(msg)
             toast.warning("Review Required", msg)
-            return
+            return false
         }
 
         // 8. Consent Agreement Checkbox
@@ -186,10 +197,73 @@ export default function TrialForm() {
             const msg = 'Please tick the agreement checkbox to accept the Terms, Privacy Policy & DPA.'
             setError(msg)
             toast.warning("Consent Required", msg)
+            return false
+        }
+
+        return true
+    }
+
+    const handleSendOtp = async (isResend = false) => {
+        if (!validateForm()) return
+
+        setError('')
+        setIsSendingOtp(true)
+
+        try {
+            const rawBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.onepathlab.com/api';
+            const baseUrl = rawBaseUrl.replace(/\/$/, '');
+
+            const response = await fetch(`${baseUrl}/auth/send-registration-otp`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    email: formData.email.trim().toLowerCase(),
+                    phone: formData.phone.trim(),
+                    labName: formData.labName.trim(),
+                })
+            })
+
+            const data = await response.json()
+
+            if (!response.ok) {
+                if (data.errors) {
+                    throw new Error(Object.values(data.errors).flat().join('\n'))
+                }
+                throw new Error(data.message || 'Failed to send verification code. Please check your details.')
+            }
+
+            setIsOtpSent(true)
+            setResendCooldown(30)
+            toast.success(
+                isResend ? "Code Resent" : "Verification Code Sent",
+                `6-digit verification code sent to ${formData.email}. Please check your inbox or spam folder.`
+            )
+        } catch (err: any) {
+            console.error("Send OTP error:", err)
+            const errStr = err.message || 'Unable to send verification code. Please check your internet connection.'
+            setError(errStr)
+            toast.error("Verification Error", errStr)
+        } finally {
+            setIsSendingOtp(false)
+        }
+    }
+
+    const handleFinalRegister = async () => {
+        if (!validateForm()) return
+
+        if (!otpCode.trim() || otpCode.trim().length !== 6) {
+            const msg = 'Please enter the 6-digit verification code sent to your email.'
+            setError(msg)
+            toast.error("OTP Required", msg)
             return
         }
 
         setIsLoading(true)
+        setError('')
 
         try {
             const rawBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.onepathlab.com/api';
@@ -203,6 +277,8 @@ export default function TrialForm() {
                 },
                 body: JSON.stringify({
                     ...formData,
+                    email: formData.email.trim().toLowerCase(),
+                    otp: otpCode.trim(),
                     referral_code: formData.referralCode ? formData.referralCode.trim().toUpperCase() : undefined,
                     plan_type: selectedPlan
                 })
@@ -227,12 +303,21 @@ export default function TrialForm() {
 
             setIsSuccess(true)
         } catch (err: any) {
-            console.error("API Error Details:", err);
+            console.error("API Error Details:", err)
             const errStr = err.message || 'Unable to connect to the server. Please check your internet connection.'
             setError(errStr)
             toast.error("Registration Error", errStr)
         } finally {
             setIsLoading(false)
+        }
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        if (!isOtpSent) {
+            await handleSendOtp(false)
+        } else {
+            await handleFinalRegister()
         }
     }
 
@@ -269,14 +354,14 @@ export default function TrialForm() {
                                         <label style={labelStyle}>Full Name</label>
                                         <div className="input-group custom-input" style={inputGroupStyle}>
                                             <User size={18} color="#94a3b8" style={iconStyle} />
-                                            <input type="text" name="name" required placeholder="Dr. John Doe" value={formData.name} onChange={handleChange} style={inputStyle} />
+                                            <input type="text" name="name" required placeholder="Dr. John Doe" value={formData.name} onChange={handleChange} disabled={isOtpSent || isSendingOtp} style={{ ...inputStyle, background: (isOtpSent || isSendingOtp) ? '#f8fafc' : '#ffffff' }} />
                                         </div>
                                     </div>
                                     <div>
                                         <label style={labelStyle}>Phone Number</label>
                                         <div className="input-group custom-input" style={inputGroupStyle}>
                                             <Phone size={18} color="#94a3b8" style={iconStyle} />
-                                            <input type="tel" name="phone" required placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} style={inputStyle} />
+                                            <input type="tel" name="phone" required placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} disabled={isOtpSent || isSendingOtp} style={{ ...inputStyle, background: (isOtpSent || isSendingOtp) ? '#f8fafc' : '#ffffff' }} />
                                         </div>
                                     </div>
                                 </div>
@@ -286,7 +371,7 @@ export default function TrialForm() {
                                         <label style={labelStyle}>Email Address</label>
                                         <div className="input-group custom-input" style={inputGroupStyle}>
                                             <Mail size={18} color="#94a3b8" style={iconStyle} />
-                                            <input type="email" name="email" required placeholder="john@lab.com" value={formData.email} onChange={handleChange} style={inputStyle} />
+                                            <input type="email" name="email" required placeholder="john@lab.com" value={formData.email} onChange={handleChange} disabled={isOtpSent || isSendingOtp} style={{ ...inputStyle, background: (isOtpSent || isSendingOtp) ? '#f8fafc' : '#ffffff' }} />
                                         </div>
                                     </div>
                                     <div>
@@ -299,12 +384,14 @@ export default function TrialForm() {
                                                 required
                                                 placeholder="••••••••"
                                                 value={formData.password}
+                                                disabled={isOtpSent || isSendingOtp}
                                                 onChange={(e) => {
                                                     handleChange(e)
                                                     setTouchedPassword(true)
                                                 }}
                                                 style={{
                                                     ...inputStyle,
+                                                    background: (isOtpSent || isSendingOtp) ? '#f8fafc' : '#ffffff',
                                                     borderColor: touchedPassword && !isPasswordValid ? '#fca5a5' : '#cbd5e1'
                                                 }}
                                             />
@@ -344,7 +431,7 @@ export default function TrialForm() {
                                     <label style={labelStyle}>Laboratory Name</label>
                                     <div className="input-group custom-input" style={inputGroupStyle}>
                                         <Building size={18} color="#94a3b8" style={iconStyle} />
-                                        <input type="text" name="labName" required placeholder="e.g. Apex Diagnostics" value={formData.labName} onChange={handleChange} style={inputStyle} />
+                                        <input type="text" name="labName" required placeholder="e.g. Apex Diagnostics" value={formData.labName} onChange={handleChange} disabled={isOtpSent || isSendingOtp} style={{ ...inputStyle, background: (isOtpSent || isSendingOtp) ? '#f8fafc' : '#ffffff' }} />
                                     </div>
                                 </div>
 
@@ -577,23 +664,151 @@ export default function TrialForm() {
                                     </label>
                                 </div>
 
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="submit-btn"
-                                    style={{
-                                        padding: '18px', borderRadius: '14px',
-                                        background: (!agreedToTerms || isLoading) ? '#64748b' : '#2563eb',
-                                        color: '#ffffff',
-                                        fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
-                                        cursor: isLoading ? 'not-allowed' : 'pointer',
-                                        transition: 'all 0.2s ease',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 6,
-                                        boxShadow: (!agreedToTerms || isLoading) ? 'none' : '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
-                                    }}
-                                >
-                                    {isLoading ? <span className="spinner" /> : <><ArrowRight size={18} /> Start 7-Day Free Trial</>}
-                                </button>
+                                {isOtpSent ? (
+                                    <div
+                                        className="animate-fade-in"
+                                        style={{
+                                            background: '#f8fafc',
+                                            border: '1.5px solid #3b82f6',
+                                            borderRadius: '16px',
+                                            padding: '22px 20px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: 16,
+                                            boxShadow: '0 8px 30px -6px rgba(37, 99, 235, 0.15)',
+                                            marginTop: 6
+                                        }}
+                                    >
+                                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
+                                            <div>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#1d4ed8', fontWeight: 800, fontSize: 14 }}>
+                                                    <Mail size={16} /> Enter Email Verification Code
+                                                </div>
+                                                <p style={{ margin: '4px 0 0', fontSize: 13, color: '#475569', lineHeight: 1.5 }}>
+                                                    A 6-digit OTP was sent to <strong style={{ color: '#0f172a' }}>{formData.email}</strong>
+                                                </p>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setIsOtpSent(false)
+                                                    setOtpCode('')
+                                                }}
+                                                style={{
+                                                    fontSize: 12,
+                                                    fontWeight: 700,
+                                                    color: '#2563eb',
+                                                    background: '#eff6ff',
+                                                    border: '1px solid #bfdbfe',
+                                                    borderRadius: 8,
+                                                    padding: '4px 10px',
+                                                    cursor: 'pointer'
+                                                }}
+                                            >
+                                                Change
+                                            </button>
+                                        </div>
+
+                                        <div>
+                                            <input
+                                                type="text"
+                                                inputMode="numeric"
+                                                pattern="[0-9]*"
+                                                autoComplete="one-time-code"
+                                                maxLength={6}
+                                                autoFocus
+                                                placeholder="• • • • • •"
+                                                value={otpCode}
+                                                onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                                                style={{
+                                                    width: '100%',
+                                                    padding: '14px 16px',
+                                                    borderRadius: '12px',
+                                                    border: '2px solid #2563eb',
+                                                    fontSize: '24px',
+                                                    fontWeight: 800,
+                                                    letterSpacing: '10px',
+                                                    textAlign: 'center',
+                                                    fontFamily: 'monospace',
+                                                    background: '#ffffff',
+                                                    color: '#0f172a',
+                                                    outline: 'none',
+                                                    boxShadow: '0 0 0 3px rgba(37, 99, 235, 0.1)'
+                                                }}
+                                            />
+                                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+                                                <span style={{ fontSize: 12, color: '#64748b' }}>
+                                                    Valid for 10 minutes
+                                                </span>
+                                                {resendCooldown > 0 ? (
+                                                    <span style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>
+                                                        Resend in {resendCooldown}s
+                                                    </span>
+                                                ) : (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleSendOtp(true)}
+                                                        disabled={isSendingOtp}
+                                                        style={{
+                                                            fontSize: 12,
+                                                            color: '#2563eb',
+                                                            background: 'none',
+                                                            border: 'none',
+                                                            cursor: isSendingOtp ? 'not-allowed' : 'pointer',
+                                                            fontWeight: 700,
+                                                            textDecoration: 'underline'
+                                                        }}
+                                                    >
+                                                        {isSendingOtp ? 'Sending...' : 'Resend Code'}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={isLoading || otpCode.trim().length !== 6}
+                                            className="submit-btn"
+                                            style={{
+                                                padding: '16px',
+                                                borderRadius: '12px',
+                                                background: (isLoading || otpCode.trim().length !== 6) ? '#94a3b8' : '#16a34a',
+                                                color: '#ffffff',
+                                                fontSize: 15,
+                                                fontWeight: 700,
+                                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                                border: 'none',
+                                                cursor: (isLoading || otpCode.trim().length !== 6) ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s ease',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                gap: 10,
+                                                boxShadow: (isLoading || otpCode.trim().length !== 6) ? 'none' : '0 10px 25px -6px rgba(22, 163, 74, 0.5)'
+                                            }}
+                                        >
+                                            {isLoading ? <span className="spinner" /> : <><CheckCircle2 size={18} /> Verify & Activate 7-Day Free Trial</>}
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        type="submit"
+                                        disabled={isSendingOtp || !agreedToTerms}
+                                        className="submit-btn"
+                                        style={{
+                                            padding: '18px', borderRadius: '14px',
+                                            background: (!agreedToTerms || isSendingOtp) ? '#64748b' : '#2563eb',
+                                            color: '#ffffff',
+                                            fontSize: 16, fontWeight: 700, fontFamily: "'Plus Jakarta Sans', sans-serif", border: 'none',
+                                            cursor: (isSendingOtp || !agreedToTerms) ? 'not-allowed' : 'pointer',
+                                            transition: 'all 0.2s ease',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 6,
+                                            boxShadow: (!agreedToTerms || isSendingOtp) ? 'none' : '0 10px 25px -6px rgba(37, 99, 235, 0.5)'
+                                        }}
+                                    >
+                                        {isSendingOtp ? <span className="spinner" /> : <><ArrowRight size={18} /> Start 7-Day Free Trial</>}
+                                    </button>
+                                )}
                             </form>
                         </div>
                     ) : (
