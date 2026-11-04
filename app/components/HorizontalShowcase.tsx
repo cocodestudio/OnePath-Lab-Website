@@ -266,7 +266,7 @@ export default function HorizontalShowcase() {
                 }}>
 
                     {/* ── Left Column: Interactive Stage Buttons ── */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                    <div className="showcase-nav-column" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                         <div style={{
                             fontSize: 11,
                             fontWeight: 700,
@@ -287,6 +287,7 @@ export default function HorizontalShowcase() {
                                     key={stage.step}
                                     type="button"
                                     onClick={() => setActiveIdx(idx)}
+                                    className="showcase-stage-btn"
                                     style={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -334,7 +335,7 @@ export default function HorizontalShowcase() {
                                         }}>
                                             {stage.category}
                                         </div>
-                                        <div style={{
+                                        <div className="showcase-stage-title" style={{
                                             fontSize: 14,
                                             fontWeight: 700,
                                             color: isActive ? '#0f172a' : '#475569',
@@ -349,6 +350,7 @@ export default function HorizontalShowcase() {
 
                                     <ChevronRight
                                         size={16}
+                                        className="showcase-stage-chevron"
                                         style={{
                                             color: isActive ? stage.accent : '#cbd5e1',
                                             transform: isActive ? 'translateX(2px)' : 'none',
@@ -360,7 +362,7 @@ export default function HorizontalShowcase() {
                             )
                         })}
 
-                        <div style={{
+                        <div className="showcase-autoplay-chip" style={{
                             marginTop: 10,
                             display: 'flex',
                             alignItems: 'center',
@@ -381,7 +383,7 @@ export default function HorizontalShowcase() {
                     </div>
 
                     {/* ── Right Column: Live Terminal / Stage Preview ── */}
-                    <div style={{
+                    <div className="showcase-preview-column" style={{
                         background: '#f8fafc',
                         border: '1px solid #e2e8f0',
                         borderRadius: 16,
@@ -444,7 +446,7 @@ export default function HorizontalShowcase() {
                                     <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                                         <CheckCircle2 size={16} color={activeStage.accent} style={{ flexShrink: 0, marginTop: 2 }} />
                                         <span style={{ fontSize: 13.5, color: '#1e293b', fontWeight: 500, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                            {pt}
+                                             {pt}
                                         </span>
                                     </div>
                                 ))}
@@ -452,7 +454,7 @@ export default function HorizontalShowcase() {
                         </div>
 
                         {/* Interactive Simulated Live Feed Chip */}
-                        <div style={{
+                        <div className="showcase-live-feed" style={{
                             background: '#ffffff',
                             border: '1px solid #e2e8f0',
                             borderRadius: 14,
@@ -460,14 +462,15 @@ export default function HorizontalShowcase() {
                             boxShadow: '0 4px 16px rgba(15,23,42,0.04)',
                             boxSizing: 'border-box',
                         }}>
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                            <div className="showcase-feed-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
                                     <span style={{
                                         width: 8, height: 8, borderRadius: '50%',
                                         background: activeStage.mockData.statusColor,
                                         boxShadow: `0 0 8px ${activeStage.mockData.statusColor}`,
+                                        flexShrink: 0,
                                     }} />
-                                    <span style={{ fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                                    <span style={{ fontSize: 11, fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.06em', wordBreak: 'break-word' }}>
                                         {activeStage.mockData.title}
                                     </span>
                                 </div>
@@ -478,12 +481,13 @@ export default function HorizontalShowcase() {
                                     background: `${activeStage.mockData.statusColor}14`,
                                     padding: '3px 8px',
                                     borderRadius: 6,
+                                    whiteSpace: 'nowrap',
                                 }}>
                                     {activeStage.mockData.status}
                                 </span>
                             </div>
 
-                            <div style={{
+                            <div className="showcase-feed-grid" style={{
                                 display: 'grid',
                                 gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
                                 gap: 10,
@@ -497,7 +501,8 @@ export default function HorizontalShowcase() {
                                         <div style={{
                                             fontWeight: 700,
                                             color: item.highlight ? activeStage.accent : '#0f172a',
-                                            fontFamily: "'Plus Jakarta Sans', sans-serif"
+                                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                            wordBreak: 'break-word',
                                         }}>
                                             {item.value}
                                         </div>
@@ -513,9 +518,64 @@ export default function HorizontalShowcase() {
 
             <style>{`
                 @media (max-width: 860px) {
+                    .interactive-showcase-section {
+                        padding: 56px 0 !important;
+                    }
                     .showcase-card-grid {
                         grid-template-columns: 1fr !important;
-                        gap: 20px !important;
+                        gap: 16px !important;
+                        padding: 16px 14px !important;
+                        border-radius: 16px !important;
+                    }
+                    .showcase-nav-column {
+                        flex-direction: row !important;
+                        overflow-x: auto !important;
+                        -webkit-overflow-scrolling: touch !important;
+                        gap: 8px !important;
+                        padding: 2px 2px 8px 2px !important;
+                        scroll-snap-type: x mandatory;
+                        scrollbar-width: none;
+                    }
+                    .showcase-nav-column::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .showcase-stage-btn {
+                        flex: 0 0 auto !important;
+                        width: auto !important;
+                        min-width: 155px !important;
+                        max-width: 220px !important;
+                        padding: 10px 12px !important;
+                        border-radius: 12px !important;
+                        scroll-snap-align: start;
+                        gap: 10px !important;
+                    }
+                    .showcase-stage-title {
+                        font-size: 12.5px !important;
+                        white-space: normal !important;
+                        display: -webkit-box !important;
+                        -webkit-line-clamp: 2 !important;
+                        -webkit-box-orient: vertical !important;
+                        line-height: 1.25 !important;
+                    }
+                    .showcase-stage-chevron {
+                        display: none !important;
+                    }
+                    .showcase-autoplay-chip {
+                        display: none !important;
+                    }
+                    .showcase-preview-column {
+                        padding: 16px 14px !important;
+                        border-radius: 14px !important;
+                    }
+                    .showcase-feed-grid {
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 10px 8px !important;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .showcase-live-feed {
+                        padding: 12px 14px !important;
                     }
                 }
             `}</style>

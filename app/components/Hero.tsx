@@ -144,14 +144,16 @@ export default function Hero() {
                             { icon: <Shield size={14} color="#059669" />, text: 'ABDM M1 & Earn DHIS Cash Incentives', border: '#cbd5e1', col: '#0f172a' },
                             { icon: <TrendingUp size={14} color="#7c3aed" />, text: 'Dual AI Copilot & Abnormal Delta Checks', border: '#cbd5e1', col: '#0f172a' },
                         ].map((item, i) => (
-                            <div key={i} style={{
+                            <div key={i} className="hero-proof-chip" style={{
                                 display: 'inline-flex', alignItems: 'center', gap: 8,
                                 background: '#ffffff', border: `1px solid ${item.border}`,
                                 borderRadius: 8, padding: '7px 15px', fontSize: 13, fontWeight: 600, color: item.col,
                                 fontFamily: "'Plus Jakarta Sans', sans-serif",
                                 boxShadow: '0 1px 3px rgba(15,23,42,0.04)',
+                                maxWidth: '100%',
+                                boxSizing: 'border-box',
                             }}>
-                                {item.icon} <span>{item.text}</span>
+                                {item.icon} <span style={{ wordBreak: 'break-word' }}>{item.text}</span>
                             </div>
                         ))}
                     </div>
@@ -470,6 +472,12 @@ export default function Hero() {
                     .hero-title-bottom { margin-bottom: 14px !important; }
                     .proof-pill { font-size: 11px !important; padding: 5px 10px !important; }
                     .hero-proof-row { gap: 6px !important; margin-bottom: 16px !important; }
+                    .hero-proof-chip {
+                        font-size: 11.5px !important;
+                        padding: 6px 10px !important;
+                        max-width: 100% !important;
+                        border-radius: 6px !important;
+                    }
                     .hero-desc { font-size: 14px !important; line-height: 1.6 !important; margin-bottom: 20px !important; }
                     .hero-cta-wrapper {
                         flex-direction: column !important;
